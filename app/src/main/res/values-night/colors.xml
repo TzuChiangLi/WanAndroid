@@ -38,6 +38,7 @@
     <!--夜晚模式-->
     <color name="bg_daily_mode">#303030</color>
     <color name="bg_daily_layout">#4D4D4D</color>
+    <color name="bg_card_view">#555555</color>
     <color name="bg_rv_item_tv">#555555</color>
     <color name="text_daily_mode">#C0C0C0</color>
     <color name="btn_daily_mode">#FAFAFA</color>

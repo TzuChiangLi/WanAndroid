@@ -3,6 +3,7 @@ package com.lzq.wanandroid.Net;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
@@ -39,7 +40,7 @@ public class HomeTask implements NetTask<Data> {
                         WanAndroid wanAndroid = gson.fromJson(result, WanAndroid.class);
                         int code = wanAndroid.getErrorCode();
                         if (code == 0) {
-                            callBack.onSuccess(wanAndroid.getData(), StringUtils.TYPE_HOME_TOP_ARTICLE);
+                            callBack.onSuccess(wanAndroid.getData(), StringUtils.TYPE_HOME_MORE_ARTICLE);
                         } else {
                             callBack.onFailed();
                         }
