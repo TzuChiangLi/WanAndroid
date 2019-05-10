@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--finishi();后面紧跟overridePendingTransition(R.anim.exit_fade_out,R.anim.exit_fade_in);-->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <translate
+        android:duration="400"
+        android:fromXDelta="0"
+        android:toXDelta="100%p" />
+</set>

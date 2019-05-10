@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_daily_layout"
+    tools:context=".View.SettingsActivity">
+
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/set_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/dp_2"
+        app:title="@string/set_title"
+        app:titleColor="@color/text_daily_mode"
+        android:background="@color/bg_daily_mode"
+        app:titleSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:orientation="horizontal"
+        android:background="@color/bg_daily_mode"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:text="夜间模式"
+            android:textColor="@color/text_daily_mode"
+            android:textSize="16sp" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/set_night_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="24dp"
+            android:paddingStart="8dp"
+            android:layout_weight="0.25" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider_color" />
+</LinearLayout>
