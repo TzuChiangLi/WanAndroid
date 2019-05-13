@@ -17,6 +17,12 @@ public abstract class BaseFragment extends Fragment {
         ActivityUtils.getActivityByView(view).overridePendingTransition(R.anim.enter_fade_out,R.anim.enter_fade_in);
     }
 
+    public void startActivity(View view,Intent intent){
+        ActivityUtils.getActivityByView(view).startActivity(intent);
+        //参数(进入动画，退出动画)
+        ActivityUtils.getActivityByView(view).overridePendingTransition(R.anim.enter_fade_out,R.anim.enter_fade_in);
+    }
+
     //获取焦点并且显示输入法
     public static void showSoftInputUtil(EditText editText) {
         editText.setFocusable(true);

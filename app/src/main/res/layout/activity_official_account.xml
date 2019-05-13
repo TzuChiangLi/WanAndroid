@@ -14,6 +14,7 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/bg_daily_mode"
         app:backButton="true"
+        android:elevation="0dp"
         app:title="公众号"
         app:titleColor="@color/text_daily_mode"
         app:titleSize="17sp" />

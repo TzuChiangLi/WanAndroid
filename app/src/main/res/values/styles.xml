@@ -1,0 +1,21 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--&lt;!&ndash;dialog底部弹出动画&ndash;&gt;-->
+    <!--<style name="dialog_rep_anim" mce_bogus="1" parent="android:Animation">-->
+        <!--<item name="android:windowEnterAnimation">@anim/dialog_rep_enter_anim</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/dialog_rep_exit_anim</item>-->
+    <!--</style>-->
+
+    <style name="imageViewAtTop" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp_200">200dp</dimen>
+    <dimen name="dp_100">100dp</dimen>
+    <dimen name="dp_90">90dp</dimen>
+    <dimen name="dp_80">80dp</dimen>
+    <dimen name="dp_70">70dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_9">9dp</dimen>
+    <dimen name="dp_8">8dp</dimen>
+    <dimen name="dp_7">7dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_3">3dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
+
+    <dimen name="default_radius">80dp</dimen>
+
+    <dimen name="home_btn_tv_size">13sp</dimen>
+    <dimen name="home_title_one_size">16sp</dimen>
+    <dimen name="home_top_title_one_size">17sp</dimen>
+    <color name="default_circular_color">#4c99d9</color>
+    <color name="default_circular_progress_color">#ffffff</color>
+    <dimen name="default_circular_width">3.5dp</dimen>
+    <dimen name="edge">10dp</dimen>
+    <dimen name="default_text_size">50sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+</resources>

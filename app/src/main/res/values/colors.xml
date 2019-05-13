@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#59AAFF</color>
+    <color name="colorPrimaryDark">#59AAFF</color>
+    <color name="colorAccent">#1697fd</color>
+    <color name="light_gray">#F0F5F5</color>
+    <color name="bg_gray">#D5CBCB</color>
+    <color name="translucent_white">#80FFFFFF</color>
+    <color name="light_black">#99000000</color>
+    <color name="dark_gray">#243037</color>
+    <color name="black">#000</color>
+    <color name="white">#FFF</color>
+    <color name="light_blue">#59AAFF</color>
+    <color name="blue_text">#25647c</color>
+    <color name="blue_title">#006678</color>
+    <color name="blue">#2C7DE3</color>
+    <color name="dark_blue">#1C6AC9</color>
+    <color name="start_blue">#00faf6</color>
+    <color name="end_blue">#007cd1</color>
+    <color name="blue_top">#1697fd</color>
+    <color name="del_normal">#f44336</color>
+    <color name="del_pressed">#9D0707</color>
+    <color name="mod_normal">#0ab1e2</color>
+    <color name="mod_pressed">#1C6AC9</color>
+    <color name="blue_titlebar">#00bce5</color>
+    <color name="green_normal">#37C000</color>
+    <color name="green_pressed">#4fc384</color>
+    <color name="green_btn_pd">#7ce6eb</color>
+    <color name="background_pd">#10eade</color>
+    <color name="divider_color">#FFB7B2B2</color>
+    <color name="title_light_gray">#d2d2d2</color>
+    <color name="title_light_white">#f8f8f8</color>
+    <color name="bg_light_gray">#e6e7ed</color>
+    <color name="menu_title_blue">#00a9ff</color>
+    <color name="disable_light_gray">#B3B3B3</color>
+    <color name="disable_dark_gray">#555555</color>
+    <!--webView进度条-->
+    <color name="progress_bar_web_start">#37b537</color>
+    <color name="progress_bar_web_center">#37b537</color>
+    <color name="progress_bar_web_end">#37b537</color>
+
+    <!--日间模式-->
+    <color name="bg_daily_mode">#FFF</color>
+    <color name="bg_daily_layout">#e6e7ed</color>
+    <color name="bg_card_view">#FFF</color>
+    <color name="bg_rv_item_tv">#e6e7ed</color>
+    <color name="text_daily_mode">#000</color>
+    <color name="btn_daily_mode">#FFF</color>
+    <!-- 分割线的颜色 -->
+    <color name="colorLine">#ECECEC</color>
+</resources>

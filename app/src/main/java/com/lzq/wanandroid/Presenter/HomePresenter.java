@@ -35,9 +35,9 @@ public class HomePresenter implements HomeContract.Presenter, LoadTasksCallBack<
                 mView.setHomeTopArticle(mList);
                 break;
             case StringUtils.TYPE_HOME_IMG_BANNER:
-                List mImgList = new ArrayList();
+                List<Data> mImgList = new ArrayList();
                 for (int i = 0; i < mList.size(); i++) {
-                    mImgList.add(mList.get(i).getImagePath());
+                    mImgList.add(new Data(mList.get(i).getImagePath(),mList.get(i).getUrl()));
                 }
                 mView.setHomeTopImgBanner(mImgList);
                 break;
@@ -85,9 +85,10 @@ public class HomePresenter implements HomeContract.Presenter, LoadTasksCallBack<
         mTask.execute(null, null, this);
     }
 
+
     @Override
     public void getSelectedURL(String URL) {
-//        mView.goWebActivity(URL);
+        mView.goWebActivity(URL);
     }
 
 

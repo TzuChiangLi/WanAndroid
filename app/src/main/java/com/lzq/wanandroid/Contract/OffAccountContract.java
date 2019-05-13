@@ -28,6 +28,7 @@ public interface OffAccountContract {
         void addContent(int ID, int page);
         void getContent(int ID, int page);
 
+        void getSelectedURL(String URL);
         int showID();
 
     }
@@ -39,7 +40,7 @@ public interface OffAccountContract {
 
         void setTitleText(List<Data> mList);
 
-        void setContent(List mList);
+        void setContent(List<Data> mList);
     }
 
 
@@ -49,6 +50,8 @@ public interface OffAccountContract {
         void setEmptyContent(List<Datas> mList);
 
         void setContent(List<Datas> mList,int flag);
+
+        void goWebActivity(String URL);
     }
 
 }

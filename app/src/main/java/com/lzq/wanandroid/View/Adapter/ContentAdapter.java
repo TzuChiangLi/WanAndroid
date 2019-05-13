@@ -63,4 +63,8 @@ public class ContentAdapter extends BaseQuickAdapter<Datas, BaseViewHolder> {
         }
         notifyDataSetChanged();
     }
+
+    public List<Datas> getData(){
+        return mList;
+    }
 }

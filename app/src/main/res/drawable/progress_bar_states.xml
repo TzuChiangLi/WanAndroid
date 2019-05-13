@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="@dimen/dp_4"/>
+                <gradient
+                    android:gradientRadius="@dimen/dp_8"
+                    android:centerColor="@color/progress_bar_web_center"
+                    android:endColor="@color/progress_bar_web_end"
+                    android:startColor="@color/progress_bar_web_start" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

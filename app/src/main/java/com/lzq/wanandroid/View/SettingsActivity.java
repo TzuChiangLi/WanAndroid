@@ -41,8 +41,7 @@ public class SettingsActivity extends BaseActivity implements SwitchButton.OnChe
         mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.exit_fade_out, R.anim.exit_fade_in);
+                finishActivity();
             }
 
             @Override

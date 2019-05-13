@@ -68,6 +68,11 @@ public class Data {
     private String username;
 
 
+    public Data(String imagePath, String url) {
+        this.imagePath = imagePath;
+        this.url = url;
+    }
+
     //设置分页+公众号ID
     public Data(int chapterId, int curPage) {
         this.chapterId = chapterId;

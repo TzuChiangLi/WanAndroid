@@ -82,6 +82,11 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     }
 
     @Override
+    public void getSelectedURL(String URL) {
+        mView.goWebActivity(URL);
+    }
+
+    @Override
     public void addContent(int ID, int page) {
         mTask.execute(ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_ADD, this);
     }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".View.WebActivity">
 
     <com.hjq.bar.TitleBar
@@ -11,15 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bg_daily_mode"
-        android:elevation="@dimen/dp_2"
         app:title="@string/web_title"
         app:titleColor="@color/text_daily_mode"
         app:titleSize="17sp" />
 
-    <com.tencent.smtt.sdk.WebView
+    <com.lzq.wanandroid.View.Custom.ProgressWebview
         android:id="@+id/web_x5_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/web_titlebar" />
 
-</RelativeLayout>
+</LinearLayout>
