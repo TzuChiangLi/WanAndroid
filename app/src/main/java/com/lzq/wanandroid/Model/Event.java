@@ -7,7 +7,10 @@ package com.lzq.wanandroid.Model;
  */
 public class Event {
 
-
+    /**
+     * 登录界面监听
+     */
+    public static final int TYPE_USER_LOGIN=1;
     /**
      * 登录成功
      */

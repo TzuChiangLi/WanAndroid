@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
-        mVPager.setOffscreenPageLimit(4);
+        mVPager.setOffscreenPageLimit(2);
         FragmentAdapter mFAdapter=new FragmentAdapter(getSupportFragmentManager(), mList);
         Log.d(TAG, "----initView: "+mFAdapter.getCount());
         mVPager.setAdapter(mFAdapter);
@@ -154,6 +154,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
+                        mUserFragment.doAnimation();
                         break;
                 }
             }

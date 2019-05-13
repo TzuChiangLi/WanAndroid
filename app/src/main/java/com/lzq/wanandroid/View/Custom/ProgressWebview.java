@@ -18,7 +18,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class ProgressWebview extends WebView {
     private ProgressBar progressbar;  //进度条
 
-    private int progressHeight = 8;  //进度条的高度，默认10px
+    private int progressHeight = 5;  //进度条的高度，默认10px
 
     public ProgressWebview(Context context) {
         super(context);
