@@ -121,6 +121,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_8"
             android:orientation="vertical"
+            android:background="@color/bg_daily_mode"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_collapseMode="pin">
 
@@ -128,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:background="@color/bg_daily_mode"
+
                 android:paddingHorizontal="18dp">
 
 

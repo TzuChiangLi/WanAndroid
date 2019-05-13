@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
-        mVPager.setOffscreenPageLimit(2);
+        mVPager.setOffscreenPageLimit(4);
         FragmentAdapter mFAdapter=new FragmentAdapter(getSupportFragmentManager(), mList);
         Log.d(TAG, "----initView: "+mFAdapter.getCount());
         mVPager.setAdapter(mFAdapter);

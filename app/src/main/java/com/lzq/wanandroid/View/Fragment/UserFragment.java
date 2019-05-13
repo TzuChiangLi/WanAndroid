@@ -139,6 +139,7 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
     }
 
     public void doAnimation() {
+        try{
         Float OldCardHeight = mCardView.getTranslationY();
         Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
         Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
@@ -149,7 +150,6 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
 
 
         ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
-        Log.d(TAG, "----doAnimation: "+mCardView.getTranslationY()+"/"+(-45)+"/"+(OldCardHeight +50)+"/"+OldCardHeight);
         ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
         ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
 
@@ -167,8 +167,12 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
         //好戏上演
         alphaSet.start();
         translationSet.start();
-        translationY_LoginBtn.start();
+        translationY_LoginBtn.start();}catch (Exception e){
+            Log.d(TAG, "----doAnimation: "+e.getMessage());
+        }
 
     }
+
+
 
 }

@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
  */
 public class AnimationUtil {
     private static String TAG = "YSActivity";
+
     private AnimationUtil() {
     }
 
@@ -36,11 +37,16 @@ public class AnimationUtil {
     public static int getInputHeight(Activity activity) {
         Rect r = new Rect();
         //获取当前界面可视部分
-        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
-        //获取屏幕的高度
-        int screenHeight = activity.getWindow().getDecorView().getRootView().getHeight();
-        //此处就是用来获取键盘的高度的， 在键盘没有弹出的时候 此高度为0 键盘弹出的时候为一个正数
-        int heightDifference = screenHeight - r.bottom;
+        int heightDifference = 0;
+        try {
+            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+            //获取屏幕的高度
+            int screenHeight = activity.getWindow().getDecorView().getRootView().getHeight();
+            //此处就是用来获取键盘的高度的， 在键盘没有弹出的时候 此高度为0 键盘弹出的时候为一个正数
+            heightDifference = screenHeight - r.bottom;
+
+        } catch (Exception e) {
+        }
         return heightDifference;
     }
 
