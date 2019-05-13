@@ -139,7 +139,6 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
     }
 
     public void doAnimation() {
-        Float Height = ((Float.valueOf(AnimationUtil.getScreenHeight(getActivity()))) / 40) * 1;
         Float OldCardHeight = mCardView.getTranslationY();
         Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
         Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
@@ -149,10 +148,10 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
         ObjectAnimator alpha_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "alpha", 0, 1);
 
 
-        ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -Height, OldCardHeight + 20, OldCardHeight);
-        Log.d(TAG, "----doAnimation: "+mCardView.getTranslationY()+"/"+(-Height)+"/"+(OldCardHeight +50)+"/"+OldCardHeight);
-        ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -Height, OldCardHeight + 20, OldLoginBtnHeight);
-        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -Height, OldCardHeight + 20, OldRegisterBtnHeight);
+        ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
+        Log.d(TAG, "----doAnimation: "+mCardView.getTranslationY()+"/"+(-45)+"/"+(OldCardHeight +50)+"/"+OldCardHeight);
+        ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
+        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
 
         AnimatorSet alphaSet = new AnimatorSet();
         AnimatorSet translationSet = new AnimatorSet();
