@@ -21,6 +21,7 @@ import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
@@ -29,6 +30,8 @@ import com.lzq.wanandroid.View.Fragment.ThreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SettingsActivity;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cookie.store.CookieStore;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,6 +43,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Cookie;
+import okhttp3.HttpUrl;
 
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
@@ -139,6 +144,10 @@ public class MainActivity extends BaseActivity {
         build.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
+                CookieStore cookieStore = OkGo.getInstance().getCookieJar().getCookieStore();
+                HttpUrl httpUrl = HttpUrl.parse(StringUtils.URL);
+                List<Cookie> cookies = cookieStore.getCookie(httpUrl);
+                cookieStore.removeAllCookie();
                 TitleAnim.hide(mTitleTv, mFuncImgBtn);
                 switch (index) {
                     case 0:
@@ -152,7 +161,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
-                        startActivity(LoginActivity.class);
+                        if (cookies.size() == 0 || cookies == null) {
+                            startActivity(LoginActivity.class);
+                        }
 //                        Event event = new Event();
 //                        event.target = Event.TARGET_MAIN;
 //                        event.type = Event.TYPE_LOGIN_ANIMATION;

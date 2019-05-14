@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.lzq.wanandroid"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode getIncreasedVersionCode()
         versionName getIncreasedVersionName()

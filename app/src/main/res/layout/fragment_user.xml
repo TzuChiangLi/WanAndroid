@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/me_tv_username"
+        android:id="@+id/user_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -20,25 +20,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/me_tv_id_title"
+        android:id="@+id/user_tv_id_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="ID:"
         android:textColor="@color/text_daily_mode"
-        app:layout_constraintStart_toStartOf="@+id/me_tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/me_tv_username" />
+        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/user_tv_name" />
 
     <TextView
-        android:id="@+id/me_tv_id"
+        android:id="@+id/user_tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_4"
         android:text="*****"
         android:textColor="@color/text_daily_mode"
-        app:layout_constraintBottom_toBottomOf="@+id/me_tv_id_title"
-        app:layout_constraintStart_toEndOf="@+id/me_tv_id_title"
-        app:layout_constraintTop_toTopOf="@+id/me_tv_id_title" />
+        app:layout_constraintBottom_toBottomOf="@+id/user_tv_id_title"
+        app:layout_constraintStart_toEndOf="@+id/user_tv_id_title"
+        app:layout_constraintTop_toTopOf="@+id/user_tv_id_title" />
 
     <LinearLayout
 
@@ -47,7 +47,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/me_tv_id_title">
+        app:layout_constraintTop_toBottomOf="@+id/user_tv_id_title">
 
         <Button
             android:layout_width="wrap_content"

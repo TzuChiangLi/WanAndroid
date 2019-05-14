@@ -59,7 +59,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCa
 
     @Override
     public void onSuccess(Data data, int flag) {
-        mView.LoginSuccess();
+        mView.LoginSuccess(data);
     }
 
     @Override

@@ -120,8 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_8"
-            android:orientation="vertical"
             android:background="@color/bg_daily_mode"
+            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_collapseMode="pin">
 
@@ -160,46 +160,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/main_tv_top_title"
+                    android:layout_marginBottom="@dimen/dp_50"
                     tools:listitem="@layout/rv_article" />
 
             </RelativeLayout>
 
             <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="@dimen/dp_8"-->
-                <!--android:background="@color/bg_daily_mode"-->
-                <!--android:paddingHorizontal="18dp">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/dp_8"-->
+            <!--android:background="@color/bg_daily_mode"-->
+            <!--android:paddingHorizontal="18dp">-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/main_tv_home_title"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignParentStart="true"-->
-                    <!--android:layout_marginVertical="12dp"-->
-                    <!--android:drawableLeft="@mipmap/top_article"-->
-                    <!--android:text="  文章"-->
-                    <!--android:textColor="@color/text_daily_mode"-->
-                    <!--android:textSize="@dimen/home_title_one_size" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/main_tv_home_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_marginVertical="12dp"-->
+            <!--android:drawableLeft="@mipmap/top_article"-->
+            <!--android:text="  文章"-->
+            <!--android:textColor="@color/text_daily_mode"-->
+            <!--android:textSize="@dimen/home_title_one_size" />-->
 
-                <!--<TextView-->
-                    <!--android:id="@+id/main_tv_home_more"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignTop="@+id/main_tv_home_title"-->
-                    <!--android:layout_alignBottom="@+id/main_tv_home_title"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:background="@android:color/transparent"-->
-                    <!--android:text="更多"-->
-                    <!--android:textColor="@color/text_daily_mode" />-->
+            <!--<TextView-->
+            <!--android:id="@+id/main_tv_home_more"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignTop="@+id/main_tv_home_title"-->
+            <!--android:layout_alignBottom="@+id/main_tv_home_title"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:text="更多"-->
+            <!--android:textColor="@color/text_daily_mode" />-->
 
-                <!--<android.support.v7.widget.RecyclerView-->
-                    <!--android:id="@+id/main_rv_home_article"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_below="@+id/main_tv_home_title"-->
-                    <!--android:layout_marginBottom="@dimen/dp_50"-->
-                    <!--tools:listitem="@layout/rv_article" />-->
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/main_rv_home_article"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/main_tv_home_title"-->
+            <!--android:layout_marginBottom="@dimen/dp_50"-->
+            <!--tools:listitem="@layout/rv_article" />-->
             <!--</RelativeLayout>-->
 
 
@@ -208,7 +209,7 @@
     </android.support.design.widget.CoordinatorLayout>
 
     <!--<com.scwang.smartrefresh.layout.footer.ClassicsFooter-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/bg_daily_mode" />-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="@color/bg_daily_mode" />-->
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

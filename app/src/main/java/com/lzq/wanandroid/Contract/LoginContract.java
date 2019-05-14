@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.lzq.wanandroid.BaseView;
+import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface LoginContract {
     //与V层交互，需要将获取的信息展示出来
     interface LoginView extends BaseView<LoginPresenter> {
 
-        void LoginSuccess();
+        void LoginSuccess(Data data);
 
         void setLoginLocation(int height);
 

@@ -15,10 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.LoginContract;
+import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
@@ -74,8 +76,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             public void onGlobalLayout() {
                 try {
                     mPresenter.resetLoginLocation(LoginActivity.this);
-                }catch (Exception e){
-                    Log.d(TAG, "----onGlobalLayout: "+e.getMessage());
+                } catch (Exception e) {
+                    Log.d(TAG, "----onGlobalLayout: " + e.getMessage());
                 }
             }
         };
@@ -104,15 +106,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     }
 
     @Override
-    public void LoginSuccess() {
+    public void LoginSuccess(Data data) {
         ToastUtils.show("登录成功！");
-//        Event event = new Event();
-//        event.target = Event.TARGET_MAIN;
-//        event.type = Event.TYPE_LOGIN_SUCCESS;
-//        EventBus.getDefault().post(event);
-        CookieStore cookieStore = OkGo.getInstance().getCookieJar().getCookieStore();
-        HttpUrl httpUrl = HttpUrl.parse(StringUtils.URL);
-        List<Cookie> cookies = cookieStore.getCookie(httpUrl);
+        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("username",data.getUsername());
+        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("id",data.getId());
+        Log.d(TAG, "----LoginSuccess: "+data.getUsername()+"/"+data.getId());
+        Event event = new Event();
+        event.target = Event.TARGET_USER
+        ;
+        event.type = Event.TYPE_LOGIN_SUCCESS;
+        EventBus.getDefault().post(event);
+        finish();
+//
         //不必传cookie，只需要传返回的结果，用Presenter层来实现
         //cookie在App启动的时候检测一下size和null，如果为0或者为null，就说明需要登录
 
@@ -218,6 +223,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 }
                 break;
             case 1://消失
+                break;
+            default:
                 break;
         }
     }
