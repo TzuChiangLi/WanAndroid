@@ -35,7 +35,9 @@
     <color name="disable_light_gray">#B3B3B3</color>
     <color name="disable_dark_gray">#555555</color>
     <!--webView进度条-->
-    <color name="progress_bar_web">#00a9ff</color>
+    <color name="progress_bar_web_start">#00a9ff</color>
+    <color name="progress_bar_web_center">#00a9ff</color>
+    <color name="progress_bar_web_end">#00a9ff</color>
     <!--夜晚模式-->
     <color name="bg_daily_mode">#303030</color>
     <color name="bg_daily_layout">#4D4D4D</color>

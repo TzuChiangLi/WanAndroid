@@ -1,51 +1,35 @@
 package com.lzq.wanandroid.View.Fragment;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.blankj.utilcode.util.ConvertUtils;
-import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.LoginContract;
-import com.lzq.wanandroid.Net.LoginTask;
-import com.lzq.wanandroid.Presenter.LoginPresenter;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.AnimationUtil;
-import com.lzq.wanandroid.View.Custom.ClearEditText;
+import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cookie.store.CookieStore;
+import com.lzy.okgo.cookie.store.SPCookieStore;
 
-import butterknife.BindView;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
+
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import okhttp3.Cookie;
+import okhttp3.HttpUrl;
 
-public class UserFragment extends BaseFragment implements LoginContract.LoginView {
+public class UserFragment extends BaseFragment {
     private static final String TAG = "UserFragment";
-    @BindView(R.id.cardView)
-    CardView mCardView;
-    @BindView(R.id.user_edt_id)
-    ClearEditText mIDEdt;
-    @BindView(R.id.user_edt_pwd)
-    ClearEditText mPwdEdt;
-    @BindView(R.id.user_btn_login)
-    Button mLoginBtn;
-    @BindView(R.id.user_btn_register_now)
-    Button mRegisterNowBtn;
-    private ConstraintLayout.LayoutParams mLoginLayout = null;
-    private LoginContract.LoginPresenter mPresenter;
+
 
     public static UserFragment newInstance() {
         return new UserFragment();
@@ -59,120 +43,26 @@ public class UserFragment extends BaseFragment implements LoginContract.LoginVie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         ButterKnife.bind(this, view);
-        doAnimation();
-        mLoginLayout = (ConstraintLayout.LayoutParams) mLoginBtn.getLayoutParams();
-        if (mPresenter == null) {
-            LoginTask mTask = LoginTask.getInstance();
-            mPresenter = LoginPresenter.createPresenter(this, mTask);
-        }
-        ViewTreeObserver.OnGlobalLayoutListener mListener = new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                mPresenter.resetLoginLocation(getActivity());
-            }
-        };
-        mIDEdt.getViewTreeObserver().addOnGlobalLayoutListener(mListener);
-        TextView.OnEditorActionListener mTvListener = new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode()) {
-                    Login();
-                    Log.d(TAG, "----onEditorAction: 回车");
-                    return true;
-                }
-                if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                    showSoftInputUtil(mPwdEdt);
-                    return true;
-                }
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    Log.d(TAG, "----onEditorAction: 完成");
-                    Login();
-                    return true;
-                }
-                return false;
-            }
-        };
-        mIDEdt.setOnEditorActionListener(mTvListener);
-        mPwdEdt.setOnEditorActionListener(mTvListener);
+        EventBus.getDefault().register(this);
         return view;
     }
 
 
-    @Override
-    public void LoginSuccess() {
-        ToastUtils.show("登录成功！");
-    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(Event event) {
+        if (event.target == Event.TARGET_USER) {
+            if (event.type == Event.TYPE_LOGIN_SUCCESS) {
 
-    @Override
-    public void setLoginLocation(int height) {
-        mLoginLayout.bottomMargin = 16;//此处单位是dp
-        mLoginBtn.setLayoutParams(mLoginLayout);
-        mRegisterNowBtn.setVisibility(View.GONE);
-    }
 
-    @Override
-    public void refreshLocation(int height) {
-        mLoginLayout.bottomMargin = ConvertUtils.dp2px(100);
-        mLoginBtn.setLayoutParams(mLoginLayout);
-        mRegisterNowBtn.setVisibility(View.VISIBLE);
-    }
-
-    @OnClick(R.id.user_btn_login)
-    public void Login() {
-        if (!TextUtils.isEmpty(mIDEdt.getText().toString()) && !TextUtils.isEmpty(mPwdEdt.getText().toString())) {
-            mPresenter.doLogin(mIDEdt.getText().toString(), mPwdEdt.getText().toString());
-        } else if (TextUtils.isEmpty(mPwdEdt.getText().toString()) && TextUtils.isEmpty(mIDEdt.getText().toString())) {
-            ToastUtils.show("请输入用户名和密码");
-            return;
-        } else if (TextUtils.isEmpty(mIDEdt.getText().toString())) {
-            ToastUtils.show("尚未输入用户名");
-            return;
-        } else {
-            ToastUtils.show("尚未输入密码");
-            return;
+            }
         }
     }
 
+
     @Override
-    public void setPresenter(LoginContract.LoginPresenter presenter) {
-        mPresenter = presenter;
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+        Log.d(TAG, "----onDestroy: ");
     }
-
-    public void doAnimation() {
-        try{
-        Float OldCardHeight = mCardView.getTranslationY();
-        Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
-        Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
-
-        ObjectAnimator alpha_CardView = ObjectAnimator.ofFloat(mCardView, "alpha", 0, 1);
-        ObjectAnimator alpha_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "alpha", 0, 1);
-        ObjectAnimator alpha_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "alpha", 0, 1);
-
-
-        ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
-        ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
-        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
-
-        AnimatorSet alphaSet = new AnimatorSet();
-        AnimatorSet translationSet = new AnimatorSet();
-
-        alphaSet.playTogether(alpha_CardView, alpha_LoginBtn, alpha_RegisterNow);
-        alphaSet.setDuration(1000);
-
-        translationSet.playTogether(translationY_CardView, translationY_RegisterNow);
-        translationSet.setDuration(1000);
-
-        translationY_LoginBtn.setDuration(1000).setStartDelay(100);
-
-        //好戏上演
-        alphaSet.start();
-        translationSet.start();
-        translationY_LoginBtn.start();}catch (Exception e){
-            Log.d(TAG, "----doAnimation: "+e.getMessage());
-        }
-
-    }
-
-
-
 }

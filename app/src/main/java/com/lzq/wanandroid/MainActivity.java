@@ -1,11 +1,9 @@
 package com.lzq.wanandroid;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -22,7 +20,6 @@ import com.lzq.wanandroid.Net.HomeTask;
 import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
-import com.lzq.wanandroid.Utils.ActivityUtils;
 import com.lzq.wanandroid.Utils.AnimationUtil;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
@@ -30,6 +27,7 @@ import com.lzq.wanandroid.View.Custom.OnlyIconView;
 import com.lzq.wanandroid.View.Fragment.HomeFragment;
 import com.lzq.wanandroid.View.Fragment.ThreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
+import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SettingsActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -60,6 +58,7 @@ public class MainActivity extends BaseActivity {
     private Fragment mCurrentFragment;
     private LoginPresenter mUserPresenter;
     private FragmentTransaction mTransaction;
+    private FragmentAdapter mFAdapter;
     private int oldHeight, currentIndex;
 
     @Override
@@ -105,7 +104,6 @@ public class MainActivity extends BaseActivity {
             mHomeFragment = HomeFragment.newInstance();
             mList.add(mHomeFragment);
         }
-//          ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mHomeFragment, R.id.main_viewpager);
         HomeTask homeTask = HomeTask.getInstance();
         mHomePresenter = new HomePresenter(mHomeFragment, homeTask);
         mHomeFragment.setPresenter(mHomePresenter);
@@ -120,9 +118,9 @@ public class MainActivity extends BaseActivity {
             mList.add(mUserFragment);
 //          ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mUserFragment, R.id.main_viewpager);
         }
-        LoginTask loginTask = LoginTask.getInstance();
-        mUserPresenter = new LoginPresenter(mUserFragment, loginTask);
-        mUserFragment.setPresenter(mUserPresenter);
+//        LoginTask loginTask = LoginTask.getInstance();
+//        mUserPresenter = new LoginPresenter(mUserFragment, loginTask);
+//        mUserFragment.setPresenter(mUserPresenter);
 
         PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
@@ -133,8 +131,8 @@ public class MainActivity extends BaseActivity {
                 .build();
         //允许4个
         mVPager.setOffscreenPageLimit(4);
-        FragmentAdapter mFAdapter=new FragmentAdapter(getSupportFragmentManager(), mList);
-        Log.d(TAG, "----initView: "+mFAdapter.getCount());
+        mFAdapter = new FragmentAdapter(getSupportFragmentManager(), mList);
+        Log.d(TAG, "----initView: " + mFAdapter.getCount());
         mVPager.setAdapter(mFAdapter);
         //自动适配ViewPager页面切换
         build.setupWithViewPager(mVPager);
@@ -154,7 +152,11 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
-                        mUserFragment.doAnimation();
+                        startActivity(LoginActivity.class);
+//                        Event event = new Event();
+//                        event.target = Event.TARGET_MAIN;
+//                        event.type = Event.TYPE_LOGIN_ANIMATION;
+//                        EventBus.getDefault().post(event);
                         break;
                 }
             }
@@ -193,6 +195,10 @@ public class MainActivity extends BaseActivity {
         if (event.target == Event.TARGET_MAIN) {
             if (event.type == Event.TYPE_CHANGE_DAY_NIGHT_MODE) {
                 recreate();
+            }
+            if (event.type == Event.TYPE_LOGIN_SUCCESS) {
+                TitleAnim.hide(mTitleTv);
+                Log.d(TAG, "----onEvent: mList.size：" + mList.size());
             }
         }
     }

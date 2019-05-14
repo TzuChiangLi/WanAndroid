@@ -58,4 +58,10 @@ public class TitleAnim {
         alpha_Title.setDuration(500)
                 .start();
     }
+    //title文字的渐隐
+    public static void hide(View view) {
+        ObjectAnimator alpha_Title = ObjectAnimator.ofFloat(view, "alpha", 1, 0);
+        alpha_Title.setDuration(500)
+                .start();
+    }
 }

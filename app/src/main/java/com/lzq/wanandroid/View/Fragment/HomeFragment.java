@@ -85,7 +85,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 }
             }
         });
-        mPresenter.initView();
+           mPresenter.initView();
         mPresenter.getHomeTopArticle();
         mPresenter.getHomeTopImgBanner();
         return view;

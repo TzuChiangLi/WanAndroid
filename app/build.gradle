@@ -9,7 +9,7 @@ android {
         versionCode getIncreasedVersionCode()
         versionName getIncreasedVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {abiFilters "armeabi", "armeabi-v7a", "armeabi-v8a", "x86", "x86_64","mips"}
+        ndk { abiFilters "armeabi", "armeabi-v7a", "armeabi-v8a", "x86", "x86_64", "mips" }
     }
     buildTypes {
         release {
@@ -23,6 +23,7 @@ android {
             outputFileName = "WanAndroid_${variant.versionName}_${variant.name}.apk"
         }
     }
+
 }
 
 //versionCode取时间戳对应的天数（即1970.1.1到当前天数）
@@ -87,4 +88,5 @@ dependencies {
     implementation files('libs/tbs_sdk_thirdapp_v4.3.0.1072_43646_sharewithdownloadwithfile_withoutGame_obfs_20190429_175122.jar')
     //X5内核
     implementation 'com.just.agentwebX5:agentwebX5:2.0.0'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 }

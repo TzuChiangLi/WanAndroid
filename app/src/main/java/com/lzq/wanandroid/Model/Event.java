@@ -10,7 +10,7 @@ public class Event {
     /**
      * 登录界面监听
      */
-    public static final int TYPE_USER_LOGIN=1;
+    public static final int TYPE_USER_LOGIN = 1;
     /**
      * 登录成功
      */
@@ -45,6 +45,18 @@ public class Event {
      * 停止动画
      */
     public static final int TYPE_STOP_ANIMATION = 8;
+
+    /**
+     * 登录界面动画
+     */
+    public static final int TYPE_LOGIN_ANIMATION=9;
+    /**
+     * 登录界面渐隐顶部标题
+     */
+    public static final int TYPE_LOGIN_SUCCESS=10;
+
+
+
 
     /**
      * 目标界面-MainActivity
@@ -85,6 +97,10 @@ public class Event {
      * 目标界面-搜索结果
      */
     public static final int TARGET_SEARCH_RESULT = 8;
+    /**
+     * 目标界面-我的信息
+     */
+    public static final int TARGET_USER = 9;
 
     public int target;
 

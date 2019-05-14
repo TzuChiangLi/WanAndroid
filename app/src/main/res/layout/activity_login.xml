@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_daily_mode"
+    tools:context=".View.LoginActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_60"
+        android:elevation="@dimen/dp_8"
+        app:cardCornerRadius="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/bg_card_view"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dp_8"
+            android:paddingVertical="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_8">
+
+                <ImageView
+                    android:id="@+id/user_img_id"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="@dimen/dp_4"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/id" />
+
+                <com.lzq.wanandroid.View.Custom.ClearEditText
+                    android:id="@+id/user_edt_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:text="TzuChiangLi"
+                    android:textColor="@color/text_daily_mode" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/dp_4"
+                android:layout_marginVertical="@dimen/dp_2"
+                android:background="@color/divider_color" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_8">
+
+                <ImageView
+                    android:id="@+id/user_img_pwd"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="@dimen/dp_4"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/pwd" />
+
+                <com.lzq.wanandroid.View.Custom.ClearEditText
+                    android:id="@+id/user_edt_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:text="Lzq565486"
+                    android:textColor="@color/text_daily_mode" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/user_btn_register_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/transparent"
+        android:text="@string/user_btn_register_now"
+        android:textColor="@color/text_daily_mode"
+        app:layout_constraintEnd_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <Button
+        android:id="@+id/user_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_60"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/shape_user_btn_login"
+        android:text="@string/user_btn_login"
+        android:textColor="@color/btn_daily_mode"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
