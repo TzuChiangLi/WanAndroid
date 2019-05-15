@@ -2,16 +2,20 @@ package com.lzq.wanandroid.Presenter;
 
 import android.util.Log;
 
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Utils.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountContentPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<List<Datas>> {
+public class AccountContentPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "AccountContentPresenter";
     private AccountTask mTask;
     private OffAccountContract.AccountContentView mView;
@@ -25,17 +29,35 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
         this.ID = ID;
     }
 
+    public static AccountContentPresenter createPresenter(OffAccountContract.AccountContentView mView, AccountTask mTask, int ID){
+        return new AccountContentPresenter(mView,mTask,ID);
+    }
+
 
     @Override
-    public void onSuccess(List<Datas> mList, int flag) {
-        switch (flag) {
-            case StringUtils.TYPE_ACCOUNT_CONTENT_LOAD:
-                mView.setContent(mList, StringUtils.TYPE_ACCOUNT_CONTENT_LOAD);
-                break;
-            case StringUtils.TYPE_ACCOUNT_CONTENT_ADD:
-                mView.setContent(mList, StringUtils.TYPE_ACCOUNT_CONTENT_ADD);
-                break;
+    public void onSuccess(Object data, int flag) {
+        int position;
+        try {
+            switch (flag) {
+                case StringUtils.TYPE_COLLECT_NO:
+                    position = (int) data;
+                    mView.collectedArticle(position, false);
+                    break;
+                case StringUtils.TYPE_COLLECT_YES:
+                    position = (int) data;
+                    mView.collectedArticle(position, true);
+                    break;
+                case StringUtils.TYPE_ACCOUNT_CONTENT_LOAD:
+                    mView.setContent((List<Datas>) data, StringUtils.TYPE_ACCOUNT_CONTENT_LOAD);
+                    break;
+                case StringUtils.TYPE_ACCOUNT_CONTENT_ADD:
+                    mView.setContent((List<Datas>) data, StringUtils.TYPE_ACCOUNT_CONTENT_ADD);
+                    break;
+            }
+        }catch (Exception e){
+            Log.d(TAG, "----onSuccess: "+e.getMessage());
         }
+
     }
 
     @Override
@@ -64,7 +86,6 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
         if (mList == null || mList.size() == 0) {
             mList.clear();
         }
-        Log.d(TAG, "----initView: ");
         for (int i = 0; i < 5; i++) {
             mList.add(new Datas("", "", "", "", ""));
         }
@@ -94,6 +115,22 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     @Override
     public int showID() {
         return ID;
+    }
+
+    @Override
+    public void collectArticle(int ID, boolean isCollect, int position) {
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
+            if (isCollect) {
+                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_NO, this);
+            } else {
+                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_YES, this);
+            }
+        } else {
+            Event event = new Event();
+            event.target = Event.TARGET_MAIN;
+            event.type = Event.TYPE_NEED_LOGIN;
+            EventBus.getDefault().post(event);
+        }
     }
 
 }

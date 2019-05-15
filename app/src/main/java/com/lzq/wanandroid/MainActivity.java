@@ -1,5 +1,6 @@
 package com.lzq.wanandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,13 +16,13 @@ import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
+import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.HomeTask;
-import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
+import com.lzq.wanandroid.Presenter.MainPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
-import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
@@ -30,8 +31,6 @@ import com.lzq.wanandroid.View.Fragment.ThreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SettingsActivity;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cookie.store.CookieStore;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,10 +42,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Cookie;
-import okhttp3.HttpUrl;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements Contract.MainView {
     private static final String TAG = "MainActivity";
     @BindView(R.id.main_viewpager)
     ViewPager mVPager;
@@ -57,14 +54,14 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.main_imgbtn_top_func)
     ImageButton mFuncImgBtn;
     private List<Fragment> mList = new ArrayList<>();
+    private Contract.MainPresenter mPresenter;
     private HomeFragment mHomeFragment;
     private HomePresenter mHomePresenter;
     private UserFragment mUserFragment;
-    private Fragment mCurrentFragment;
     private LoginPresenter mUserPresenter;
     private FragmentTransaction mTransaction;
     private FragmentAdapter mFAdapter;
-    private int oldHeight, currentIndex;
+    private int oldHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,29 +101,23 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
+        if (mPresenter == null) {
+            mPresenter = MainPresenter.createMainPresenter(this);
+        }
+        this.setPresenter(mPresenter);
         if (mHomeFragment == null) {
-            Log.d(TAG, "----HomeFragment: null");
             mHomeFragment = HomeFragment.newInstance();
             mList.add(mHomeFragment);
         }
         HomeTask homeTask = HomeTask.getInstance();
         mHomePresenter = new HomePresenter(mHomeFragment, homeTask);
         mHomeFragment.setPresenter(mHomePresenter);
-
-
         mList.add(new ThreeFragment());
         mList.add(new ThreeFragment());
-
         if (mUserFragment == null) {
-            Log.d(TAG, "----UserFragment: null");
             mUserFragment = UserFragment.newInstance();
             mList.add(mUserFragment);
-//          ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mUserFragment, R.id.main_viewpager);
         }
-//        LoginTask loginTask = LoginTask.getInstance();
-//        mUserPresenter = new LoginPresenter(mUserFragment, loginTask);
-//        mUserFragment.setPresenter(mUserPresenter);
-
         PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
@@ -144,10 +135,6 @@ public class MainActivity extends BaseActivity {
         build.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int index, int old) {
-                CookieStore cookieStore = OkGo.getInstance().getCookieJar().getCookieStore();
-                HttpUrl httpUrl = HttpUrl.parse(StringUtils.URL);
-                List<Cookie> cookies = cookieStore.getCookie(httpUrl);
-                cookieStore.removeAllCookie();
                 TitleAnim.hide(mTitleTv, mFuncImgBtn);
                 switch (index) {
                     case 0:
@@ -161,13 +148,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
-                        if (cookies.size() == 0 || cookies == null) {
-                            startActivity(LoginActivity.class);
-                        }
-//                        Event event = new Event();
-//                        event.target = Event.TARGET_MAIN;
-//                        event.type = Event.TYPE_LOGIN_ANIMATION;
-//                        EventBus.getDefault().post(event);
+                        Log.d(TAG, "----onSelected: " + index);
                         break;
                 }
             }
@@ -204,13 +185,21 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
         if (event.target == Event.TARGET_MAIN) {
-            if (event.type == Event.TYPE_CHANGE_DAY_NIGHT_MODE) {
-                recreate();
+            switch (event.type) {
+                case Event.TYPE_CHANGE_DAY_NIGHT_MODE:
+                    recreate();
+                    break;
+                case Event.TYPE_LOGIN_SUCCESS:
+                    TitleAnim.hide(mTitleTv);
+                    break;
+                case Event.TYPE_NEED_LOGIN:
+                    startActivity(new Intent(this, LoginActivity.class));
+                    break;
+                case Event.TYPE_LOGOUT_SUCCESS:
+                    mHomePresenter.getHomeTopArticle();
+                    break;
             }
-            if (event.type == Event.TYPE_LOGIN_SUCCESS) {
-                TitleAnim.hide(mTitleTv);
-                Log.d(TAG, "----onEvent: mList.size：" + mList.size());
-            }
+
         }
     }
 
@@ -221,4 +210,16 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void setPresenter(Contract.MainPresenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void afterCheckLogin(boolean flag) {
+        Log.d(TAG, "----afterCheckLogin: " + flag);
+        if (flag != true) {
+            startActivity(LoginActivity.class);
+        }
+    }
 }

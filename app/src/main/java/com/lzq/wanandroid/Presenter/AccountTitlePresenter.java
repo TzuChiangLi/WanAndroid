@@ -57,7 +57,6 @@ public class AccountTitlePresenter implements OffAccountContract.AccountTitlePre
         if (mList == null || mList.size() == 0) {
             mList.clear();
         }
-        Log.d(TAG, "----initView: ");
         for (int i = 0; i < 5; i++) {
             mList.add(new Data("", "", "", "", ""));
         }

@@ -1,46 +1,65 @@
 package com.lzq.wanandroid.Presenter;
 
-import com.lzq.wanandroid.Contract.HomeContract;
+import android.util.Log;
+
+import com.blankj.utilcode.util.SPUtils;
+import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.HomeTask;
 import com.lzq.wanandroid.Utils.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePresenter implements HomeContract.Presenter, LoadTasksCallBack<List<Data>> {
+public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "HomePresenter";
     private HomeTask mTask;
-    private HomeContract.View mView;
+    private Contract.HomeView mView;
     private List<Data> mTopArticleList = new ArrayList<>();
 
 
-    public HomePresenter(HomeContract.View mView, HomeTask mTask) {
+    public HomePresenter(Contract.HomeView mView, HomeTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
 
-    public static HomePresenter createPresenter(HomeContract.View mView, HomeTask mTask) {
+    public static HomePresenter createPresenter(Contract.HomeView mView, HomeTask mTask) {
         return new HomePresenter(mView, mTask);
     }
 
     @Override
-    public void onSuccess(List<Data> mList, int type) {
-        switch (type) {
-            case StringUtils.TYPE_HOME_MORE_ARTICLE:
+    public void onSuccess(Object data, int type) {
+        int position;
+        try {
 
-                break;
-            case StringUtils.TYPE_HOME_TOP_ARTICLE:
-                mView.setHomeTopArticle(mList);
-                break;
-            case StringUtils.TYPE_HOME_IMG_BANNER:
-                List<Data> mImgList = new ArrayList();
-                for (int i = 0; i < mList.size(); i++) {
-                    mImgList.add(new Data(mList.get(i).getImagePath(),mList.get(i).getUrl()));
-                }
-                mView.setHomeTopImgBanner(mImgList);
-                break;
+
+            switch (type) {
+                case StringUtils.TYPE_COLLECT_NO:
+                    position = (int) data;
+                    mView.collectedArticle(position, false);
+                    break;
+                case StringUtils.TYPE_COLLECT_YES:
+                    position = (int) data;
+                    mView.collectedArticle(position, true);
+                    break;
+                case StringUtils.TYPE_HOME_TOP_ARTICLE:
+                    mView.setHomeTopArticle((List<Data>) data);
+                    break;
+                case StringUtils.TYPE_HOME_IMG_BANNER:
+                    List<Data> mImgList = new ArrayList();
+                    List<Data> tList = (List<Data>) data;
+                    for (int i = 0; i < tList.size(); i++) {
+                        mImgList.add(new Data(tList.get(i).getImagePath(), tList.get(i).getUrl()));
+                    }
+                    mView.setHomeTopImgBanner(mImgList);
+                    break;
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "----onSuccess: " + e.getMessage());
         }
     }
 
@@ -77,12 +96,12 @@ public class HomePresenter implements HomeContract.Presenter, LoadTasksCallBack<
 
     @Override
     public void getHomeTopArticle() {
-        mTask.execute(null, null, this);
+        mTask.execute(null, "1", this);
     }
 
     @Override
     public void getHomeTopImgBanner() {
-        mTask.execute(null, null, this);
+        mTask.execute(null, "2", this);
     }
 
 
@@ -91,5 +110,19 @@ public class HomePresenter implements HomeContract.Presenter, LoadTasksCallBack<
         mView.goWebActivity(URL);
     }
 
-
+    @Override
+    public void collectArticle(int ID, boolean isCollect, int position) {
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
+            if (isCollect) {
+                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_NO, this);
+            } else {
+                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_YES, this);
+            }
+        } else {
+            Event event = new Event();
+            event.target = Event.TARGET_MAIN;
+            event.type = Event.TYPE_NEED_LOGIN;
+            EventBus.getDefault().post(event);
+        }
+    }
 }

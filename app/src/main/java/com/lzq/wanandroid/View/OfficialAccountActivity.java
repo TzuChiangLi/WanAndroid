@@ -124,7 +124,7 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
             mTabLayout.setupWithViewPager(mVPager);
             mVPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), fragments));
             mVPager.setCurrentItem(0);
-            mVPager.setOffscreenPageLimit(mList.size());
+            mVPager.setOffscreenPageLimit(4);
             for (int i = 0; i < mList.size(); i++) {
                 mTabLayout.getTabAt(i).setText(mList.get(i).getName());
             }

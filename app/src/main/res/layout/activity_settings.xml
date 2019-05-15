@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_daily_layout"
+    android:orientation="vertical"
     tools:context=".View.SettingsActivity">
 
 
@@ -13,17 +13,17 @@
         android:id="@+id/set_titlebar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/bg_daily_mode"
         android:elevation="@dimen/dp_2"
         app:title="@string/set_title"
         app:titleColor="@color/text_daily_mode"
-        android:background="@color/bg_daily_mode"
         app:titleSize="17sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal"
         android:background="@color/bg_daily_mode"
+        android:orientation="horizontal"
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10">
 
@@ -33,7 +33,7 @@
             android:layout_weight="10"
             android:gravity="center_vertical"
             android:paddingStart="24dp"
-            android:text="夜间模式"
+            android:text="@string/set_night_mode"
             android:textColor="@color/text_daily_mode"
             android:textSize="16sp" />
 
@@ -43,12 +43,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginEnd="24dp"
-            android:paddingStart="8dp"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:paddingStart="8dp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/divider_color" />
+        android:background="@color/divide_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/bg_daily_mode"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/set_btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="@string/set_logout"
+            android:textColor="@color/btn_logout"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divide_line" />
 </LinearLayout>

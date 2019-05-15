@@ -54,7 +54,14 @@ public class Event {
      * 登录界面渐隐顶部标题
      */
     public static final int TYPE_LOGIN_SUCCESS=10;
-
+    /**
+     * 退出当前用户刷新UserFragment界面
+     */
+    public static final int TYPE_LOGOUT_SUCCESS=11;
+    /**
+     * 需要登录
+     */
+    public static final int TYPE_NEED_LOGIN=12;
 
 
 

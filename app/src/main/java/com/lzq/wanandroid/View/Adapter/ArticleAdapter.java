@@ -48,6 +48,12 @@ public class ArticleAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
             helper.setBackgroundColor(R.id.rv_article_date, bg_rv_item_tv);
             helper.setBackgroundColor(R.id.rv_article_author_title, bg_rv_item_tv);
             helper.setBackgroundColor(R.id.rv_article_chapter_title, bg_rv_item_tv);
+            helper.addOnClickListener(R.id.rv_article_imgbtn_save);
+            if (item.isCollect()){
+                helper.setImageResource(R.id.rv_article_imgbtn_save,R.mipmap.collect_yes);
+            }else {
+                helper.setImageResource(R.id.rv_article_imgbtn_save,R.mipmap.collect_normal);
+            }
         }
     }
 

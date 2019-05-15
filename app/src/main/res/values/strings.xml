@@ -5,6 +5,8 @@
     <string name="user_btn_register_now">没有账户？注册一个</string>
     <string name="user_btn_login_now">已有账户</string>
     <string name="set_title">设置</string>
+    <string name="set_night_mode">夜间模式</string>
+    <string name="set_logout">切换用户</string>
     <string name="web_title">文章浏览</string>
     <string name="top_article_title"> 置顶</string>
     <string name="home_article_title">   文章</string>

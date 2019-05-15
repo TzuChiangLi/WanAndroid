@@ -19,7 +19,6 @@
     <color name="end_blue">#007cd1</color>
     <color name="blue_top">#1697fd</color>
     <color name="del_normal">#f44336</color>
-    <color name="del_pressed">#9D0707</color>
     <color name="mod_normal">#0ab1e2</color>
     <color name="mod_pressed">#1C6AC9</color>
     <color name="blue_titlebar">#00bce5</color>
@@ -27,7 +26,6 @@
     <color name="green_pressed">#4fc384</color>
     <color name="green_btn_pd">#7ce6eb</color>
     <color name="background_pd">#10eade</color>
-    <color name="divider_color">#FFB7B2B2</color>
     <color name="title_light_gray">#d2d2d2</color>
     <color name="title_light_white">#f8f8f8</color>
     <color name="bg_light_gray">#e6e7ed</color>
@@ -46,6 +44,8 @@
     <color name="bg_rv_item_tv">#e6e7ed</color>
     <color name="text_daily_mode">#000</color>
     <color name="btn_daily_mode">#FFF</color>
+    <color name="btn_logout">#f44336</color>
+    <color name="divide_line">#FFB7B2B2</color>
     <!-- 分割线的颜色 -->
     <color name="colorLine">#ECECEC</color>
 </resources>

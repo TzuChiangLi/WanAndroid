@@ -64,7 +64,7 @@
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/dp_4"
                 android:layout_marginVertical="@dimen/dp_2"
-                android:background="@color/divider_color" />
+                android:background="@color/divide_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"

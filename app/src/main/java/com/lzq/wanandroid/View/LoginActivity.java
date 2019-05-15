@@ -108,12 +108,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void LoginSuccess(Data data) {
         ToastUtils.show("登录成功！");
+        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("isLogin",true);
         SPUtils.getInstance("userinfo",MODE_PRIVATE).put("username",data.getUsername());
-        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("id",data.getId());
+        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("id",String.valueOf(data.getId()));
         Log.d(TAG, "----LoginSuccess: "+data.getUsername()+"/"+data.getId());
         Event event = new Event();
-        event.target = Event.TARGET_USER
-        ;
+        event.target = Event.TARGET_USER;
         event.type = Event.TYPE_LOGIN_SUCCESS;
         EventBus.getDefault().post(event);
         finish();

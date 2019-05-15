@@ -31,6 +31,8 @@ public interface OffAccountContract {
         void getSelectedURL(String URL);
         int showID();
 
+        void collectArticle(int ID,boolean isCollect,int position);
+
     }
 
     //与V层交互，需要将获取的信息展示出来
@@ -52,6 +54,8 @@ public interface OffAccountContract {
         void setContent(List<Datas> mList,int flag);
 
         void goWebActivity(String URL);
+
+        void collectedArticle(int position,boolean isCollect);
     }
 
 }

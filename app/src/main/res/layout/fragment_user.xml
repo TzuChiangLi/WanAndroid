@@ -1,80 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_daily_mode">
 
-
-    <TextView
-        android:id="@+id/user_tv_name"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
-        android:text="游客"
-        android:textColor="@color/text_daily_mode"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/bg_daily_mode">
 
-    <TextView
-        android:id="@+id/user_tv_id_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="ID:"
-        android:textColor="@color/text_daily_mode"
-        app:layout_constraintStart_toStartOf="@+id/user_tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/user_tv_name" />
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-    <TextView
-        android:id="@+id/user_tv_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_4"
-        android:text="*****"
-        android:textColor="@color/text_daily_mode"
-        app:layout_constraintBottom_toBottomOf="@+id/user_tv_id_title"
-        app:layout_constraintStart_toEndOf="@+id/user_tv_id_title"
-        app:layout_constraintTop_toTopOf="@+id/user_tv_id_title" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/user_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="24dp"
+                    android:text="游客"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_tv_id_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="ID:"
+                    android:textColor="@color/text_daily_mode"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/user_tv_name"
+                    app:layout_constraintTop_toBottomOf="@+id/user_tv_name" />
+
+                <TextView
+                    android:id="@+id/user_tv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="*****"
+                    android:textColor="@color/text_daily_mode"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_tv_id_title"
+                    app:layout_constraintStart_toEndOf="@+id/user_tv_id_title"
+                    app:layout_constraintTop_toTopOf="@+id/user_tv_id_title" />
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-
-        android:id="@+id/me_ll"
+        android:id="@+id/user_ll"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/user_tv_id_title">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_collapseMode="pin">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@mipmap/collect"
-            android:paddingTop="16dp"
-            android:text="收藏"
-            android:textColor="@color/text_daily_mode" />
 
-        <View
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="16dp"
-            android:background="@color/divider_color" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/user_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/text_daily_mode"
+            app:tabBackground="@color/bg_daily_mode"
+            app:tabMode="fixed" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:drawableTop="@mipmap/todo"
-            android:paddingTop="16dp"
-            android:text="ToDo"
-            android:textColor="@color/text_daily_mode" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/user_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:drawableTop="@mipmap/collect"-->
+            <!--android:paddingTop="16dp"-->
+            <!--android:text="收藏"-->
+            <!--android:textColor="@color/text_daily_mode" />-->
+
+        <!--<View-->
+            <!--android:layout_width="1px"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_marginVertical="16dp"-->
+            <!--android:background="@color/divider_color" />-->
+
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:drawableTop="@mipmap/todo"-->
+            <!--android:paddingTop="16dp"-->
+            <!--android:text="ToDo"-->
+            <!--android:textColor="@color/text_daily_mode" />-->
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

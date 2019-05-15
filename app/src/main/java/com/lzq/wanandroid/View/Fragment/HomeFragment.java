@@ -14,8 +14,9 @@ import android.widget.Button;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.HomeContract;
+import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Net.HomeTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
@@ -37,7 +38,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeFragment extends BaseFragment implements HomeContract.View {
+public class HomeFragment extends BaseFragment implements Contract.HomeView {
     private static final String TAG = "HomeFragment";
     @BindView(R.id.main_banner)
     Banner mBanner;
@@ -47,7 +48,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     Button mAccountBtn;
     @BindView(R.id.refresh_home)
     SmartRefreshLayout mRefreshView;
-    private HomeContract.Presenter mPresenter;
+    private Contract.HomePresenter mPresenter;
     private ArticleAdapter mTopArticleAdapter;
     private List<Data> mTopArticleList = new ArrayList<>();
     private View mView;
@@ -85,7 +86,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 }
             }
         });
-           mPresenter.initView();
+        mPresenter.initView();
         mPresenter.getHomeTopArticle();
         mPresenter.getHomeTopImgBanner();
         return view;
@@ -120,6 +121,18 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
                 mPresenter.getSelectedURL(mList.get(position).getLink());
             }
         });
+        mTopArticleAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rv_article_imgbtn_save:
+                        mPresenter.collectArticle(mList.get(position).getId(), mTopArticleList.get(position).isCollect(), position);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -150,7 +163,15 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     }
 
     @Override
-    public void setPresenter(HomeContract.Presenter mPresenter) {
+    public void collectedArticle(int position,boolean isCollect) {
+        Log.d(TAG, "----collectedArticle: "+isCollect);
+        mTopArticleList.get(position).setCollect(isCollect);
+        mTopArticleAdapter.notifyItemChanged(position);
+        ToastUtils.show(isCollect?"收藏成功":"取消收藏");
+    }
+
+    @Override
+    public void setPresenter(Contract.HomePresenter mPresenter) {
         if (mPresenter == null)
             Log.d(TAG, "----setPresenter: 执行");
         this.mPresenter = mPresenter;

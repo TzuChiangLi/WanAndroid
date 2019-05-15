@@ -1,6 +1,5 @@
 package com.lzq.wanandroid.View.Fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,9 +13,12 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Presenter.AccountContentPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
 import com.lzq.wanandroid.View.WebActivity;
@@ -31,7 +33,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@SuppressLint("ValidFragment")
 public class ContentFragment extends BaseFragment implements OffAccountContract.AccountContentView {
     private static final String TAG = "ContentFragment";
     @BindView(R.id.rv_account_content)
@@ -64,6 +65,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
+            mPresenter = AccountContentPresenter.createPresenter(this, new AccountTask(), 0);
         } else {
             mPresenter.initView();
             mPresenter.getContent(mPresenter.showID(), page);
@@ -108,6 +110,13 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         startActivity(mView, intent);
     }
 
+    @Override
+    public void collectedArticle(int position, boolean isCollect) {
+        mContentList.get(position).setCollect(isCollect);
+        mAdapter.notifyItemChanged(position);
+        ToastUtils.show(isCollect ? "收藏成功" : "取消收藏");
+    }
+
 
     @Override
     public void setContent(final List<Datas> mList, int flag) {
@@ -119,7 +128,9 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
                 mRecyclerView.setAdapter(mAdapter);
                 break;
             case 1:
-
+//                for (int i = 0; i < mList.size(); i++) {
+//                    mContentList.add(mList.get(i));
+//                }
                 mAdapter.addData(mList);
                 break;
         }
@@ -127,6 +138,18 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mPresenter.getSelectedURL(mAdapter.getData().get(position).getLink());
+            }
+        });
+        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.rv_article_imgbtn_save:
+                        mPresenter.collectArticle(mAdapter.getData().get(position).getId(), mAdapter.getData().get(position).isCollect(), position);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }

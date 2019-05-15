@@ -3,40 +3,49 @@ package com.lzq.wanandroid.View.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
+import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Presenter.CollectPresenter;
+import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cookie.store.CookieStore;
-import com.lzy.okgo.cookie.store.SPCookieStore;
+import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Cookie;
-import okhttp3.HttpUrl;
 
-public class UserFragment extends BaseFragment {
+public class UserFragment extends BaseFragment implements Contract.UserView {
     private static final String TAG = "UserFragment";
     @BindView(R.id.user_tv_name)
     TextView mUserNameTv;
     @BindView(R.id.user_tv_id)
     TextView mIDTv;
-
+    @BindView(R.id.user_tab)
+    TabLayout mTabLayout;
+    @BindView(R.id.user_viewpager)
+    ViewPager mViewPager;
+    private List<Fragment> mList = new ArrayList<>();
+    private Contract.UserPresenter mPresenter;
+    private FragmentAdapter mFAdapter;
 
     public static UserFragment newInstance() {
         return new UserFragment();
@@ -51,13 +60,11 @@ public class UserFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         ButterKnife.bind(this, view);
         EventBus.getDefault().register(this);
-        CookieStore cookieStore = OkGo.getInstance().getCookieJar().getCookieStore();
-        HttpUrl httpUrl = HttpUrl.parse(StringUtils.URL);
-        List<Cookie> cookies = cookieStore.getCookie(httpUrl);
-        if (cookies.size()!=0||cookies!=null){
-            mIDTv.setText(String.valueOf(SPUtils.getInstance("userinfo").getInt("id")));
-            mUserNameTv.setText(SPUtils.getInstance("userinfo").getString("username").toString());
+        if (mPresenter == null) {
+            mPresenter = UserPresenter.createPresenter(this);
         }
+        mPresenter.initView();
+        mPresenter.initTabView();
         return view;
     }
 
@@ -66,8 +73,10 @@ public class UserFragment extends BaseFragment {
     public void onEvent(Event event) {
         if (event.target == Event.TARGET_USER) {
             if (event.type == Event.TYPE_LOGIN_SUCCESS) {
-                mIDTv.setText(String.valueOf(SPUtils.getInstance("userinfo").getInt("id")));
-                mUserNameTv.setText(SPUtils.getInstance("userinfo").getString("username"));
+                mPresenter.initView();
+            }
+            if (event.type == Event.TYPE_LOGOUT_SUCCESS) {
+                mPresenter.initView();
             }
         }
     }
@@ -78,5 +87,42 @@ public class UserFragment extends BaseFragment {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
         Log.d(TAG, "----onDestroy: ");
+    }
+
+    @Override
+    public void setUserInfo(String id, String username) {
+        mIDTv.setText(id);
+        mUserNameTv.setText(username);
+    }
+
+    @Override
+    public void setTabView(String[] tabName, int[] imgTab) {
+        LinearLayout linearLayout = (LinearLayout) mTabLayout.getChildAt(0);
+        linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+        linearLayout.setDividerDrawable(ContextCompat.getDrawable(getContext(), R.drawable.tab_divider));
+        linearLayout.setDividerPadding(48);
+        AccountTask mTask = AccountTask.getInstance();
+        CollectPresenter mCollectPresenter;
+        CollectFragment mFragment;
+        for (int i = 0; i < tabName.length; i++) {
+            mTabLayout.addTab(mTabLayout.newTab());
+
+            mList.add(new CollectFragment());
+            mFragment = (CollectFragment) mList.get(i);
+            mCollectPresenter = new CollectPresenter(mFragment, mTask);
+            mFragment.setPresenter(mCollectPresenter);
+        }
+        //允许4个
+        mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), mList));
+        //自动适配ViewPager页面切换
+        mTabLayout.setupWithViewPager(mViewPager);
+        for (int i = 0; i < tabName.length; i++) {
+            mTabLayout.getTabAt(i).setText(tabName[i]).setIcon(imgTab[i]);
+        }
+    }
+
+    @Override
+    public void setPresenter(Contract.UserPresenter presenter) {
+        mPresenter = presenter;
     }
 }

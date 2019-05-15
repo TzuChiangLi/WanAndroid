@@ -2,11 +2,9 @@ package com.lzq.wanandroid.Presenter;
 
 import android.app.Activity;
 
-import com.lzq.wanandroid.Contract.HomeContract;
 import com.lzq.wanandroid.Contract.LoginContract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.HomeTask;
 import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Utils.AnimationUtil;
 
