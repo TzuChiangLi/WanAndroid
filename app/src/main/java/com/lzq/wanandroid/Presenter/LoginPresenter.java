@@ -31,6 +31,11 @@ public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCa
     }
 
     @Override
+    public void doRegister(String... infos) {
+
+    }
+
+    @Override
     public void getUserInfo() {
 
     }

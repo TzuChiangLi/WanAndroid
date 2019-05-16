@@ -1,5 +1,6 @@
 package com.lzq.wanandroid.View;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
@@ -25,22 +27,15 @@ import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Custom.ClearEditText;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cookie.store.CookieStore;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Cookie;
-import okhttp3.HttpUrl;
 
 public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
     private static final String TAG = "LoginActivity";
@@ -50,10 +45,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     ClearEditText mIDEdt;
     @BindView(R.id.user_edt_pwd)
     ClearEditText mPwdEdt;
+    @BindView(R.id.user_edt_confirm)
+    ClearEditText mConfirmEdt;
     @BindView(R.id.user_btn_login)
     Button mLoginBtn;
     @BindView(R.id.user_btn_register_now)
     Button mRegisterNowBtn;
+    @BindView(R.id.user_ll_confirm)
+    LinearLayout mConfirmView;
+    @BindView(R.id.user_line_confirm)
+    View mLineView;
     private ConstraintLayout.LayoutParams mLoginLayout = null;
     private LoginContract.LoginPresenter mPresenter;
 
@@ -65,7 +66,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         EventBus.getDefault().register(this);
         doAnimation(0);
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
-        Log.d(TAG, "----onCreateView: ");
         mLoginLayout = (ConstraintLayout.LayoutParams) mLoginBtn.getLayoutParams();
         if (mPresenter == null) {
             LoginTask mTask = LoginTask.getInstance();
@@ -77,7 +77,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 try {
                     mPresenter.resetLoginLocation(LoginActivity.this);
                 } catch (Exception e) {
-                    Log.d(TAG, "----onGlobalLayout: " + e.getMessage());
                 }
             }
         };
@@ -87,7 +86,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode()) {
                     Login();
-                    Log.d(TAG, "----onEditorAction: 回车");
                     return true;
                 }
                 if (actionId == EditorInfo.IME_ACTION_NEXT) {
@@ -108,10 +106,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void LoginSuccess(Data data) {
         ToastUtils.show("登录成功！");
-        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("isLogin",true);
-        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("username",data.getUsername());
-        SPUtils.getInstance("userinfo",MODE_PRIVATE).put("id",String.valueOf(data.getId()));
-        Log.d(TAG, "----LoginSuccess: "+data.getUsername()+"/"+data.getId());
+        SPUtils.getInstance("userinfo", MODE_PRIVATE).put("isLogin", true);
+        SPUtils.getInstance("userinfo", MODE_PRIVATE).put("username", data.getUsername());
+        SPUtils.getInstance("userinfo", MODE_PRIVATE).put("id", String.valueOf(data.getId()));
         Event event = new Event();
         event.target = Event.TARGET_USER;
         event.type = Event.TYPE_LOGIN_SUCCESS;
@@ -120,9 +117,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         event.type = Event.TYPE_LOGIN_SUCCESS;
         EventBus.getDefault().post(event);
         finish();
-//
         //不必传cookie，只需要传返回的结果，用Presenter层来实现
         //cookie在App启动的时候检测一下size和null，如果为0或者为null，就说明需要登录
+    }
+
+    @Override
+    public void RegisterResult(String... infos) {
 
     }
 
@@ -150,16 +150,23 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         if (mLoginBtn.getText().toString().equals("登录")) {
             mRegisterNowBtn.setText("已有账号，直接登录");
             mLoginBtn.setText("注册");
+            doAnimation(2);
         } else {
             mRegisterNowBtn.setText("没有账号？注册一个");
             mLoginBtn.setText("登录");
+            doAnimation(1);
         }
     }
 
     @OnClick(R.id.user_btn_login)
     public void Login() {
         if (!TextUtils.isEmpty(mIDEdt.getText().toString()) && !TextUtils.isEmpty(mPwdEdt.getText().toString())) {
-            mPresenter.doLogin(mIDEdt.getText().toString(), mPwdEdt.getText().toString());
+            if (mLoginBtn.getText().toString().equals("登录")) {
+                mPresenter.doLogin(mIDEdt.getText().toString(), mPwdEdt.getText().toString());
+            }
+            if (mLoginBtn.getText().toString().equals("注册")) {
+                mPresenter.doRegister(mIDEdt.getText().toString(), mPwdEdt.getText().toString(), mConfirmEdt.getText().toString());
+            }
         } else if (TextUtils.isEmpty(mPwdEdt.getText().toString()) && TextUtils.isEmpty(mIDEdt.getText().toString())) {
             ToastUtils.show("请输入用户名和密码");
             return;
@@ -175,7 +182,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "----onDestroy: ");
         EventBus.getDefault().unregister(this);
     }
 
@@ -225,7 +231,44 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                     Log.d(TAG, "----doAnimation: " + e.getMessage());
                 }
                 break;
-            case 1://消失
+            case 1://注册消失,alpha--1--0
+                ObjectAnimator alpha_line_hide = ObjectAnimator.ofFloat(mLineView, "alpha", 1, 0);
+                ObjectAnimator alpha_confirm_hide = ObjectAnimator.ofFloat(mConfirmView, "alpha", 1, 0);
+                AnimatorSet alphaHide = new AnimatorSet();
+                alphaHide.playTogether(alpha_line_hide, alpha_confirm_hide);
+                alphaHide.setDuration(500).start();
+                alphaHide.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mLineView.setVisibility(View.GONE);
+                        mConfirmView.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+
+                break;
+            case 2://注册显示,alpha--0--1
+                mLineView.setVisibility(View.VISIBLE);
+                mConfirmView.setVisibility(View.VISIBLE);
+                ObjectAnimator alpha_line_show = ObjectAnimator.ofFloat(mLineView, "alpha", 0, 1);
+                ObjectAnimator alpha_confirm_show = ObjectAnimator.ofFloat(mConfirmView, "alpha", 0, 1);
+                AnimatorSet alphaShow = new AnimatorSet();
+                alphaShow.playTogether(alpha_line_show, alpha_confirm_show);
+                alphaShow.setDuration(1000).start();
                 break;
             default:
                 break;
