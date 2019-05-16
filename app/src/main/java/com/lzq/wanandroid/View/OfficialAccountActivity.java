@@ -42,7 +42,6 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
     private OffAccountContract.AccountTitlePresenter mAccountPresenter;
     private ContentFragment mFragment;
     private AccountTask mTask = AccountTask.getInstance();
-    private int page = 1, ID = 0;
 
 
     @Override

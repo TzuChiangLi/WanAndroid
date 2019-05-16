@@ -11,6 +11,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.bottom.NavigationController;
 import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
@@ -30,6 +31,7 @@ import com.lzq.wanandroid.View.Fragment.HomeFragment;
 import com.lzq.wanandroid.View.Fragment.ThreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
+import com.lzq.wanandroid.View.SearchActivity;
 import com.lzq.wanandroid.View.SettingsActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -148,14 +150,19 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
-                        Log.d(TAG, "----onSelected: " + index);
+                        if(SPUtils.getInstance("userinfo").getBoolean("isLogin")){
+                        Event event=new Event();
+                        event.target=Event.TARGET_COLLECT;
+                        event.type=Event.TYPE_COLLECT_REFRESH;
+                        EventBus.getDefault().post(event);}else {
+                            startActivity(LoginActivity.class);
+                        }
                         break;
                 }
             }
 
             @Override
             public void onRepeat(int index) {
-
             }
         });
     }
@@ -171,6 +178,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
     public void doFunction() {
         switch (mVPager.getCurrentItem()) {
             case 0:
+                startActivityWithoutAnimation(SearchActivity.class);
                 break;
             case 1:
                 break;

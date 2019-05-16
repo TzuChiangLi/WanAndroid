@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -45,7 +46,6 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
     ViewPager mViewPager;
     private List<Fragment> mList = new ArrayList<>();
     private Contract.UserPresenter mPresenter;
-    private FragmentAdapter mFAdapter;
 
     public static UserFragment newInstance() {
         return new UserFragment();
@@ -86,7 +86,6 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        Log.d(TAG, "----onDestroy: ");
     }
 
     @Override
@@ -104,18 +103,19 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
         AccountTask mTask = AccountTask.getInstance();
         CollectPresenter mCollectPresenter;
         CollectFragment mFragment;
+
+        mList.add(new CollectFragment());
+        mList.add(new ToDoFragment());
         for (int i = 0; i < tabName.length; i++) {
             mTabLayout.addTab(mTabLayout.newTab());
-
-            mList.add(new CollectFragment());
-            mFragment = (CollectFragment) mList.get(i);
-            mCollectPresenter = new CollectPresenter(mFragment, mTask);
-            mFragment.setPresenter(mCollectPresenter);
         }
-        //允许4个
-        mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), mList));
-        //自动适配ViewPager页面切换
+        mFragment = (CollectFragment) mList.get(0);
+        mCollectPresenter = new CollectPresenter(mFragment, mTask);
+        mFragment.setPresenter(mCollectPresenter);
         mTabLayout.setupWithViewPager(mViewPager);
+        //允许4个
+        mViewPager.setAdapter(new FragmentAdapter(this.getChildFragmentManager(), mList));
+        //自动适配ViewPager页面切换
         for (int i = 0; i < tabName.length; i++) {
             mTabLayout.getTabAt(i).setText(tabName[i]).setIcon(imgTab[i]);
         }

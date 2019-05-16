@@ -30,6 +30,14 @@ public interface Contract {
         void afterLogout();
     }
 
+    interface SearchPresenter {
+        void getHotKey();
+    }
+
+    interface SearchView extends BaseView<Contract.SearchPresenter> {
+        void setHotKey(String[] keys);
+    }
+
     /**************************Fragment***************************/
     interface HomePresenter {
         //与M层交互
@@ -80,7 +88,9 @@ public interface Contract {
 
         void getCollectList();
 
-        void cancelCollect();
+        void getSelectedURL(String URL);
+
+        void cancelCollect(int ID, int originID, int position);
     }
 
     interface CollectView extends BaseView<Contract.CollectPresenter> {
@@ -88,6 +98,17 @@ public interface Contract {
 
         void setCollectList(List<Datas> mList);
 
-        void removeItem();
+        void goWebActivity(String URL);
+
+        void removeItem(int position);
+
+        boolean onFinishLoad();
+    }
+
+    interface ToDoPresenter {
+    }
+
+    interface ToDoView extends BaseView<Contract.ToDoPresenter> {
+
     }
 }

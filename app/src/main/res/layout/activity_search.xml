@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_daily_mode"
+    android:orientation="vertical"
+    tools:context=".View.SearchActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_8">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:paddingVertical="@dimen/dp_6"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_corner_search_edt"
+            android:paddingStart="@dimen/dp_20">
+
+            <com.lzq.wanandroid.View.Custom.ClearEditText
+                android:id="@+id/search_edt"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:maxLines="1"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:textColor="@color/text_daily_mode" />
+        </FrameLayout>
+
+
+        <ImageButton
+            android:id="@+id/search_imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+
+            android:background="@android:color/transparent"
+            android:scaleType="center"
+            android:src="@mipmap/search_btn" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/search_hot"
+        android:textColor="@color/text_daily_mode"
+        android:textSize="@dimen/sp_16" />
+
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/search_flowlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:padding="10dp"
+        app:max_select="1" />
+
+
+</LinearLayout>

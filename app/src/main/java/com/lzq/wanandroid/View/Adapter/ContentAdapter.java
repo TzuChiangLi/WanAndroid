@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lzq.wanandroid.Model.Datas;
@@ -16,7 +17,7 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.ButterKnife;
 
-public class ContentAdapter extends BaseQuickAdapter<Datas, BaseViewHolder> {
+public class ContentAdapter extends BaseItemDraggableAdapter<Datas, BaseViewHolder>  {
     @BindColor(R.color.bg_rv_item_tv)
     int bg_rv_item_tv;
     private List<Datas> mList = new ArrayList<>();
@@ -69,6 +70,7 @@ public class ContentAdapter extends BaseQuickAdapter<Datas, BaseViewHolder> {
         }
         notifyDataSetChanged();
     }
+
 
     public List<Datas> getData(){
         return mList;

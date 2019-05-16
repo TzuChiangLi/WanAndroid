@@ -27,6 +27,16 @@ public class Datas {
     private int userId;
     private int visible;
     private int zan;
+    private int originId;
+
+
+    public int getOriginId() {
+        return originId;
+    }
+
+    public void setOriginId(int originId) {
+        this.originId = originId;
+    }
 
 
     public String getApkLink() {

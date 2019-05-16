@@ -35,8 +35,6 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
     public void onSuccess(Object data, int type) {
         int position;
         try {
-
-
             switch (type) {
                 case StringUtils.TYPE_COLLECT_NO:
                     position = (int) data;
@@ -114,9 +112,9 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
     public void collectArticle(int ID, boolean isCollect, int position) {
         if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
             if (isCollect) {
-                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_NO, this);
+                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_NO);
             } else {
-                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_YES, this);
+                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_YES);
             }
         } else {
             Event event = new Event();

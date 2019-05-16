@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flow_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_corner_search_edt"
+    android:text="            "
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="@dimen/dp_6"
+    android:layout_marginHorizontal="@dimen/dp_6"
+    android:layout_marginVertical="@dimen/dp_6"
+    android:textColor="@color/text_daily_mode"
+    android:textSize="14sp" />

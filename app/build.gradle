@@ -89,4 +89,6 @@ dependencies {
     //X5内核
     implementation 'com.just.agentwebX5:agentwebX5:2.0.0'
     implementation 'com.tencent.bugly:crashreport:latest.release'
+    //流式布局
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 }

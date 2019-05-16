@@ -25,8 +25,9 @@ public class LoginTask implements NetTask<Data> {
         return INSTANCE;
     }
 
+
     @Override
-    public void execute(int ID, int page, int flag, LoadTasksCallBack callBack) {
+    public void execute(LoadTasksCallBack callBack, int... params) {
 
     }
 

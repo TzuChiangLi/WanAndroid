@@ -74,7 +74,12 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
 
     @OnClick(R.id.set_btn_logout)
     public void doLogout() {
-        mPresenter.Logout();
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")==false) {
+            startActivity(LoginActivity.class);
+            finish();
+        } else {
+            mPresenter.Logout();
+        }
     }
 
     @Override
@@ -110,8 +115,11 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         event.target = Event.TARGET_USER;
         event.type = Event.TYPE_LOGOUT_SUCCESS;
         EventBus.getDefault().post(event);
-        event.target=Event.TARGET_MAIN;
-        event.type=Event.TYPE_LOGOUT_SUCCESS;
+        event.target = Event.TARGET_MAIN;
+        event.type = Event.TYPE_LOGOUT_SUCCESS;
+        EventBus.getDefault().post(event);
+        event.target = Event.TARGET_COLLECT;
+        event.type = Event.TYPE_COLLECT_LOGOUT;
         EventBus.getDefault().post(event);
         finishActivity();
     }

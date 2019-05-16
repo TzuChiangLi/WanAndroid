@@ -116,6 +116,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         event.target = Event.TARGET_USER;
         event.type = Event.TYPE_LOGIN_SUCCESS;
         EventBus.getDefault().post(event);
+        event.target = Event.TARGET_COLLECT;
+        event.type = Event.TYPE_LOGIN_SUCCESS;
+        EventBus.getDefault().post(event);
         finish();
 //
         //不必传cookie，只需要传返回的结果，用Presenter层来实现

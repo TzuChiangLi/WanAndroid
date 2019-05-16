@@ -62,7 +62,14 @@ public class Event {
      * 需要登录
      */
     public static final int TYPE_NEED_LOGIN=12;
-
+    /**
+     * 收藏刷新
+     */
+    public static final int TYPE_COLLECT_REFRESH = 13;
+    /**
+     * 收藏注销
+     */
+    public static final int TYPE_COLLECT_LOGOUT = 14;
 
 
     /**
@@ -108,6 +115,7 @@ public class Event {
      * 目标界面-我的信息
      */
     public static final int TARGET_USER = 9;
+
 
     public int target;
 

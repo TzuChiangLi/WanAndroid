@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/bg_daily_layout">
 
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh_account_content"
+        android:id="@+id/refresh_collect_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         app:srlEnablePreviewInEditMode="true">
         <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
         <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
@@ -25,13 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_50"
             tools:listitem="@layout/rv_article" />
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_daily_layout" />
+        <!--<com.scwang.smartrefresh.layout.footer.ClassicsFooter-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/bg_daily_layout"-->
+        <!--/>-->
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
 
 </LinearLayout>

@@ -1,13 +1,15 @@
 package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectPresenter implements Contract.CollectPresenter {
+public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCallBack<Object> {
     private Contract.CollectView mView;
     private AccountTask mTask;
 
@@ -31,11 +33,57 @@ public class CollectPresenter implements Contract.CollectPresenter {
 
     @Override
     public void getCollectList() {
+        mTask.execute(this,0, 0, StringUtils.TYPE_COLLECT_CONTENT_LOAD);
+    }
+
+    @Override
+    public void getSelectedURL(String URL) {
+        mView.goWebActivity(URL);
+    }
+
+    @Override
+    public void cancelCollect(int ID, int position,int orginID) {
+        mTask.execute(this,ID,position,StringUtils.TYPE_COLLECT_NO_USER,orginID);
+    }
+
+
+    @Override
+    public void onSuccess(Object o, int flag) {
+        switch (flag) {
+            case StringUtils.TYPE_COLLECT_CONTENT_LOAD:
+                List<Datas> mList=(List<Datas>) o;
+                for (int i=0;i<mList.size();i++){
+                    mList.get(i).setCollect(true);
+                }
+                mView.setCollectList(mList);
+                break;
+            case StringUtils.TYPE_COLLECT_NO:
+                mView.removeItem((Integer) o);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onStart() {
 
     }
 
     @Override
-    public void cancelCollect() {
+    public void onFailed() {
 
     }
+
+    @Override
+    public void onError(int code, String msg) {
+
+    }
+
+    @Override
+    public void onFinish() {
+        mView.onFinishLoad();
+    }
+
+
 }

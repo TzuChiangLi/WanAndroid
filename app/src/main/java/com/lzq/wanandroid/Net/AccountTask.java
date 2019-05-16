@@ -11,6 +11,8 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
+import static android.os.Build.ID;
+
 public class AccountTask implements NetTask<Data> {
     private static final String TAG = "AccountTask";
     private static AccountTask INSTANCE = null;
@@ -27,19 +29,15 @@ public class AccountTask implements NetTask<Data> {
         return INSTANCE;
     }
 
-
+    //ID----params[0],position----params[1],type----params[2]
     @Override
-    public void execute(int ID, final int position, final int type, final LoadTasksCallBack callBack) {
+    public void execute(final LoadTasksCallBack callBack, final int... params) {
+        int ID = params[0], type = params[2];
+        final int position = params[1];
         switch (type) {
             case StringUtils.TYPE_COLLECT_CONTENT_LOAD:
                 OkGo.<String>get(StringUtils.URL + StringUtils.COLLECT_LIST + ID + "/json")
                         .execute(new StringCallback() {
-                            @Override
-                            public void onStart(Request<String, ? extends Request> request) {
-                                super.onStart(request);
-                                callBack.onStart();
-                            }
-
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
@@ -69,7 +67,7 @@ public class AccountTask implements NetTask<Data> {
             case StringUtils.TYPE_COLLECT_CONTENT_ADD:
                 break;
             case StringUtils.TYPE_ACCOUNT_CONTENT_ADD:
-                OkGo.<String>get(StringUtils.URL + StringUtils.OFFICIAL_CONTENT + ID + "/" + position + "/json")
+                OkGo.<String>get(StringUtils.URL + StringUtils.OFFICIAL_CONTENT + ID + "/" + params[1] + "/json")
                         .execute(new StringCallback() {
                             @Override
                             public void onStart(Request<String, ? extends Request> request) {
@@ -104,7 +102,7 @@ public class AccountTask implements NetTask<Data> {
                         });
                 break;
             case StringUtils.TYPE_ACCOUNT_CONTENT_LOAD:
-                OkGo.<String>get(StringUtils.URL + StringUtils.OFFICIAL_CONTENT + ID + "/" + position + "/json")
+                OkGo.<String>get(StringUtils.URL + StringUtils.OFFICIAL_CONTENT + ID + "/" + params[1] + "/json")
                         .execute(new StringCallback() {
                             @Override
                             public void onStart(Request<String, ? extends Request> request) {
@@ -148,7 +146,7 @@ public class AccountTask implements NetTask<Data> {
                                 Gson gson = new Gson();
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
                                 if (wanAndroid.getErrorCode() == 0) {
-                                    callBack.onSuccess(position, StringUtils.TYPE_COLLECT_YES);
+                                    callBack.onSuccess(params[1], StringUtils.TYPE_COLLECT_YES);
                                 }
 
                             }
@@ -157,6 +155,21 @@ public class AccountTask implements NetTask<Data> {
             case StringUtils.TYPE_COLLECT_NO:
                 //取消收藏
                 OkGo.<String>post(StringUtils.URL + StringUtils.CANCEL_COLLECT + ID + "/json")
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    callBack.onSuccess(params[1], StringUtils.TYPE_COLLECT_NO);
+                                }
+                            }
+                        });
+                break;
+            case StringUtils.TYPE_COLLECT_NO_USER:
+                OkGo.<String>post(StringUtils.URL + StringUtils.CANCEL_COLLECT_USER + ID + "/json")
+                        .params("originId", params[3])
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {

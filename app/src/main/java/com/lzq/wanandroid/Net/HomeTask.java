@@ -30,19 +30,36 @@ public class HomeTask implements NetTask<Data> {
     }
 
     @Override
-    public void execute(int ID, final int position, final int type, final LoadTasksCallBack callBack) {
-        switch (type){
-            case StringUtils.TYPE_COLLECT_YES:
-                //收藏
-                OkGo.<String>post(StringUtils.URL+StringUtils.COLLECT_ARTICCLE+ID+"/json")
+    public void execute(final LoadTasksCallBack callBack, int... params) {
+        int ID = params[0], type = params[2];
+        final int position = params[1];
+        switch (type) {
+            case StringUtils.TYPE_HOT_KEY:
+                OkGo.<String>get(StringUtils.URL+StringUtils.HOT_KEY)
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
-                                Gson gson=new Gson();
-                                WanAndroid_Content wanAndroid=gson.fromJson(result, WanAndroid_Content.class);
-                                if (wanAndroid.getErrorCode()==0){
-                                    callBack.onSuccess(position,StringUtils.TYPE_COLLECT_YES);
+                                Gson gson = new Gson();
+                                WanAndroid wanAndroid = gson.fromJson(result, WanAndroid.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    Log.d(TAG, "----onSuccess: "+result);
+                                    callBack.onSuccess(wanAndroid.getData(), StringUtils.TYPE_HOT_KEY);
+                                }
+                            }
+                        });
+                break;
+            case StringUtils.TYPE_COLLECT_YES:
+                //收藏
+                OkGo.<String>post(StringUtils.URL + StringUtils.COLLECT_ARTICCLE + ID + "/json")
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    callBack.onSuccess(position, StringUtils.TYPE_COLLECT_YES);
                                 }
 
                             }
@@ -50,15 +67,15 @@ public class HomeTask implements NetTask<Data> {
                 break;
             case StringUtils.TYPE_COLLECT_NO:
                 //取消收藏
-                OkGo.<String>post(StringUtils.URL+StringUtils.CANCEL_COLLECT+ID+"/json")
+                OkGo.<String>post(StringUtils.URL + StringUtils.CANCEL_COLLECT + ID + "/json")
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
-                                Gson gson=new Gson();
-                                WanAndroid_Content wanAndroid=gson.fromJson(result, WanAndroid_Content.class);
-                                if (wanAndroid.getErrorCode()==0){
-                                    callBack.onSuccess(position,StringUtils.TYPE_COLLECT_NO);
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    callBack.onSuccess(position, StringUtils.TYPE_COLLECT_NO);
                                 }
                             }
                         });
@@ -119,7 +136,6 @@ public class HomeTask implements NetTask<Data> {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
-                                Log.d(TAG, "----onSuccess: " + result);
                                 Gson gson = new Gson();
                                 WanAndroid wanAndroid = gson.fromJson(result, WanAndroid.class);
                                 int code = wanAndroid.getErrorCode();
@@ -146,8 +162,6 @@ public class HomeTask implements NetTask<Data> {
             default:
                 break;
         }
-
-
 
 
     }

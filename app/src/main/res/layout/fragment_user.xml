@@ -63,19 +63,20 @@
     <LinearLayout
         android:id="@+id/user_ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_collapseMode="pin">
+        app:layout_collapseMode="pin"
+        android:orientation="vertical"
+        >
 
 
         <android.support.design.widget.TabLayout
             android:id="@+id/user_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextColor="@color/text_daily_mode"
             app:tabBackground="@color/bg_daily_mode"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabTextColor="@color/text_daily_mode" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/user_viewpager"
@@ -84,31 +85,6 @@
             android:layout_weight="1" />
 
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:drawableTop="@mipmap/collect"-->
-            <!--android:paddingTop="16dp"-->
-            <!--android:text="收藏"-->
-            <!--android:textColor="@color/text_daily_mode" />-->
-
-        <!--<View-->
-            <!--android:layout_width="1px"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_marginVertical="16dp"-->
-            <!--android:background="@color/divider_color" />-->
-
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--android:drawableTop="@mipmap/todo"-->
-            <!--android:paddingTop="16dp"-->
-            <!--android:text="ToDo"-->
-            <!--android:textColor="@color/text_daily_mode" />-->
 
     </LinearLayout>
 

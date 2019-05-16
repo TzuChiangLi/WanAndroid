@@ -99,7 +99,7 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
 
     @Override
     public void getContent(int ID, int page) {
-        mTask.execute(ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_LOAD, this);
+        mTask.execute(this,ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_LOAD);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
 
     @Override
     public void addContent(int ID, int page) {
-        mTask.execute(ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_ADD, this);
+        mTask.execute(this,ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_ADD);
     }
 
     @Override
@@ -121,9 +121,9 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     public void collectArticle(int ID, boolean isCollect, int position) {
         if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
             if (isCollect) {
-                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_NO, this);
+                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_NO);
             } else {
-                mTask.execute(ID, position, StringUtils.TYPE_COLLECT_YES, this);
+                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_YES);
             }
         } else {
             Event event = new Event();

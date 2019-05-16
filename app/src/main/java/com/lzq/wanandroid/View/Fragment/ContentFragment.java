@@ -101,6 +101,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setUpFetchEnable(true);
+        mRecyclerView.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -134,6 +135,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
                 mAdapter.addData(mList);
                 break;
         }
+        mRecyclerView.setNestedScrollingEnabled(true);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

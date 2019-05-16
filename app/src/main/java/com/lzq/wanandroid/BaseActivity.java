@@ -54,6 +54,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(new Intent(BaseActivity.this, className));
         overridePendingTransition(R.anim.enter_fade_out,R.anim.enter_fade_in);
     }
+    public void startActivityWithoutAnimation(Class<?> className) {
+        startActivity(new Intent(BaseActivity.this, className));
+    }
 
     public void finishActivity(){
         finish();

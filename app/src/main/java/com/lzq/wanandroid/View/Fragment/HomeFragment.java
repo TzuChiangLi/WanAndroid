@@ -107,6 +107,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     public void setEmptyTopArticle(List<Data> mList) {
         mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
+        mTopArtRv.setNestedScrollingEnabled(false);
     }
 
     @Override
@@ -115,6 +116,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         mTopArticleList = mList;
         mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
+        mTopArtRv.setNestedScrollingEnabled(true);
         mTopArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -163,11 +165,11 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     }
 
     @Override
-    public void collectedArticle(int position,boolean isCollect) {
-        Log.d(TAG, "----collectedArticle: "+isCollect);
+    public void collectedArticle(int position, boolean isCollect) {
+        Log.d(TAG, "----collectedArticle: " + isCollect);
         mTopArticleList.get(position).setCollect(isCollect);
         mTopArticleAdapter.notifyItemChanged(position);
-        ToastUtils.show(isCollect?"收藏成功":"取消收藏");
+        ToastUtils.show(isCollect ? "收藏成功" : "取消收藏");
     }
 
     @Override
