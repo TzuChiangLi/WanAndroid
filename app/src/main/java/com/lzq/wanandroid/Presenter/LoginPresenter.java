@@ -7,6 +7,7 @@ import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Net.LoginTask;
 import com.lzq.wanandroid.Utils.AnimationUtil;
+import com.lzq.wanandroid.Utils.StringUtils;
 
 public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCallBack<Data> {
     private static final String TAG = "LoginPresenter";
@@ -27,12 +28,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCa
 
     @Override
     public void doLogin(String username, String password) {
-        mTask.execute(username, password, this);
+        mTask.execute(this,username, password,StringUtils.TYPE_LOGIN);
     }
 
     @Override
     public void doRegister(String... infos) {
-
+        mTask.execute(this,infos[0],infos[1], StringUtils.TYPE_REGISTER);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCa
 
     @Override
     public void onError(int code, String msg) {
-
+        mView.RegisterResult(msg);
     }
 
     @Override

@@ -68,6 +68,19 @@ public class Data {
     private String username;
 
 
+    /*********************注册回执**********************/
+    private boolean admin;
+//    private List<String> chapterTops;
+//    private List<String> collectIds;
+//    private String email;
+//    private String icon;
+//    private int id;
+//    private String password;
+//    private String token;
+//    private int type;
+//    private String username;
+
+
     public Data(String imagePath, String url) {
         this.imagePath = imagePath;
         this.url = url;
@@ -459,6 +472,15 @@ public class Data {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
 }
 
 

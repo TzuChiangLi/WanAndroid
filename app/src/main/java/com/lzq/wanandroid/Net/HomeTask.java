@@ -84,7 +84,8 @@ public class HomeTask implements NetTask<Data> {
     }
 
     @Override
-    public void execute(String data1, String data2, final LoadTasksCallBack callBack) {
+    public void execute( final LoadTasksCallBack callBack,String...infos) {
+        String data1=infos[0],data2=infos[1];
         switch (data2) {
             case "1":
                 OkGo.<String>get(StringUtils.URL + StringUtils.HOME_TOP_ARTICLE)

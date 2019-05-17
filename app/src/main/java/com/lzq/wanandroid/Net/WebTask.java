@@ -36,7 +36,8 @@ public class WebTask implements NetTask<Data> {
     }
 
     @Override
-    public void execute(String data1, String data2, LoadTasksCallBack callBack) {
+    public void execute(LoadTasksCallBack callBack, String... infos) {
 
     }
+
 }

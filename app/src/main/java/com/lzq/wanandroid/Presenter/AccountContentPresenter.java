@@ -94,7 +94,7 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
 
     @Override
     public void getTitleText() {
-        mTask.execute(null, null, this);
+        mTask.execute(this,null, null);
     }
 
     @Override

@@ -32,34 +32,71 @@ public class LoginTask implements NetTask<Data> {
     }
 
     @Override
-    public void execute(String username, String password, final LoadTasksCallBack callBack) {
-        OkGo.<String>post(StringUtils.URL + StringUtils.USER_LOGIN)
-                .params("username", username)
-                .params("password", password)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        String result = response.body();
-                        Gson gson = new Gson();
-                        WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
-                        switch (wanAndroid.getErrorCode()) {
-                            case 0:
-                                callBack.onSuccess(wanAndroid.getData(), 0);
-                                break;
-                            case -1:
-                                callBack.onError(wanAndroid.getErrorCode(), wanAndroid.getErrorMsg());
-                                break;
-                            default:
-                                callBack.onFailed();
-                                break;
-                        }
-                    }
+    public void execute(final LoadTasksCallBack callBack,String...infos) {
+        String username=infos[0], password=infos[1],type=infos[2];
+        switch (type){
+            case StringUtils.TYPE_LOGIN:
+                OkGo.<String>post(StringUtils.URL + StringUtils.USER_LOGIN)
+                        .params("username", username)
+                        .params("password", password)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
+                                switch (wanAndroid.getErrorCode()) {
+                                    case 0:
+                                        callBack.onSuccess(wanAndroid.getData(), 0);
+                                        break;
+                                    case -1:
+                                        callBack.onError(wanAndroid.getErrorCode(), wanAndroid.getErrorMsg());
+                                        break;
+                                    default:
+                                        callBack.onFailed();
+                                        break;
+                                }
+                            }
 
-                    @Override
-                    public void onError(Response<String> response) {
-                        super.onError(response);
-                        callBack.onFailed();
-                    }
-                });
+                            @Override
+                            public void onError(Response<String> response) {
+                                super.onError(response);
+                                callBack.onFailed();
+                            }
+                        });
+                break;
+            case StringUtils.TYPE_REGISTER:
+                OkGo.<String>post(StringUtils.URL + StringUtils.USER_REGISTER)
+                        .params("username", username)
+                        .params("password", password)
+                        .params("repassword", password)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
+                                switch (wanAndroid.getErrorCode()) {
+                                    case 0:
+                                        callBack.onSuccess(wanAndroid.getData(), 0);
+                                        break;
+                                    case -1:
+                                        callBack.onError(wanAndroid.getErrorCode(), wanAndroid.getErrorMsg());
+                                        break;
+                                    default:
+                                        callBack.onFailed();
+                                        break;
+                                }
+                            }
+
+                            @Override
+                            public void onError(Response<String> response) {
+                                super.onError(response);
+                                callBack.onFailed();
+                            }
+                        });
+                break;
+        }
+
     }
 }

@@ -123,7 +123,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
     @Override
     public void RegisterResult(String... infos) {
-
+        if (!TextUtils.isEmpty(infos[0])){
+        ToastUtils(infos[0]);}
     }
 
     @Override
@@ -165,16 +166,25 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 mPresenter.doLogin(mIDEdt.getText().toString(), mPwdEdt.getText().toString());
             }
             if (mLoginBtn.getText().toString().equals("注册")) {
-                mPresenter.doRegister(mIDEdt.getText().toString(), mPwdEdt.getText().toString(), mConfirmEdt.getText().toString());
+                if (!TextUtils.isEmpty(mConfirmEdt.getText().toString())) {
+                    if (mPwdEdt.getText().toString().equals(mConfirmEdt.getText().toString())) {
+                        mPresenter.doRegister(mIDEdt.getText().toString(), mPwdEdt.getText().toString(), mConfirmEdt.getText().toString());
+                    } else {
+                        ToastUtils("两次输入的密码不一致！");
+                        return;
+                    }
+                } else {
+                    ToastUtils("请二次确认密码");
+                }
             }
         } else if (TextUtils.isEmpty(mPwdEdt.getText().toString()) && TextUtils.isEmpty(mIDEdt.getText().toString())) {
-            ToastUtils.show("请输入用户名和密码");
+            ToastUtils("请输入用户名和密码");
             return;
         } else if (TextUtils.isEmpty(mIDEdt.getText().toString())) {
-            ToastUtils.show("尚未输入用户名");
+            ToastUtils("尚未输入用户名");
             return;
         } else {
-            ToastUtils.show("尚未输入密码");
+            ToastUtils("尚未输入密码");
             return;
         }
     }

@@ -94,12 +94,12 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
 
     @Override
     public void getHomeTopArticle() {
-        mTask.execute(null, "1", this);
+        mTask.execute(this,null, "1");
     }
 
     @Override
     public void getHomeTopImgBanner() {
-        mTask.execute(null, "2", this);
+        mTask.execute(this,null, "2");
     }
 
 

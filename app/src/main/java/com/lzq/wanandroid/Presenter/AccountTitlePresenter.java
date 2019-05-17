@@ -65,7 +65,7 @@ public class AccountTitlePresenter implements OffAccountContract.AccountTitlePre
 
     @Override
     public void getTitleText() {
-        mTask.execute(null, null, this);
+        mTask.execute(this,null, null);
     }
 
     @Override

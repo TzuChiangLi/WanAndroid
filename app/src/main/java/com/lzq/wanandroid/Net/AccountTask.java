@@ -11,8 +11,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
-import static android.os.Build.ID;
-
 public class AccountTask implements NetTask<Data> {
     private static final String TAG = "AccountTask";
     private static AccountTask INSTANCE = null;
@@ -189,7 +187,8 @@ public class AccountTask implements NetTask<Data> {
 
 
     @Override
-    public void execute(String data1, String data2, final LoadTasksCallBack callBack) {
+    public void execute(final LoadTasksCallBack callBack, String... infos) {
+        String data1 = infos[0], data2 = infos[1];
         OkGo.<String>get(StringUtils.URL + StringUtils.OFFICIAL_ACCOUNT)
                 .execute(new StringCallback() {
                     @Override
