@@ -1,6 +1,5 @@
 package com.lzq.wanandroid;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -19,7 +18,7 @@ import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.HomeTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;
@@ -29,6 +28,7 @@ import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
 import com.lzq.wanandroid.View.Fragment.HomeFragment;
 import com.lzq.wanandroid.View.Fragment.ThreeFragment;
+import com.lzq.wanandroid.View.Fragment.TreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SearchActivity;
@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                     if (isExistBottomBar) {
                         //存在底部导航栏
                         heightDifference = heightDifference - AnimationUtil.getBottomBarHeight(MainActivity.this);
-                        Log.d(TAG, "----onGlobalLayout: " + heightDifference);
                     }
                     if (heightDifference > 0) {
                         //隐藏
@@ -111,10 +110,10 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
             mHomeFragment = HomeFragment.newInstance();
             mList.add(mHomeFragment);
         }
-        HomeTask homeTask = HomeTask.getInstance();
+        WebTask homeTask = WebTask.getInstance();
         mHomePresenter = new HomePresenter(mHomeFragment, homeTask);
         mHomeFragment.setPresenter(mHomePresenter);
-        mList.add(new ThreeFragment());
+        mList.add(new TreeFragment());
         mList.add(new ThreeFragment());
         if (mUserFragment == null) {
             mUserFragment = UserFragment.newInstance();
@@ -155,7 +154,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                         event.target=Event.TARGET_COLLECT;
                         event.type=Event.TYPE_COLLECT_REFRESH;
                         EventBus.getDefault().post(event);}else {
-                            startActivity(LoginActivity.class);
+                            startActivityWithoutAnimation(LoginActivity.class);
                         }
                         break;
                 }
@@ -201,7 +200,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                     TitleAnim.hide(mTitleTv);
                     break;
                 case Event.TYPE_NEED_LOGIN:
-                    startActivity(new Intent(this, LoginActivity.class));
+                    startActivityWithoutAnimation(LoginActivity.class);
                     break;
                 case Event.TYPE_LOGOUT_SUCCESS:
                     mHomePresenter.getHomeTopArticle();
@@ -227,7 +226,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
     public void afterCheckLogin(boolean flag) {
         Log.d(TAG, "----afterCheckLogin: " + flag);
         if (flag != true) {
-            startActivity(LoginActivity.class);
+            startActivityWithoutAnimation(LoginActivity.class);
         }
     }
 }

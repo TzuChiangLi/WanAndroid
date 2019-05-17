@@ -18,7 +18,7 @@ import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.HomeTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.GlideImageLoader;
@@ -73,7 +73,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
-            HomeTask mTask = HomeTask.getInstance();
+            WebTask mTask = WebTask.getInstance();
             mPresenter = HomePresenter.createPresenter(this, mTask);
         }
         mRefreshView.setOnRefreshListener(new OnRefreshListener() {

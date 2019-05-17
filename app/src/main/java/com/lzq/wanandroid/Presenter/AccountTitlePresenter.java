@@ -1,23 +1,21 @@
 package com.lzq.wanandroid.Presenter;
 
-import android.util.Log;
-
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.AccountTask;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AccountTitlePresenter implements OffAccountContract.AccountTitlePresenter, LoadTasksCallBack<List<Data>> {
     private static final String TAG = "AccountTitlePresenter";
-    private AccountTask mTask;
+    private WebTask mTask;
     private OffAccountContract.AccountTitleView mView;
     private List<Data> mList = new ArrayList<>();
 
-    public AccountTitlePresenter(OffAccountContract.AccountTitleView mView, AccountTask mTask) {
+    public AccountTitlePresenter(OffAccountContract.AccountTitleView mView, WebTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
@@ -65,7 +63,7 @@ public class AccountTitlePresenter implements OffAccountContract.AccountTitlePre
 
     @Override
     public void getTitleText() {
-        mTask.execute(this,null, null);
+        mTask.execute(this,StringUtils.TYPE_ACCOUNT_TITLE);
     }
 
     @Override

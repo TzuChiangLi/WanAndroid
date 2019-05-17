@@ -7,7 +7,7 @@ import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.HomeTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,17 +17,17 @@ import java.util.List;
 
 public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "HomePresenter";
-    private HomeTask mTask;
+    private WebTask mTask;
     private Contract.HomeView mView;
     private List<Data> mTopArticleList = new ArrayList<>();
 
 
-    public HomePresenter(Contract.HomeView mView, HomeTask mTask) {
+    public HomePresenter(Contract.HomeView mView, WebTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
 
-    public static HomePresenter createPresenter(Contract.HomeView mView, HomeTask mTask) {
+    public static HomePresenter createPresenter(Contract.HomeView mView, WebTask mTask) {
         return new HomePresenter(mView, mTask);
     }
 
@@ -94,12 +94,12 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
 
     @Override
     public void getHomeTopArticle() {
-        mTask.execute(this,null, "1");
+        mTask.execute(this, StringUtils.TYPE_TOP_ARTICLE);
     }
 
     @Override
     public void getHomeTopImgBanner() {
-        mTask.execute(this,null, "2");
+        mTask.execute(this, StringUtils.TYPE_IMG_BANNER);
     }
 
 
@@ -112,9 +112,9 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
     public void collectArticle(int ID, boolean isCollect, int position) {
         if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
             if (isCollect) {
-                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_NO);
+                mTask.execute(this, StringUtils.TYPE_COLLECT_NO, ID, position);
             } else {
-                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_YES);
+                mTask.execute(this, StringUtils.TYPE_COLLECT_YES, ID, position);
             }
         } else {
             Event event = new Event();

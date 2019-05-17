@@ -7,7 +7,7 @@ import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -17,19 +17,19 @@ import java.util.List;
 
 public class AccountContentPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "AccountContentPresenter";
-    private AccountTask mTask;
+    private WebTask mTask;
     private OffAccountContract.AccountContentView mView;
     private List<Datas> mList = new ArrayList<>();
     private int ID;
 
 
-    public AccountContentPresenter(OffAccountContract.AccountContentView mView, AccountTask mTask, int ID) {
+    public AccountContentPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID) {
         this.mView = mView;
         this.mTask = mTask;
         this.ID = ID;
     }
 
-    public static AccountContentPresenter createPresenter(OffAccountContract.AccountContentView mView, AccountTask mTask, int ID){
+    public static AccountContentPresenter createPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID){
         return new AccountContentPresenter(mView,mTask,ID);
     }
 
@@ -37,6 +37,7 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     @Override
     public void onSuccess(Object data, int flag) {
         int position;
+        Log.d(TAG, "----onSuccess flag: "+flag);
         try {
             switch (flag) {
                 case StringUtils.TYPE_COLLECT_NO:
@@ -94,12 +95,12 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
 
     @Override
     public void getTitleText() {
-        mTask.execute(this,null, null);
+        mTask.execute(this,StringUtils.TYPE_ACCOUNT_TITLE);
     }
 
     @Override
     public void getContent(int ID, int page) {
-        mTask.execute(this,ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_LOAD);
+        mTask.execute(this,StringUtils.TYPE_ACCOUNT_CONTENT_LOAD,ID, page);
     }
 
     @Override
@@ -109,7 +110,7 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
 
     @Override
     public void addContent(int ID, int page) {
-        mTask.execute(this,ID, page, StringUtils.TYPE_ACCOUNT_CONTENT_ADD);
+        mTask.execute(this,StringUtils.TYPE_ACCOUNT_CONTENT_ADD,ID, page);
     }
 
     @Override
@@ -121,9 +122,9 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     public void collectArticle(int ID, boolean isCollect, int position) {
         if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
             if (isCollect) {
-                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_NO);
+                mTask.execute(this, StringUtils.TYPE_COLLECT_NO,ID, position);
             } else {
-                mTask.execute(this,ID, position, StringUtils.TYPE_COLLECT_YES);
+                mTask.execute(this,StringUtils.TYPE_COLLECT_YES,ID, position);
             }
         } else {
             Event event = new Event();

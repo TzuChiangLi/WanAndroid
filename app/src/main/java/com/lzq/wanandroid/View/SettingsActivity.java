@@ -63,7 +63,6 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
             public void onTitleClick(View v) {
 
             }
-
             @Override
             public void onRightClick(View v) {
 

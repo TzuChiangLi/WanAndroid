@@ -24,9 +24,10 @@ import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.LoginContract;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.LoginTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.R;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Custom.ClearEditText;
 
 import org.greenrobot.eventbus.EventBus;
@@ -68,7 +69,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
         mLoginLayout = (ConstraintLayout.LayoutParams) mLoginBtn.getLayoutParams();
         if (mPresenter == null) {
-            LoginTask mTask = LoginTask.getInstance();
+            WebTask mTask = WebTask.getInstance();
             mPresenter = LoginPresenter.createPresenter(this, mTask);
         }
         ViewTreeObserver.OnGlobalLayoutListener mListener = new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -168,7 +169,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
             if (mLoginBtn.getText().toString().equals("注册")) {
                 if (!TextUtils.isEmpty(mConfirmEdt.getText().toString())) {
                     if (mPwdEdt.getText().toString().equals(mConfirmEdt.getText().toString())) {
-                        mPresenter.doRegister(mIDEdt.getText().toString(), mPwdEdt.getText().toString(), mConfirmEdt.getText().toString());
+                        mPresenter.doRegister(mIDEdt.getText().toString(), mPwdEdt.getText().toString());
                     } else {
                         ToastUtils("两次输入的密码不一致！");
                         return;

@@ -19,7 +19,7 @@ import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
@@ -67,7 +67,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
 
         if (mPresenter == null) {
-            mPresenter = CollectPresenter.createPresenter(this, AccountTask.getInstance());
+            mPresenter = CollectPresenter.createPresenter(this, WebTask.getInstance());
         }
         mPresenter.initView();
         mPresenter.getCollectList();

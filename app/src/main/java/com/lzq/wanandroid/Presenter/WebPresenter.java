@@ -5,7 +5,6 @@ import com.lzq.wanandroid.Net.WebTask;
 
 public class WebPresenter implements WebContract.Presenter {
     private static final String TAG = "WebPresenter";
-//    private WebTask mTask;
     private WebContract.View mView;
 
     public static WebPresenter createPresenter(WebContract.View mView){
@@ -14,7 +13,6 @@ public class WebPresenter implements WebContract.Presenter {
 
     public WebPresenter(WebContract.View mView) {
         this.mView = mView;
-//        this.mTask = mTask;
     }
 
 

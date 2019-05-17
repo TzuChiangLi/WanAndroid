@@ -64,7 +64,7 @@
 
     <com.zhy.view.flowlayout.TagFlowLayout
         android:id="@+id/search_flowlayout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:padding="10dp"

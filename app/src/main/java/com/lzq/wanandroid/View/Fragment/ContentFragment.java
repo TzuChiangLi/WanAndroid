@@ -17,9 +17,10 @@ import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.AccountContentPresenter;
 import com.lzq.wanandroid.R;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
 import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -65,7 +66,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
-            mPresenter = AccountContentPresenter.createPresenter(this, new AccountTask(), 0);
+            mPresenter = AccountContentPresenter.createPresenter(this, new WebTask(), 0);
         } else {
             mPresenter.initView();
             mPresenter.getContent(mPresenter.showID(), page);
@@ -122,13 +123,13 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
     @Override
     public void setContent(final List<Datas> mList, int flag) {
         switch (flag) {
-            case 0:
+            case StringUtils.TYPE_ACCOUNT_CONTENT_LOAD:
                 mContentList.clear();
                 mContentList = mList;
                 mAdapter = new ContentAdapter(mView, R.layout.rv_article, mContentList);
                 mRecyclerView.setAdapter(mAdapter);
                 break;
-            case 1:
+            case StringUtils.TYPE_ACCOUNT_CONTENT_ADD:
 //                for (int i = 0; i < mList.size(); i++) {
 //                    mContentList.add(mList.get(i));
 //                }

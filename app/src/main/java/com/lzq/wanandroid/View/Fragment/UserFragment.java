@@ -7,9 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -18,7 +16,7 @@ import android.widget.TextView;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.R;
@@ -100,7 +98,7 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerDrawable(ContextCompat.getDrawable(getContext(), R.drawable.tab_divider));
         linearLayout.setDividerPadding(48);
-        AccountTask mTask = AccountTask.getInstance();
+        WebTask mTask = WebTask.getInstance();
         CollectPresenter mCollectPresenter;
         CollectFragment mFragment;
 

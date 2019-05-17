@@ -5,35 +5,35 @@ import android.app.Activity;
 import com.lzq.wanandroid.Contract.LoginContract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.LoginTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Utils.AnimationUtil;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCallBack<Data> {
     private static final String TAG = "LoginPresenter";
-    private LoginTask mTask;
+    private WebTask mTask;
     private LoginContract.LoginView mView;
     private int oldHeight = 0;
 
 
-    public LoginPresenter(LoginContract.LoginView mView, LoginTask mTask) {
+    public LoginPresenter(LoginContract.LoginView mView, WebTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
 
-    public static LoginPresenter createPresenter(LoginContract.LoginView mView, LoginTask mTask){
-        return new LoginPresenter(mView,mTask);
+    public static LoginPresenter createPresenter(LoginContract.LoginView mView, WebTask mTask) {
+        return new LoginPresenter(mView, mTask);
     }
 
 
     @Override
     public void doLogin(String username, String password) {
-        mTask.execute(this,username, password,StringUtils.TYPE_LOGIN);
+        mTask.execute(this, StringUtils.TYPE_LOGIN, username, password);
     }
 
     @Override
-    public void doRegister(String... infos) {
-        mTask.execute(this,infos[0],infos[1], StringUtils.TYPE_REGISTER);
+    public void doRegister(String username, String password) {
+        mTask.execute(this, StringUtils.TYPE_REGISTER, username, password);
     }
 
     @Override

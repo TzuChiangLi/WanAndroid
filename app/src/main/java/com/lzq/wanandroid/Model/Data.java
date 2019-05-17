@@ -37,7 +37,6 @@ public class Data {
     //private int type;
     private String url;
     /******************获取公众号列表*********************/
-    private List<String> children;
     //private int courseId;
     //private int id;
     private String name;
@@ -80,6 +79,22 @@ public class Data {
 //    private int type;
 //    private String username;
 
+
+    /*********************体系文章**********************/
+    private List<Children> children;
+//    private int courseId;
+//    private int id;
+//    private String name;
+//    private int order;
+//    private int parentChapterId;
+//    private boolean userControlSetTop;
+//    private int visible;
+
+
+    public Data(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Data(String imagePath, String url) {
         this.imagePath = imagePath;
@@ -328,13 +343,14 @@ public class Data {
         this.publishTime = publishTime;
     }
 
-    public List<String> getChildren() {
+    public List<Children> getChildren() {
         return children;
     }
 
-    public void setChildren(List<String> children) {
+    public void setChildren(List<Children> children) {
         this.children = children;
     }
+
 
     public String getName() {
         return name;

@@ -13,7 +13,7 @@ import com.hjq.bar.TitleBar;
 import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.AccountContentPresenter;
 import com.lzq.wanandroid.Presenter.AccountTitlePresenter;
 import com.lzq.wanandroid.R;
@@ -41,7 +41,7 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
     private AccountTitlePresenter mPresenter;
     private OffAccountContract.AccountTitlePresenter mAccountPresenter;
     private ContentFragment mFragment;
-    private AccountTask mTask = AccountTask.getInstance();
+    private WebTask mTask = WebTask.getInstance();
 
 
     @Override
@@ -55,7 +55,7 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
     }
 
     private void initDataList() {
-        AccountTask mTask = AccountTask.getInstance();
+        WebTask mTask = WebTask.getInstance();
         mPresenter = new AccountTitlePresenter(OfficialAccountActivity.this, mTask);
         OfficialAccountActivity.this.setPresenter(mPresenter);
         mPresenter.initView();

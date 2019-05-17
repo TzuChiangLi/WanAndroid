@@ -3,7 +3,7 @@ package com.lzq.wanandroid.Presenter;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Net.AccountTask;
+import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ import java.util.List;
 
 public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCallBack<Object> {
     private Contract.CollectView mView;
-    private AccountTask mTask;
+    private WebTask mTask;
 
-    public CollectPresenter(Contract.CollectView mView, AccountTask mTask) {
+    public CollectPresenter(Contract.CollectView mView, WebTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
 
-    public static CollectPresenter createPresenter(Contract.CollectView mView, AccountTask mTask) {
+    public static CollectPresenter createPresenter(Contract.CollectView mView, WebTask mTask) {
         return new CollectPresenter(mView, mTask);
     }
 
@@ -33,7 +33,7 @@ public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCal
 
     @Override
     public void getCollectList() {
-        mTask.execute(this,0, 0, StringUtils.TYPE_COLLECT_CONTENT_LOAD);
+        mTask.execute(this, StringUtils.TYPE_COLLECT_CONTENT_LOAD,0);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCal
     }
 
     @Override
-    public void cancelCollect(int ID, int position,int orginID) {
-        mTask.execute(this,ID,position,StringUtils.TYPE_COLLECT_NO_USER,orginID);
+    public void cancelCollect(int ID, int position, int orginID) {
+        mTask.execute(this,StringUtils.TYPE_COLLECT_NO_USER,ID, position,orginID);
     }
 
 
@@ -51,8 +51,8 @@ public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCal
     public void onSuccess(Object o, int flag) {
         switch (flag) {
             case StringUtils.TYPE_COLLECT_CONTENT_LOAD:
-                List<Datas> mList=(List<Datas>) o;
-                for (int i=0;i<mList.size();i++){
+                List<Datas> mList = (List<Datas>) o;
+                for (int i = 0; i < mList.size(); i++) {
                     mList.get(i).setCollect(true);
                 }
                 mView.setCollectList(mList);

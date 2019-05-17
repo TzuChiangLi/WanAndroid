@@ -13,7 +13,7 @@ public interface LoginContract {
     interface LoginPresenter {
         void doLogin(String username, String password);
 
-        void doRegister(String... infos);
+        void doRegister(String username, String password);
 
         void getUserInfo();
 

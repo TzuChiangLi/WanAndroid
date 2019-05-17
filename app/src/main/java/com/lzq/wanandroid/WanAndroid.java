@@ -12,6 +12,8 @@ import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 
+import org.litepal.LitePal;
+
 import okhttp3.OkHttpClient;
 
 public class WanAndroid extends Application {
@@ -29,6 +31,8 @@ public class WanAndroid extends Application {
                 AppCompatDelegate.MODE_NIGHT_NO);
         QbSdk.initX5Environment(this, null);
         CrashReport.initCrashReport(getApplicationContext(), "2aa3615a5e", false);
+        LitePal.initialize(this);
+        LitePal.getDatabase();
     }
 
 
