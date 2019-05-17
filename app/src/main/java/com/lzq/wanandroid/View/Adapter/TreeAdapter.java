@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.lzq.wanandroid.Model.Data;
@@ -29,12 +28,13 @@ public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, Data item) {
+        helper.setText(R.id.rv_tree_tv_title, item.getName());
         ButterKnife.bind(helper.itemView);
         String[] childName = new String[item.getChildren().size()];
         for (int i = 0; i < item.getChildren().size(); i++) {
             childName[i] = item.getChildren().get(i).getName();
         }
-        final LayoutInflater mInflater = LayoutInflater.from();
+        final LayoutInflater mInflater = LayoutInflater.from(helper.itemView.getContext());
         mFlowLayout.setAdapter(new TagAdapter<String>(childName) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
@@ -46,9 +46,5 @@ public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
             }
         });
 
-
-
-        helper.setText(R.id.rv_tree_tv_title, item.getName());
-        helper.setAdapter(R.id.rv_tree_flow, item);
     }
 }
