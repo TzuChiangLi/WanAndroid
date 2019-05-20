@@ -3,20 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dp_4"
-    android:layout_marginTop="@dimen/dp_8"
-    android:layout_marginEnd="@dimen/dp_4"
-    android:layout_marginBottom="@dimen/dp_8"
-    android:background="@color/bg_daily_mode"
-    app:cardCornerRadius="@dimen/dp_8"
-    app:cardElevation="@dimen/dp_4">
+    android:layout_marginStart="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_8"
+    android:layout_marginTop="@dimen/dp_4"
+    android:layout_marginBottom="@dimen/dp_4"
+    app:cardCornerRadius="@dimen/dp_4"
+    app:cardElevation="@dimen/dp_2">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/dp_8"
-        android:background="@android:color/transparent"
-        android:layout_marginHorizontal="16dp"
+        android:background="@color/bg_daily_mode"
         android:orientation="vertical">
 
         <TextView
@@ -24,6 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_8"
             android:text="一级标题"
 
             android:textColor="@color/text_daily_mode" />

@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_daily_mode">
+    android:background="@color/bg_daily_mode"
+   >
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_daily_mode">
+        android:background="@color/bg_daily_mode"
+     >
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -64,10 +66,9 @@
         android:id="@+id/user_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_collapseMode="pin"
         android:orientation="vertical"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_collapseMode="pin">
 
 
         <android.support.design.widget.TabLayout
@@ -83,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
-
 
 
     </LinearLayout>

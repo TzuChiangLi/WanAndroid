@@ -33,6 +33,8 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
     SwitchButton mNightBtn;
     @BindView(R.id.set_btn_logout)
     Button mLogoutBtn;
+    @BindView(R.id.set_btn_about)
+    Button mAboutBtn;
     private Contract.SettingPresenter mPresenter;
 
 
@@ -68,6 +70,11 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
 
             }
         });
+    }
+
+    @OnClick(R.id.set_btn_about)
+    public void doAbout(){
+
     }
 
 

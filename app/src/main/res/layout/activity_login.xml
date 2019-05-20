@@ -7,6 +7,41 @@
     android:background="@color/bg_daily_mode"
     tools:context=".View.LoginActivity">
 
+    <LinearLayout
+        android:id="@+id/login_ll_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintStart_toStartOf="@+id/cardView"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/login_tv_title_1st"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.2"
+            android:text="@string/user_btn_login"
+            android:textColor="@color/text_daily_mode"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!--<TextView-->
+
+            <!--android:id="@+id/login_tv_title_2nd"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:letterSpacing="0.2"-->
+            <!--android:text="@string/user_btn_login"-->
+            <!--android:textColor="@color/text_daily_mode"-->
+            <!--android:textSize="24sp"-->
+            <!--android:textStyle="bold" />-->
+
+
+    </LinearLayout>
+
+
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -55,7 +90,6 @@
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
-                    android:text="TzuChiangLi"
                     android:textColor="@color/text_daily_mode" />
             </LinearLayout>
 
@@ -93,7 +127,6 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:lines="1"
-                    android:text="Lzq565486"
                     android:textColor="@color/text_daily_mode" />
             </LinearLayout>
 
@@ -105,8 +138,8 @@
                 android:layout_marginStart="36dp"
                 android:layout_marginEnd="@dimen/dp_4"
                 android:alpha="0"
-                android:visibility="gone"
-                android:background="@color/divide_line" />
+                android:background="@color/divide_line"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/user_ll_confirm"
@@ -138,7 +171,6 @@
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:lines="1"
-                    android:text="Lzq565486"
                     android:textColor="@color/text_daily_mode" />
             </LinearLayout>
 

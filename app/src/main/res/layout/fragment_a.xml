@@ -5,7 +5,7 @@
     android:id="@+id/refresh_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_daily_mode"
+    android:background="@color/bg_daily_white"
     app:srlEnablePreviewInEditMode="true">
     <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
     <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
@@ -62,6 +62,7 @@
                         android:paddingVertical="@dimen/dp_4">
 
                         <Button
+                            android:id="@+id/main_top_btn_navi"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

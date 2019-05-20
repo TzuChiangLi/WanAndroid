@@ -70,6 +70,15 @@ public class Event {
      * 收藏注销
      */
     public static final int TYPE_COLLECT_LOGOUT = 14;
+    /**
+     * 收藏注销
+     */
+    public static final int TYPE_CHANGE_MAIN_TITLE = 14;
+    /**
+     * 跳转到体系界面
+     */
+    public static final int TYPE_CHANGE_SYS = 15;
+
 
 
     /**
@@ -115,6 +124,10 @@ public class Event {
      * 目标界面-我的信息
      */
     public static final int TARGET_USER = 9;
+    /**
+     * 目标界面-导航体系
+     */
+    public static final int TARGET_SYSTEM = 10;
 
 
     public int target;

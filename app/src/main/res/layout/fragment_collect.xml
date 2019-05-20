@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_daily_layout">
+    android:background="@color/bg_daily_white">
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh_collect_content"
@@ -17,7 +17,8 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bg_daily_layout" />
+
+            android:background="@color/bg_daily_white" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_collect_list"

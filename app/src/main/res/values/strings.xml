@@ -7,6 +7,7 @@
     <string name="set_title">设置</string>
     <string name="set_night_mode">夜间模式</string>
     <string name="set_logout">切换用户</string>
+    <string name="set_about">关于</string>
     <string name="web_title">文章浏览</string>
     <string name="search_hot">热门搜索</string>
     <string name="top_article_title"> 置顶</string>

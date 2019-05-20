@@ -1,7 +1,6 @@
 package com.lzq.wanandroid.Contract;
 
 import com.lzq.wanandroid.BaseView;
-import com.lzq.wanandroid.DataBase.Tree;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
 
@@ -106,15 +105,29 @@ public interface Contract {
         boolean onFinishLoad();
     }
 
-    interface TreePresenter{
-        void initView();
-        void loadOnline();
+    interface SystemPresenter {
+        void initTabView();
     }
 
-    interface TreeView extends BaseView<Contract.TreePresenter>{
-        void initDataList(List<Tree> mList);
-        void isEmptyLocal();
-        void onLoadParentName(List<Data> data);
+    interface SystemView extends BaseView<Contract.SystemPresenter> {
+        void setTabView(String[] tabName, int[] imgTab);
+    }
+
+
+    interface TreePresenter {
+        void initView(int type);
+
+        void loadOnline(int type);
+    }
+
+    interface TreeView extends BaseView<Contract.TreePresenter> {
+        void initDataList(int type, List<Data> mList);
+
+        void onlineLoad(int type);
+
+        void onLoadTreeData(int type, List<Data> data);
+
+        boolean onFinishLoad();
     }
 
 

@@ -18,6 +18,7 @@ import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.R;
@@ -30,6 +31,8 @@ import com.ms.banner.listener.OnBannerClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +51,8 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     Button mAccountBtn;
     @BindView(R.id.refresh_home)
     SmartRefreshLayout mRefreshView;
+    @BindView(R.id.main_top_btn_navi)
+    Button mNaviBtn;
     private Contract.HomePresenter mPresenter;
     private ArticleAdapter mTopArticleAdapter;
     private List<Data> mTopArticleList = new ArrayList<>();
@@ -101,6 +106,14 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     @OnClick(R.id.main_top_btn_account)
     public void goAccountActivity() {
         startActivity(mView, OfficialAccountActivity.class);
+    }
+
+    @OnClick(R.id.main_top_btn_navi)
+    public void goSystemFragment() {
+        Event event = new Event();
+        event.target = Event.TARGET_MAIN;
+        event.type = Event.TYPE_CHANGE_SYS;
+        EventBus.getDefault().post(event);
     }
 
     @Override
@@ -175,8 +188,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     @Override
     public void setPresenter(Contract.HomePresenter mPresenter) {
         if (mPresenter == null)
-            Log.d(TAG, "----setPresenter: 执行");
-        this.mPresenter = mPresenter;
+            this.mPresenter = mPresenter;
     }
 
 }

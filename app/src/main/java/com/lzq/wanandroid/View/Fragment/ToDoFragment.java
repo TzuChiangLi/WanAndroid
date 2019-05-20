@@ -28,10 +28,10 @@ import butterknife.ButterKnife;
 
 public class ToDoFragment extends BaseFragment implements Contract.ToDoView {
     private static final String TAG = "todoFragment";
-    @BindView(R.id.rv_todo_list)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.refresh_todo_content)
-    SmartRefreshLayout mRefreshView;
+//    @BindView(R.id.rv_todo_list)
+//    RecyclerView mRecyclerView;
+//    @BindView(R.id.refresh_todo_content)
+//    SmartRefreshLayout mRefreshView;
     private Contract.ToDoPresenter mPresenter;
     private View mView;
     private ContentAdapter mAdapter;

@@ -16,6 +16,7 @@ import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.TreePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.View.Adapter.NaviAdapter;
 import com.lzq.wanandroid.View.Adapter.TreeAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -27,21 +28,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TreeFragment extends BaseFragment implements Contract.TreeView {
-    private static final String TAG = "SystemFragment";
+public class NaviFragment extends BaseFragment implements Contract.TreeView {
+    private static final String TAG = "NaviFragment";
     @BindView(R.id.tree_rv)
     RecyclerView mRecyclerView;
     @BindView(R.id.tree_refresh)
     SmartRefreshLayout mRefreshView;
     private Contract.TreePresenter mPresenter;
     private List<Data> mList = new ArrayList<>();
-    private TreeAdapter mAdapter;
+    private NaviAdapter mAdapter;
 
-    public TreeFragment() {
+    public NaviFragment() {
     }
 
-    public TreeFragment newInstance() {
-        return new TreeFragment();
+    public NaviFragment newInstance() {
+        return new NaviFragment();
     }
 
 
@@ -55,13 +56,13 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
             mPresenter = TreePresenter.createPresenter(this, mTask);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        mPresenter.initView(StringUtils.TYPE_TREE_KNOW);
-        mPresenter.loadOnline(StringUtils.TYPE_TREE_KNOW);
+        mPresenter.initView(StringUtils.TYPE_TREE_NAVI);
+        mPresenter.loadOnline(StringUtils.TYPE_TREE_NAVI);
         mRefreshView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                mPresenter.loadOnline(StringUtils.TYPE_TREE_KNOW);
-                if (onFinishLoad()) {
+                mPresenter.loadOnline(StringUtils.TYPE_TREE_NAVI);
+                if (onFinishLoad()){
                     mRefreshView.finishRefresh();
                 }
             }
@@ -75,8 +76,8 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
     }
 
     @Override
-    public void initDataList(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data);
+    public void initDataList(int type,List<Data> data) {
+        mAdapter = new NaviAdapter(R.layout.rv_tree_item, data);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -85,9 +86,11 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
         mPresenter.loadOnline(type);
     }
 
+
+
     @Override
     public void onLoadTreeData(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data);
+        mAdapter = new NaviAdapter(R.layout.rv_tree_item, data);
         mRecyclerView.setAdapter(mAdapter);
     }
 

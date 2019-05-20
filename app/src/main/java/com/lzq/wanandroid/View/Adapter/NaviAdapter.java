@@ -18,11 +18,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
+public class NaviAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
     @BindView(R.id.rv_tree_flow)
     TagFlowLayout mFlowLayout;
 
-    public TreeAdapter(int layoutResId, @Nullable List<Data> data) {
+    public NaviAdapter(int layoutResId, @Nullable List<Data> data) {
         super(layoutResId, data);
     }
 
@@ -32,13 +32,13 @@ public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
         if (item.getName() != null) {
             helper.setText(R.id.rv_tree_tv_title, item.getName());
         }
-        if (item.getChildren() != null) {
-            String[] childName = new String[item.getChildren().size()];
-            for (int i = 0; i < item.getChildren().size(); i++) {
-                childName[i] = item.getChildren().get(i).getName();
+        if (item.getArticles() != null) {
+            String[] titleName = new String[item.getArticles().size()];
+            for (int i = 0; i < item.getArticles().size(); i++) {
+                titleName[i] = item.getArticles().get(i).getTitle();
             }
             final LayoutInflater mInflater = LayoutInflater.from(helper.itemView.getContext());
-            mFlowLayout.setAdapter(new TagAdapter<String>(childName) {
+            mFlowLayout.setAdapter(new TagAdapter<String>(titleName) {
                 @Override
                 public View getView(FlowLayout parent, int position, String s) {
 
@@ -49,5 +49,6 @@ public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
                 }
             });
         }
+
     }
 }

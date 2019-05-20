@@ -2,7 +2,6 @@ package com.lzq.wanandroid;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -20,15 +19,16 @@ import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
-import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;
+import com.lzq.wanandroid.Presenter.SystemPresenter;
+import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
 import com.lzq.wanandroid.View.Fragment.HomeFragment;
+import com.lzq.wanandroid.View.Fragment.SystemFragment;
 import com.lzq.wanandroid.View.Fragment.ThreeFragment;
-import com.lzq.wanandroid.View.Fragment.TreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SearchActivity;
@@ -58,10 +58,11 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
     private List<Fragment> mList = new ArrayList<>();
     private Contract.MainPresenter mPresenter;
     private HomeFragment mHomeFragment;
+    private SystemFragment mSystemFragment;
     private HomePresenter mHomePresenter;
+    private UserPresenter mUserPresenter;
+    private SystemPresenter mSystemPresenter;
     private UserFragment mUserFragment;
-    private LoginPresenter mUserPresenter;
-    private FragmentTransaction mTransaction;
     private FragmentAdapter mFAdapter;
     private int oldHeight;
 
@@ -102,6 +103,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
 
     private void initView() {
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
+        WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(this);
         }
@@ -110,15 +112,21 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
             mHomeFragment = HomeFragment.newInstance();
             mList.add(mHomeFragment);
         }
-        WebTask homeTask = WebTask.getInstance();
-        mHomePresenter = new HomePresenter(mHomeFragment, homeTask);
+        mHomePresenter = new HomePresenter(mHomeFragment, mTask);
         mHomeFragment.setPresenter(mHomePresenter);
-        mList.add(new TreeFragment());
+        if (mSystemFragment == null) {
+            mSystemFragment = SystemFragment.newInstance();
+            mList.add(new SystemFragment());
+        }
+        mSystemPresenter = new SystemPresenter(mSystemFragment);
+        mSystemFragment.setPresenter(mSystemPresenter);
         mList.add(new ThreeFragment());
         if (mUserFragment == null) {
             mUserFragment = UserFragment.newInstance();
             mList.add(mUserFragment);
         }
+        mUserPresenter = new UserPresenter(mUserFragment);
+        mUserFragment.setPresenter(mUserPresenter);
         PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
@@ -137,23 +145,27 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
             @Override
             public void onSelected(int index, int old) {
                 TitleAnim.hide(mTitleTv, mFuncImgBtn);
+                Event event = new Event();
                 switch (index) {
                     case 0:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "首页", 0);
                         break;
                     case 1:
-                        TitleAnim.show(mTitleTv, mFuncImgBtn, "体系", 1);
+                        event.target = Event.TARGET_SYSTEM;
+                        event.type = Event.TYPE_CHANGE_MAIN_TITLE;
+                        EventBus.getDefault().post(event);
                         break;
                     case 2:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "反馈", 2);
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
-                        if(SPUtils.getInstance("userinfo").getBoolean("isLogin")){
-                        Event event=new Event();
-                        event.target=Event.TARGET_COLLECT;
-                        event.type=Event.TYPE_COLLECT_REFRESH;
-                        EventBus.getDefault().post(event);}else {
+                        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
+
+                            event.target = Event.TARGET_COLLECT;
+                            event.type = Event.TYPE_COLLECT_REFRESH;
+                            EventBus.getDefault().post(event);
+                        } else {
                             startActivityWithoutAnimation(LoginActivity.class);
                         }
                         break;
@@ -204,6 +216,12 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                     break;
                 case Event.TYPE_LOGOUT_SUCCESS:
                     mHomePresenter.getHomeTopArticle();
+                    break;
+                case Event.TYPE_CHANGE_MAIN_TITLE:
+                    TitleAnim.hide(mTitleTv, mFuncImgBtn);
+                    TitleAnim.show(mTitleTv, mFuncImgBtn, event.data, 1);
+                case Event.TYPE_CHANGE_SYS:
+                    mVPager.setCurrentItem(1);
                     break;
             }
 

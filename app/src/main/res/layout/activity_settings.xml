@@ -56,6 +56,30 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
         android:background="@color/bg_daily_mode"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10">
+
+        <Button
+            android:id="@+id/set_btn_about"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="@string/set_about"
+            android:textColor="@color/text_daily_mode"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divide_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/bg_daily_mode"
         android:gravity="center">
 
         <Button
@@ -73,4 +97,5 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/divide_line" />
+
 </LinearLayout>

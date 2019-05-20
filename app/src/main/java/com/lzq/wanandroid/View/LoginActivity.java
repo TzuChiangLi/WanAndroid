@@ -27,13 +27,13 @@ import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Custom.ClearEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -56,6 +56,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     LinearLayout mConfirmView;
     @BindView(R.id.user_line_confirm)
     View mLineView;
+    @BindView(R.id.login_tv_title_1st)
+    TextView mFirstTv;
+    //    @BindView(R.id.login_tv_title_2nd)
+//    TextView mSecondTv;
+    @BindString(R.string.user_btn_login)
+    String strLogin;
+    @BindString(R.string.user_btn_register)
+    String strRegister;
+    @BindView(R.id.login_ll_title)
+    View mTitleView;
     private ConstraintLayout.LayoutParams mLoginLayout = null;
     private LoginContract.LoginPresenter mPresenter;
 
@@ -124,8 +134,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
     @Override
     public void RegisterResult(String... infos) {
-        if (!TextUtils.isEmpty(infos[0])){
-        ToastUtils(infos[0]);}
+        if (!TextUtils.isEmpty(infos[0])) {
+            ToastUtils(infos[0]);
+        }
     }
 
     @Override
@@ -151,12 +162,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     public void Register() {
         if (mLoginBtn.getText().toString().equals("登录")) {
             mRegisterNowBtn.setText("已有账号，直接登录");
-            mLoginBtn.setText("注册");
+            mLoginBtn.setText(strRegister);
             doAnimation(2);
+
         } else {
             mRegisterNowBtn.setText("没有账号？注册一个");
-            mLoginBtn.setText("登录");
+            mLoginBtn.setText(strLogin);
             doAnimation(1);
+
         }
     }
 
@@ -207,21 +220,28 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     }
 
     public void doAnimation(int flag) {
+        ObjectAnimator alpha_TitleView_hide = ObjectAnimator.ofFloat(mTitleView, "alpha", 1, 0);
+        final ObjectAnimator alpha_TitleView_show = ObjectAnimator.ofFloat(mTitleView, "alpha", 0, 1);
+
+        Float OldCardHeight = mCardView.getTranslationY();
+        Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
+        Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
+
+
+        ObjectAnimator alpha_CardView = ObjectAnimator.ofFloat(mCardView, "alpha", 0, 1);
+        ObjectAnimator alpha_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "alpha", 0, 1);
+        ObjectAnimator alpha_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "alpha", 0, 1);
+
+
+        ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
+        ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
+        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
+
+        ObjectAnimator alpha_line_hide = ObjectAnimator.ofFloat(mLineView, "alpha", 1, 0);
+        ObjectAnimator alpha_confirm_hide = ObjectAnimator.ofFloat(mConfirmView, "alpha", 1, 0);
         switch (flag) {
             case 0://显示
                 try {
-                    Float OldCardHeight = mCardView.getTranslationY();
-                    Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
-                    Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
-
-                    ObjectAnimator alpha_CardView = ObjectAnimator.ofFloat(mCardView, "alpha", 0, 1);
-                    ObjectAnimator alpha_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "alpha", 0, 1);
-                    ObjectAnimator alpha_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "alpha", 0, 1);
-
-
-                    ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
-                    ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
-                    ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
 
                     AnimatorSet alphaSet = new AnimatorSet();
                     AnimatorSet translationSet = new AnimatorSet();
@@ -243,15 +263,35 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 }
                 break;
             case 1://注册消失,alpha--1--0
-                ObjectAnimator alpha_line_hide = ObjectAnimator.ofFloat(mLineView, "alpha", 1, 0);
-                ObjectAnimator alpha_confirm_hide = ObjectAnimator.ofFloat(mConfirmView, "alpha", 1, 0);
+                alpha_TitleView_hide.setDuration(250).start();
+                alpha_TitleView_hide.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mFirstTv.setText(strLogin);
+                        alpha_TitleView_show.setDuration(250).start();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
                 AnimatorSet alphaHide = new AnimatorSet();
                 alphaHide.playTogether(alpha_line_hide, alpha_confirm_hide);
                 alphaHide.setDuration(500).start();
                 alphaHide.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-
                     }
 
                     @Override
@@ -273,6 +313,29 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
                 break;
             case 2://注册显示,alpha--0--1
+                alpha_TitleView_hide.setDuration(250).start();
+                alpha_TitleView_hide.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mFirstTv.setText(strRegister);
+                        alpha_TitleView_show.setDuration(250).start();
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
                 mLineView.setVisibility(View.VISIBLE);
                 mConfirmView.setVisibility(View.VISIBLE);
                 ObjectAnimator alpha_line_show = ObjectAnimator.ofFloat(mLineView, "alpha", 0, 1);
@@ -281,6 +344,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
                 alphaShow.playTogether(alpha_line_show, alpha_confirm_show);
                 alphaShow.setDuration(1000).start();
                 break;
+
             default:
                 break;
         }

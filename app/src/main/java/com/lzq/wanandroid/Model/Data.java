@@ -89,6 +89,10 @@ public class Data {
 //    private int parentChapterId;
 //    private boolean userControlSetTop;
 //    private int visible;
+    /*********************导航树形**********************/
+    private List<Articles> articles;
+    private int cid;
+//    private String name;
 
 
     public Data(int id, String name) {
@@ -497,6 +501,21 @@ public class Data {
         this.admin = admin;
     }
 
+    public List<Articles> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Articles> articles) {
+        this.articles = articles;
+    }
+
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
 }
 
 
