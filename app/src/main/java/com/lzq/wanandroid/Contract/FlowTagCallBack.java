@@ -5,5 +5,5 @@ import com.lzq.wanandroid.Model.Data;
 
 public interface FlowTagCallBack {
     void getTreeLink(String URL);
-    void getTreeID(int ID);
+    void getTreeArticles(int ID,int position,String title,String[] childName);
 }

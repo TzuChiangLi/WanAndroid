@@ -2,6 +2,7 @@ package com.lzq.wanandroid.Utils;
 
 public class StringUtils {
     public static final String URL = "https://www.wanandroid.com/";
+    public static final String TREE_ARTICLES="article/list/";///+ID/json?cid=60";
     public static final String NAVI = "navi/json";
     public static final String TREE = "tree/json";
     public static final String HOT_KEY = "/hotkey/json";
@@ -34,6 +35,7 @@ public class StringUtils {
     public static final int TYPE_TREE = 12;
     public static final int TYPE_TREE_NAVI = 13;
     public static final int TYPE_TREE_KNOW = 14;
+    public static final int TYPE_TREE_KNOW_ARTICLES = 15;
 
 
     public static final String TYPE_IMG_BANNER = "IMGBANNER";

@@ -39,11 +39,12 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
     ViewPager mVPager;
     private List<Fragment> fragments = new ArrayList<>();
     private List<Data> mList = new ArrayList<>();
-    private String[] title = {"郭霖", "玉刚说", "刘望舒", "鸿洋"};
+    private String[] title = {"郭霖", "玉刚说", "刘望舒", "鸿洋"},childName;
     private AccountTitlePresenter mPresenter;
     private OffAccountContract.AccountTitlePresenter mAccountPresenter;
     private ContentFragment mFragment;
     private Intent intent;
+    private int ID,position;
     private WebTask mTask = WebTask.getInstance();
 
 
@@ -68,6 +69,11 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
 
     private void initView() {
         mTitleBar.setTitle(intent.getStringExtra("TITLE_BAR"));
+        if (intent.getIntExtra("TYPE",StringUtils.TYPE_ACCOUNT_TITLE)==StringUtils.TYPE_TREE_KNOW_ARTICLES){
+            ID=intent.getIntExtra("ID",0);//CID
+            childName=intent.getStringArrayExtra("TABNAME");
+            position=intent.getIntExtra("POSITION",0);
+        }
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
     }
 

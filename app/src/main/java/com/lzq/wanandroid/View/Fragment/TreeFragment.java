@@ -12,14 +12,15 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.FlowTagCallBack;
 import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Contract.FlowTagCallBack;
 import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Presenter.TreePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.TreeAdapter;
+import com.lzq.wanandroid.View.ArticlesActivity;
 import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -80,7 +81,7 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView, Flo
 
     @Override
     public void initDataList(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data,this);
+        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data, this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -91,7 +92,7 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView, Flo
 
     @Override
     public void onLoadTreeData(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data,this);
+        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data, this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -108,8 +109,15 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView, Flo
     }
 
     @Override
-    public void getTreeID(int ID) {
-        //跳转到
+    public void getTreeArticles(int ID, int position,String title, String[] childName) {
+        //获取到点击的位置，所属父类的名称，以及子项的所有名称
+        Intent intent = new Intent(ActivityUtils.getActivityByView(mView), ArticlesActivity.class);
+        intent.putExtra("TYPE", StringUtils.TYPE_TREE_KNOW_ARTICLES);
+        intent.putExtra("TITLE_BAR", title);
+        intent.putExtra("ID", ID);
+        intent.getIntExtra("POSITION",position);
+        intent.putExtra("TABNAME", childName);
+        startActivity(mView, intent);
     }
 
     @Override
