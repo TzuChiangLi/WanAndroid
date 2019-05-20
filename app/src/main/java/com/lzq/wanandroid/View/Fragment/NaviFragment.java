@@ -41,7 +41,7 @@ public class NaviFragment extends BaseFragment implements Contract.TreeView {
     public NaviFragment() {
     }
 
-    public NaviFragment newInstance() {
+    public static NaviFragment newInstance() {
         return new NaviFragment();
     }
 

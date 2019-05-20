@@ -48,12 +48,8 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
                     mView.setHomeTopArticle((List<Data>) data);
                     break;
                 case StringUtils.TYPE_HOME_IMG_BANNER:
-                    List<Data> mImgList = new ArrayList();
                     List<Data> tList = (List<Data>) data;
-                    for (int i = 0; i < tList.size(); i++) {
-                        mImgList.add(new Data(tList.get(i).getImagePath(), tList.get(i).getUrl()));
-                    }
-                    mView.setHomeTopImgBanner(mImgList);
+                    mView.setHomeTopImgBanner(tList);
                     break;
             }
         } catch (Exception e) {

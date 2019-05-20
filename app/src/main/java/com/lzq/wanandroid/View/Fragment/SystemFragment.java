@@ -82,13 +82,13 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
 
 
     @Override
-    public void setTabView(String[] tabName, int[] imgTab) {
+    public void setTabView( String[] tabName,  int[] imgTab) {
         LinearLayout linearLayout = (LinearLayout) mTabLayout.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerDrawable(ContextCompat.getDrawable(getContext(), R.drawable.tab_divider));
         linearLayout.setDividerPadding(48);
-        mList.add(new NaviFragment());
-        mList.add(new TreeFragment());
+        mList.add(NaviFragment.newInstance());
+        mList.add(TreeFragment.newInstance());
 
         for (int i = 0; i < tabName.length; i++) {
             mTabLayout.addTab(mTabLayout.newTab());
@@ -100,6 +100,7 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
             mTabLayout.getTabAt(i).setText(tabName[i]).setIcon(imgTab[i]);
         }
     }
+
 
     @Override
     public void setPresenter(Contract.SystemPresenter presenter) {

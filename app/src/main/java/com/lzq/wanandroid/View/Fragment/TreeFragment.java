@@ -34,13 +34,12 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
     @BindView(R.id.tree_refresh)
     SmartRefreshLayout mRefreshView;
     private Contract.TreePresenter mPresenter;
-    private List<Data> mList = new ArrayList<>();
     private TreeAdapter mAdapter;
 
     public TreeFragment() {
     }
 
-    public TreeFragment newInstance() {
+    public static TreeFragment newInstance() {
         return new TreeFragment();
     }
 

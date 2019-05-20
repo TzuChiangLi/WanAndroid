@@ -49,25 +49,29 @@ public class TreePresenter implements Contract.TreePresenter, LoadTasksCallBack 
     }
 
     @Override
-    public void onSuccess(Object o, int flag) {
-        List<Data> data = (List<Data>) o;
-
-        Tree tree = null;
-        LitePal.deleteAll(Tree.class, "type=?", String.valueOf(flag));
-        switch (flag) {
-            case StringUtils.TYPE_TREE_NAVI:
-                for (int i = 0; i < data.size(); i++) {
-                    tree = new Tree(data.get(i).getCid(), data.get(i).getName(), flag);
-                    tree.save();
+    public void onSuccess(Object o, final int flag) {
+        final List<Data> data = (List<Data>) o;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Tree tree = null;
+                LitePal.deleteAll(Tree.class, "type=?", String.valueOf(flag));
+                switch (flag) {
+                    case StringUtils.TYPE_TREE_NAVI:
+                        for (int i = 0; i < data.size(); i++) {
+                            tree = new Tree(data.get(i).getCid(), data.get(i).getName(), flag);
+                            tree.save();
+                        }
+                        break;
+                    case StringUtils.TYPE_TREE_KNOW:
+                        for (int i = 0; i < data.size(); i++) {
+                            tree = new Tree(data.get(i).getId(), data.get(i).getName(), flag);
+                            tree.save();
+                        }
+                        break;
                 }
-                break;
-            case StringUtils.TYPE_TREE_KNOW:
-                for (int i = 0; i < data.size(); i++) {
-                    tree = new Tree(data.get(i).getId(), data.get(i).getName(), flag);
-                    tree.save();
-                }
-                break;
-        }
+            }
+        }).start();
         mView.onLoadTreeData(flag, data);
         mView.onFinishLoad();
     }

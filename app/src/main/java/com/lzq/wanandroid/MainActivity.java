@@ -105,28 +105,36 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
-            mPresenter = MainPresenter.createMainPresenter(this);
+            mPresenter = MainPresenter.createMainPresenter(MainActivity.this);
         }
-        this.setPresenter(mPresenter);
+        MainActivity.this.setPresenter(mPresenter);
+
+
         if (mHomeFragment == null) {
             mHomeFragment = HomeFragment.newInstance();
             mList.add(mHomeFragment);
         }
         mHomePresenter = new HomePresenter(mHomeFragment, mTask);
         mHomeFragment.setPresenter(mHomePresenter);
+
+
         if (mSystemFragment == null) {
             mSystemFragment = SystemFragment.newInstance();
-            mList.add(new SystemFragment());
+            mList.add(mSystemFragment);
         }
         mSystemPresenter = new SystemPresenter(mSystemFragment);
         mSystemFragment.setPresenter(mSystemPresenter);
-        mList.add(new ThreeFragment());
+
+
+        mList.add(ThreeFragment.newInstance());
         if (mUserFragment == null) {
             mUserFragment = UserFragment.newInstance();
             mList.add(mUserFragment);
         }
         mUserPresenter = new UserPresenter(mUserFragment);
         mUserFragment.setPresenter(mUserPresenter);
+
+
         PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
@@ -137,7 +145,6 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
         //允许4个
         mVPager.setOffscreenPageLimit(4);
         mFAdapter = new FragmentAdapter(getSupportFragmentManager(), mList);
-        Log.d(TAG, "----initView: " + mFAdapter.getCount());
         mVPager.setAdapter(mFAdapter);
         //自动适配ViewPager页面切换
         build.setupWithViewPager(mVPager);
@@ -161,7 +168,6 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
                         if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
-
                             event.target = Event.TARGET_COLLECT;
                             event.type = Event.TYPE_COLLECT_REFRESH;
                             EventBus.getDefault().post(event);
@@ -242,7 +248,6 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
 
     @Override
     public void afterCheckLogin(boolean flag) {
-        Log.d(TAG, "----afterCheckLogin: " + flag);
         if (flag != true) {
             startActivityWithoutAnimation(LoginActivity.class);
         }

@@ -15,6 +15,9 @@ public class ThreeFragment extends Fragment {
     public ThreeFragment() {
     }
 
+    public static ThreeFragment newInstance(){
+        return new ThreeFragment();
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

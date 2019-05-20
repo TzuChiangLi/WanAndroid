@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +54,9 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     Button mNaviBtn;
     private Contract.HomePresenter mPresenter;
     private ArticleAdapter mTopArticleAdapter;
-    private List<Data> mTopArticleList = new ArrayList<>();
     private View mView;
+    private List<Data> mTopArticleList = new ArrayList<>();
+    private List<Data> mBannerList = new ArrayList<>();
 
     //创建
     public HomeFragment() {
@@ -73,14 +73,27 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         mView = view;
         ButterKnife.bind(this, view);
         mBanner.requestDisallowInterceptTouchEvent(true);
-        mTopArtRv.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-        mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果
-        mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
-        mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
             WebTask mTask = WebTask.getInstance();
             mPresenter = HomePresenter.createPresenter(this, mTask);
         }
+        mPresenter.getHomeTopImgBanner();
+        mPresenter.initView();
+        mPresenter.getHomeTopArticle();
+
+
+        mTopArtRv.setLayoutManager(new LinearLayoutManager(mView.getContext()));
+        mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果
+        mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
+        mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
+        mBanner.setOnBannerClickListener(new OnBannerClickListener() {
+            @Override
+            public void onBannerClick(int position) {
+                mPresenter.getSelectedURL(mBannerList.get(position).getUrl());
+            }
+        });
+
+
         mRefreshView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -91,9 +104,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
                 }
             }
         });
-        mPresenter.initView();
-        mPresenter.getHomeTopArticle();
-        mPresenter.getHomeTopImgBanner();
+
         return view;
     }
 
@@ -102,6 +113,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
+
 
     @OnClick(R.id.main_top_btn_account)
     public void goAccountActivity() {
@@ -148,20 +160,17 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
                 }
             }
         });
+
     }
 
     @Override
     public void setHomeTopImgBanner(final List<Data> mBannerList) {
+        this.mBannerList = mBannerList;
         mBanner.setPages(mBannerList, new GlideImageLoader())
                 .setAutoPlay(true)
                 .setCurrentPage(0)
                 .setDelayTime(3000).start();
-        mBanner.setOnBannerClickListener(new OnBannerClickListener() {
-            @Override
-            public void onBannerClick(int position) {
-                mPresenter.getSelectedURL(mBannerList.get(position).getUrl());
-            }
-        });
+
     }
 
     @Override
@@ -179,7 +188,6 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
 
     @Override
     public void collectedArticle(int position, boolean isCollect) {
-        Log.d(TAG, "----collectedArticle: " + isCollect);
         mTopArticleList.get(position).setCollect(isCollect);
         mTopArticleAdapter.notifyItemChanged(position);
         ToastUtils.show(isCollect ? "收藏成功" : "取消收藏");

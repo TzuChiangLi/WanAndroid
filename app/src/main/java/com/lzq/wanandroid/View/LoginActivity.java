@@ -58,8 +58,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     View mLineView;
     @BindView(R.id.login_tv_title_1st)
     TextView mFirstTv;
-    //    @BindView(R.id.login_tv_title_2nd)
-//    TextView mSecondTv;
     @BindString(R.string.user_btn_login)
     String strLogin;
     @BindString(R.string.user_btn_register)
