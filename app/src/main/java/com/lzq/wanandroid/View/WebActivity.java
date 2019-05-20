@@ -39,6 +39,7 @@ public class WebActivity extends BaseActivity implements WebContract.View {
         }
         initData();
         initView();
+
     }
 
     private void initData() {
@@ -50,8 +51,8 @@ public class WebActivity extends BaseActivity implements WebContract.View {
         mPresenter.getContent(URL);
     }
 
-    private void initView() {
 
+    private void initView() {
         mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {

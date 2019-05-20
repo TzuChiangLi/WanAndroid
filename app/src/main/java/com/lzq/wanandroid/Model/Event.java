@@ -78,6 +78,10 @@ public class Event {
      * 跳转到体系界面
      */
     public static final int TYPE_CHANGE_SYS = 15;
+    /**
+     * 跳转到导航界面
+     */
+    public static final int TYPE_CHANGE_NAVI = 16;
 
 
 

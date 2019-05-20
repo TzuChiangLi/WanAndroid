@@ -24,7 +24,7 @@ import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.LoginContract;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.LoginPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Custom.ClearEditText;

@@ -118,9 +118,12 @@ public interface Contract {
         void initView(int type);
 
         void loadOnline(int type);
+
+        void getSelectedURL(String URL);
     }
 
     interface TreeView extends BaseView<Contract.TreePresenter> {
+
         void initDataList(int type, List<Data> mList);
 
         void onlineLoad(int type);
@@ -128,6 +131,8 @@ public interface Contract {
         void onLoadTreeData(int type, List<Data> data);
 
         boolean onFinishLoad();
+
+        void goWebActivity(String URL);
     }
 
 

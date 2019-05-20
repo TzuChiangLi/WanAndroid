@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.R;

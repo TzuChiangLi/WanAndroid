@@ -17,7 +17,7 @@ import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.AccountContentPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;

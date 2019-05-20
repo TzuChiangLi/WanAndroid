@@ -25,7 +25,7 @@
         <activity android:name=".View.LoginActivity" />
         <activity android:name=".View.WebActivity" />
         <activity android:name=".View.SettingsActivity" />
-        <activity android:name=".View.OfficialAccountActivity" />
+        <activity android:name=".View.ArticlesActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

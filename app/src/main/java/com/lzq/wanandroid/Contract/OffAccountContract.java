@@ -12,7 +12,7 @@ public interface OffAccountContract {
         //获取文章前先使用占位符填充
         void initView();
 
-        void getTitleText();
+        void getTitleText(int type);
 
         void getContent(int ID, int page);
 
@@ -23,7 +23,7 @@ public interface OffAccountContract {
         //获取文章前先使用占位符填充
         void initView();
 
-        void getTitleText();
+        void getTitleText(int type);
 
         void addContent(int ID, int page);
         void getContent(int ID, int page);

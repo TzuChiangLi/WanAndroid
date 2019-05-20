@@ -1,5 +1,6 @@
 package com.lzq.wanandroid.View.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,25 +10,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Contract.FlowTagCallBack;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.TreePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.TreeAdapter;
+import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TreeFragment extends BaseFragment implements Contract.TreeView {
+public class TreeFragment extends BaseFragment implements Contract.TreeView, FlowTagCallBack {
     private static final String TAG = "SystemFragment";
     @BindView(R.id.tree_rv)
     RecyclerView mRecyclerView;
@@ -35,6 +38,7 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
     SmartRefreshLayout mRefreshView;
     private Contract.TreePresenter mPresenter;
     private TreeAdapter mAdapter;
+    private View mView;
 
     public TreeFragment() {
     }
@@ -49,6 +53,7 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tree, container, false);
         ButterKnife.bind(this, view);
+        mView = view;
         if (mPresenter == null) {
             WebTask mTask = WebTask.getInstance();
             mPresenter = TreePresenter.createPresenter(this, mTask);
@@ -75,7 +80,7 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
 
     @Override
     public void initDataList(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data);
+        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data,this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -86,12 +91,29 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView {
 
     @Override
     public void onLoadTreeData(int type, List<Data> data) {
-        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data);
+        mAdapter = new TreeAdapter(R.layout.rv_tree_item, data,this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public boolean onFinishLoad() {
         return true;
+    }
+
+    @Override
+    public void goWebActivity(String URL) {
+        Intent intent = new Intent(ActivityUtils.getActivityByView(mView), WebActivity.class);
+        intent.putExtra("URL", URL);
+        startActivity(mView, intent);
+    }
+
+    @Override
+    public void getTreeID(int ID) {
+        //跳转到
+    }
+
+    @Override
+    public void getTreeLink(String URL) {
+
     }
 }

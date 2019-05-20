@@ -1,5 +1,6 @@
 package com.lzq.wanandroid.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,12 @@ import com.hjq.bar.TitleBar;
 import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.OffAccountContract;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.AccountContentPresenter;
 import com.lzq.wanandroid.Presenter.AccountTitlePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.ActivityUtils;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Fragment.ContentFragment;
 
@@ -27,8 +29,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OfficialAccountActivity extends BaseActivity implements OffAccountContract.AccountTitleView {
-    private static final String TAG = "OfficialAccountActivity";
+public class ArticlesActivity extends BaseActivity implements OffAccountContract.AccountTitleView {
+    private static final String TAG = "ArticlesActivity";
     @BindView(R.id.official_account_topbar)
     TitleBar mTitleBar;
     @BindView(R.id.official_account_tablayout)
@@ -41,14 +43,16 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
     private AccountTitlePresenter mPresenter;
     private OffAccountContract.AccountTitlePresenter mAccountPresenter;
     private ContentFragment mFragment;
+    private Intent intent;
     private WebTask mTask = WebTask.getInstance();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_official_account);
+        setContentView(R.layout.activity_articles);
         ButterKnife.bind(this);
+        intent=getIntent();
         initView();
         initDataList();
         initOnClickListener();
@@ -56,13 +60,14 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
 
     private void initDataList() {
         WebTask mTask = WebTask.getInstance();
-        mPresenter = new AccountTitlePresenter(OfficialAccountActivity.this, mTask);
-        OfficialAccountActivity.this.setPresenter(mPresenter);
+        mPresenter = new AccountTitlePresenter(ArticlesActivity.this, mTask);
+        ArticlesActivity.this.setPresenter(mPresenter);
         mPresenter.initView();
-        mPresenter.getTitleText();
+        mPresenter.getTitleText(intent.getIntExtra("TYPE", StringUtils.TYPE_ACCOUNT_TITLE));
     }
 
     private void initView() {
+        mTitleBar.setTitle(intent.getStringExtra("TITLE_BAR"));
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
     }
 
@@ -116,7 +121,6 @@ public class OfficialAccountActivity extends BaseActivity implements OffAccountC
                 fragments.add(ContentFragment.newInstance());
                 mFragment = (ContentFragment) fragments.get(i);
                 mContentPresenter = new AccountContentPresenter(mFragment, mTask, mList.get(i).getId());
-                Log.d(TAG, "----setTitleText  ID: " + mList.get(i).getId());
                 mFragment.setPresenter(mContentPresenter);
             }
 

@@ -1,9 +1,9 @@
 package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.LoadTasksCallBack;
+import com.lzq.wanandroid.Contract.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import java.util.ArrayList;

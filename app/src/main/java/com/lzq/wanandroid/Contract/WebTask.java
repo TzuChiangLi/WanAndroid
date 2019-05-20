@@ -1,9 +1,8 @@
-package com.lzq.wanandroid.Net;
+package com.lzq.wanandroid.Contract;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.lzq.wanandroid.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.WanAndroid;
 import com.lzq.wanandroid.Model.WanAndroid_Content;

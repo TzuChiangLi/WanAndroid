@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.hjq.toast.ToastUtils;
+import com.lzq.wanandroid.Contract.FlowTagCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.R;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -21,14 +23,17 @@ import butterknife.ButterKnife;
 public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
     @BindView(R.id.rv_tree_flow)
     TagFlowLayout mFlowLayout;
+    private FlowTagCallBack callBack;
 
-    public TreeAdapter(int layoutResId, @Nullable List<Data> data) {
+    public TreeAdapter(int layoutResId, @Nullable List<Data> data, FlowTagCallBack callBack) {
         super(layoutResId, data);
+        this.callBack=callBack;
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Data item) {
+    protected void convert(BaseViewHolder helper, final Data item) {
         ButterKnife.bind(this, helper.itemView);
+        helper.addOnClickListener(R.id.rv_tree_flow);
         if (item.getName() != null) {
             helper.setText(R.id.rv_tree_tv_title, item.getName());
         }
@@ -49,5 +54,12 @@ public class TreeAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
                 }
             });
         }
+        mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                callBack.getTreeID(item.getChildren().get(position).getId());
+                return true;
+            }
+        });
     }
 }

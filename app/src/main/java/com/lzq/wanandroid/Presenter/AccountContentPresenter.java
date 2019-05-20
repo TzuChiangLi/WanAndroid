@@ -4,10 +4,10 @@ import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Contract.OffAccountContract;
-import com.lzq.wanandroid.LoadTasksCallBack;
+import com.lzq.wanandroid.Contract.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -94,8 +94,8 @@ public class AccountContentPresenter implements OffAccountContract.AccountConten
     }
 
     @Override
-    public void getTitleText() {
-        mTask.execute(this,StringUtils.TYPE_ACCOUNT_TITLE);
+    public void getTitleText(int type) {
+        mTask.execute(this,type);
     }
 
     @Override

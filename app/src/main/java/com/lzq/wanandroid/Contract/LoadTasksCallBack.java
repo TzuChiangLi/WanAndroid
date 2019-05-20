@@ -1,4 +1,4 @@
-package com.lzq.wanandroid;
+package com.lzq.wanandroid.Contract;
 
 public interface LoadTasksCallBack<T> {
     void onSuccess(T t,int flag);

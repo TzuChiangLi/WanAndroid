@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.BaseActivity;
 import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Presenter.SearchPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Custom.ClearEditText;

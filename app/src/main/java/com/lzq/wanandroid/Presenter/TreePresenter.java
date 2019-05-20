@@ -1,10 +1,11 @@
 package com.lzq.wanandroid.Presenter;
 
+import com.lzq.wanandroid.Contract.FlowTagCallBack;
 import com.lzq.wanandroid.Contract.Contract;
 import com.lzq.wanandroid.DataBase.Tree;
-import com.lzq.wanandroid.LoadTasksCallBack;
+import com.lzq.wanandroid.Contract.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.litepal.LitePal;
@@ -46,6 +47,11 @@ public class TreePresenter implements Contract.TreePresenter, LoadTasksCallBack 
     @Override
     public void loadOnline(int type) {
         mTask.execute(this, type);
+    }
+
+    @Override
+    public void getSelectedURL(String URL) {
+        mView.goWebActivity(URL);
     }
 
     @Override
@@ -95,4 +101,5 @@ public class TreePresenter implements Contract.TreePresenter, LoadTasksCallBack 
     public void onFinish() {
 
     }
+
 }

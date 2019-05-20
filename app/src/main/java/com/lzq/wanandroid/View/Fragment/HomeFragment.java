@@ -16,14 +16,15 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.WebTask;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.GlideImageLoader;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.ArticleAdapter;
-import com.lzq.wanandroid.View.OfficialAccountActivity;
+import com.lzq.wanandroid.View.ArticlesActivity;
 import com.lzq.wanandroid.View.WebActivity;
 import com.ms.banner.Banner;
 import com.ms.banner.listener.OnBannerClickListener;
@@ -117,7 +118,11 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
 
     @OnClick(R.id.main_top_btn_account)
     public void goAccountActivity() {
-        startActivity(mView, OfficialAccountActivity.class);
+        Intent intent = new Intent(ActivityUtils.getActivityByView(mView), ArticlesActivity.class);
+        intent.putExtra("TITLE_BAR", "公众号");
+        intent.putExtra("TYPE", StringUtils.TYPE_ACCOUNT_TITLE);
+        startActivity(intent);
+        ActivityUtils.getActivityByView(mView).overridePendingTransition(R.anim.enter_fade_out, R.anim.enter_fade_in);
     }
 
     @OnClick(R.id.main_top_btn_navi)

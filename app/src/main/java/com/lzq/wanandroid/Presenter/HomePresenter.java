@@ -4,10 +4,10 @@ import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.LoadTasksCallBack;
+import com.lzq.wanandroid.Contract.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Net.WebTask;
+import com.lzq.wanandroid.Contract.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
