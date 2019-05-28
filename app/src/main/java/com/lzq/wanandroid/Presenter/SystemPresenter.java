@@ -1,6 +1,6 @@
 package com.lzq.wanandroid.Presenter;
 
-import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.R;
 
 public class SystemPresenter implements Contract.SystemPresenter {

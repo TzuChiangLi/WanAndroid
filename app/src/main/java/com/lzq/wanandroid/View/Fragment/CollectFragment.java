@@ -16,10 +16,10 @@ import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
@@ -97,7 +97,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
     @Override
     public void setEmptyList(List<Datas> mList) {
         this.mList = mList;
-        mAdapter = new ContentAdapter(mView, R.layout.rv_article, mList);
+        mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mRecyclerView.setNestedScrollingEnabled(false);//禁止滑动
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);
@@ -108,7 +108,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
     public void setCollectList(final List<Datas> data) {
         mList.clear();
         mList = data;
-        mAdapter = new ContentAdapter(mView, R.layout.rv_article, mList);
+        mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setNestedScrollingEnabled(true);//禁止滑动
         mAdapter.enableSwipeItem();

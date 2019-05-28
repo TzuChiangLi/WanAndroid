@@ -15,10 +15,10 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.OffAccountContract;
+import com.lzq.wanandroid.Api.OffAccountContract;
 import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Contract.WebTask;
-import com.lzq.wanandroid.Presenter.AccountContentPresenter;
+import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Presenter.ArticlesPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
@@ -43,7 +43,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
     private OffAccountContract.AccountContentPresenter mPresenter;
     private ContentAdapter mAdapter;
     private List<Datas> mContentList = new ArrayList<>();
-    private int page = 1, maxPage;
+    private int page = 1, maxPage,type;
     private View mView;
 
 
@@ -54,6 +54,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
 
     public ContentFragment() {
     }
+
 
     @Nullable
     @Override
@@ -66,7 +67,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
-            mPresenter = AccountContentPresenter.createPresenter(this, new WebTask(), 0);
+            mPresenter = ArticlesPresenter.createPresenter(this, new WebTask(), 0);
         } else {
             mPresenter.initView();
             mPresenter.getContent(mPresenter.showID(), page);
@@ -98,7 +99,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
 
     @Override
     public void setEmptyContent(List<Datas> mList) {
-        mAdapter = new ContentAdapter(mView, R.layout.rv_article, mList);
+        mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setUpFetchEnable(true);
@@ -126,13 +127,10 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
             case StringUtils.TYPE_ACCOUNT_CONTENT_LOAD:
                 mContentList.clear();
                 mContentList = mList;
-                mAdapter = new ContentAdapter(mView, R.layout.rv_article, mContentList);
+                mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mContentList);
                 mRecyclerView.setAdapter(mAdapter);
                 break;
             case StringUtils.TYPE_ACCOUNT_CONTENT_ADD:
-//                for (int i = 0; i < mList.size(); i++) {
-//                    mContentList.add(mList.get(i));
-//                }
                 mAdapter.addData(mList);
                 break;
         }

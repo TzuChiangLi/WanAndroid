@@ -33,7 +33,7 @@
     <!--android:layout_marginStart="@dimen/dp_8"-->
     <!--android:layout_marginEnd="@dimen/dp_8"-->
     <!--android:layout_marginBottom="@dimen/dp_50"-->
-    <!--tools:listitem="@layout/rv_article" />-->
+    <!--tools:listitem="@layout/rv_article_normal" />-->
 
     <!--&lt;!&ndash;<com.scwang.smartrefresh.layout.footer.ClassicsFooter&ndash;&gt;-->
     <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->

@@ -1,6 +1,6 @@
 package com.lzq.wanandroid.Presenter;
 
-import com.lzq.wanandroid.Contract.WebContract;
+import com.lzq.wanandroid.Api.WebContract;
 
 public class WebPresenter implements WebContract.Presenter {
     private static final String TAG = "WebPresenter";

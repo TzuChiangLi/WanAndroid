@@ -3,18 +3,16 @@ package com.lzq.wanandroid.View.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -23,7 +21,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ToDoFragment extends BaseFragment implements Contract.ToDoView {

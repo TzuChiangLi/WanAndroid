@@ -36,6 +36,8 @@ public class StringUtils {
     public static final int TYPE_TREE_NAVI = 13;
     public static final int TYPE_TREE_KNOW = 14;
     public static final int TYPE_TREE_KNOW_ARTICLES = 15;
+    public static final int TYPE_TREE_KNOW_ARTICLES_TITLE = 16;
+    public static final int TYPE_TREE_KNOW_ARTICLES_CONTENT = 17;
 
 
     public static final String TYPE_IMG_BANNER = "IMGBANNER";

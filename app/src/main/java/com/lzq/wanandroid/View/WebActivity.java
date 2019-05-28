@@ -10,7 +10,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.lzq.wanandroid.BaseActivity;
-import com.lzq.wanandroid.Contract.WebContract;
+import com.lzq.wanandroid.Api.WebContract;
 import com.lzq.wanandroid.Presenter.WebPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Custom.ProgressWebview;

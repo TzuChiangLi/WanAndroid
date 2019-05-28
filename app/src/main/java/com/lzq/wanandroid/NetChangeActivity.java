@@ -57,7 +57,6 @@ public abstract class NetChangeActivity extends BaseActivity {
     public abstract void doNetWork();
 
     public void setScreenRoate(boolean isAllowScrRoate) {
-
         this.isAllowScrRoate = isAllowScrRoate;
     }
 }

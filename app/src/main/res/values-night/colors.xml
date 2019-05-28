@@ -43,6 +43,7 @@
     <color name="bg_card_view">#555555</color>
     <color name="bg_edt_view">#555555</color>
     <color name="bg_rv_item_tv">#555555</color>
+    <color name="text_daily_mode_one">#C0C0C0</color>
     <color name="text_daily_mode">#C0C0C0</color>
     <color name="btn_daily_mode">#FAFAFA</color>
     <color name="btn_logout">#f44336</color>

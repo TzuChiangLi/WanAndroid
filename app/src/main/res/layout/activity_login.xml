@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:letterSpacing="0.2"
             android:text="@string/user_btn_login"
-            android:textColor="@color/text_daily_mode"
+            android:textColor="@color/text_daily_mode_one"
             android:textSize="32sp"
             android:textStyle="bold" />
 

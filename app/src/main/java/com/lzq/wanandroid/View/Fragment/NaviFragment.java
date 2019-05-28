@@ -14,9 +14,10 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Contract.FlowTagCallBack;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Api.FlowTagCallBack;
+import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Presenter.TreePresenter;
 import com.lzq.wanandroid.R;
@@ -65,14 +66,7 @@ public class NaviFragment extends BaseFragment implements Contract.TreeView, Flo
         mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         mPresenter.initView(StringUtils.TYPE_TREE_NAVI);
         mPresenter.loadOnline(StringUtils.TYPE_TREE_NAVI);
-        mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (view.getId() == R.id.rv_tree_flow) {
-                    ToastUtils.show(position);
-                }
-            }
-        });
+
         mRefreshView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -129,6 +123,8 @@ public class NaviFragment extends BaseFragment implements Contract.TreeView, Flo
     }
 
     @Override
-    public void getTreeID(int ID) {
+    public void getTreeArticles(int ID, int position, String title, List<Children> children) {
+
     }
+
 }

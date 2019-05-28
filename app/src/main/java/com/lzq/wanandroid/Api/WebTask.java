@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Contract;
+package com.lzq.wanandroid.Api;
 
 import android.util.Log;
 
@@ -32,16 +32,6 @@ public class WebTask implements NetTask<Data> {
     @Override
     public void execute(final LoadTasksCallBack callBack, final int... params) {
         switch (params[0]) {
-            case StringUtils.TYPE_TREE_KNOW_ARTICLES:
-                OkGo.<String>get(StringUtils.URL+StringUtils.TREE_ARTICLES+params[1]+"/json?cid="+params[2])
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-
-                            }
-                        });
-
-                break;
             case StringUtils.TYPE_TREE_NAVI:
                 OkGo.<String>get(StringUtils.URL+StringUtils.NAVI)
                         .execute(new StringCallback() {

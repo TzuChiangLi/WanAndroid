@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lzq.wanandroid.Contract.FlowTagCallBack;
+import com.lzq.wanandroid.Api.FlowTagCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.R;
 import com.zhy.view.flowlayout.FlowLayout;

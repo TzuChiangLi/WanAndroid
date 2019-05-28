@@ -1,9 +1,6 @@
-package com.lzq.wanandroid.Contract;
+package com.lzq.wanandroid.Api;
 
 import com.lzq.wanandroid.BaseView;
-import com.lzq.wanandroid.Model.Data;
-
-import java.util.List;
 
 public interface WebContract {
 

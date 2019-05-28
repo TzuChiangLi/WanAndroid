@@ -11,7 +11,7 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.lzq.wanandroid.BaseActivity;
-import com.lzq.wanandroid.Contract.Contract;
+import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.SettingPresenter;
 import com.lzq.wanandroid.R;

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/dp_4"
+    android:layout_marginTop="@dimen/dp_8"
+    android:layout_marginEnd="@dimen/dp_4"
+    android:layout_marginBottom="@dimen/dp_8"
+    android:background="@color/bg_daily_mode"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_4">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_daily_mode"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/rv_article_img_title"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@color/bg_rv_item_tv"
+            android:paddingEnd="@dimen/dp_30"
+            android:text="                                         "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="@dimen/home_top_title_one_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@color/bg_rv_item_tv"
+            app:layout_constraintBottom_toTopOf="@+id/rv_article_img_author"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rv_article_img_title" />
+
+        <TextView
+            android:id="@+id/rv_article_img_author_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:background="@color/bg_rv_item_tv"
+            android:text="         "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/rv_article_img_chapter_title"
+            app:layout_constraintStart_toStartOf="@+id/rv_article_img_date" />
+
+        <TextView
+            android:id="@+id/rv_article_img_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@color/bg_rv_item_tv"
+            android:text="               "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_article_img_author_title"
+            app:layout_constraintStart_toEndOf="@+id/rv_article_img_author_title"
+            app:layout_constraintTop_toTopOf="@+id/rv_article_img_author_title" />
+
+        <TextView
+            android:id="@+id/rv_article_img_chapter_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_rv_item_tv"
+            android:text="       "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rv_article_img_author_title" />
+
+        <TextView
+            android:id="@+id/rv_article_img_super_chapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@color/bg_rv_item_tv"
+            android:text="               "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_article_img_chapter_title"
+            app:layout_constraintStart_toEndOf="@+id/rv_article_img_chapter_title"
+            app:layout_constraintTop_toTopOf="@+id/rv_article_img_chapter_title" />
+
+        <TextView
+            android:id="@+id/rv_article_img_chapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_rv_item_tv"
+            android:text="                "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@+id/rv_article_img_super_chapter"
+            app:layout_constraintTop_toTopOf="@+id/rv_article_img_super_chapter" />
+
+        <TextView
+            android:id="@+id/rv_article_img_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:background="@color/bg_rv_item_tv"
+            android:text="              "
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@+id/rv_article_img_author_title"
+            app:layout_constraintStart_toStartOf="@+id/rv_article_img_title" />
+
+        <ImageButton
+            android:id="@+id/rv_article_img_imgbtn_save"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/collect_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_article_img_chapter"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/rv_article_img_chapter" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

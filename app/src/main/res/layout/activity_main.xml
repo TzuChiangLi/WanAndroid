@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="24dp"
             android:text="首页"
-            android:textColor="@color/text_daily_mode"
+            android:textColor="@color/text_daily_mode_one"
             android:textSize="24sp" />
 
         <ImageButton

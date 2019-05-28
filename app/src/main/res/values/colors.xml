@@ -44,7 +44,8 @@
     <color name="bg_card_view">#FFF</color>
     <color name="bg_edt_view">#e6e7ed</color>
     <color name="bg_rv_item_tv">#e6e7ed</color>
-    <color name="text_daily_mode">#000</color>
+    <color name="text_daily_mode_one">#000</color>
+    <color name="text_daily_mode">#393B4D</color>
     <color name="btn_daily_mode">#FFF</color>
     <color name="btn_logout">#f44336</color>
     <color name="divide_line">#FFB7B2B2</color>

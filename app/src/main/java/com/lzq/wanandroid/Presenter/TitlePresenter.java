@@ -1,21 +1,22 @@
 package com.lzq.wanandroid.Presenter;
 
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Utils.StringUtils;
-import com.lzq.wanandroid.Contract.OffAccountContract;
-import com.lzq.wanandroid.Contract.LoadTasksCallBack;
+import com.lzq.wanandroid.Api.OffAccountContract;
+import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountTitlePresenter implements OffAccountContract.AccountTitlePresenter, LoadTasksCallBack<List<Data>> {
-    private static final String TAG = "AccountTitlePresenter";
+public class TitlePresenter implements OffAccountContract.AccountTitlePresenter, LoadTasksCallBack<List<Data>> {
+    private static final String TAG = "TitlePresenter";
     private WebTask mTask;
     private OffAccountContract.AccountTitleView mView;
     private List<Data> mList = new ArrayList<>();
 
-    public AccountTitlePresenter(OffAccountContract.AccountTitleView mView, WebTask mTask) {
+    public TitlePresenter(OffAccountContract.AccountTitleView mView, WebTask mTask) {
         this.mView = mView;
         this.mTask = mTask;
     }
@@ -51,14 +52,23 @@ public class AccountTitlePresenter implements OffAccountContract.AccountTitlePre
 
 
     @Override
-    public void initView() {
+    public void initView(String[] tabName) {
         if (mList == null || mList.size() == 0) {
             mList.clear();
         }
-        for (int i = 0; i < 5; i++) {
-            mList.add(new Data("", "", "", "", ""));
+        for (int i = 0; i < tabName.length; i++) {
+            mList.add(new Data("", "", "", "", tabName[i]));
         }
-        mView.setEmptyContent(mList);
+        mView.setAccountEmptyTitle(mList);
+    }
+
+    @Override
+    public void initView(int position, String[] tabName, int[] tabID) {
+        List<Children> mList=new ArrayList<>();
+        for (int i = 0; i < tabID.length; i++) {
+            mList.add(new Children(tabID[i],tabName[i]));
+        }
+        mView.setArticlesContent(position,mList);
     }
 
     @Override

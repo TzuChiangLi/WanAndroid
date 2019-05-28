@@ -15,6 +15,11 @@ public class Children {
     public Children() {
     }
 
+    public Children(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Children(List<Children> children, int courseId, int id, String name, int order, int parentChapterId, boolean userControlSetTop, int visible) {
         this.children = children;
         this.courseId = courseId;

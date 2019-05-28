@@ -3,11 +3,11 @@ package com.lzq.wanandroid.Presenter;
 import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzq.wanandroid.Contract.OffAccountContract;
-import com.lzq.wanandroid.Contract.LoadTasksCallBack;
+import com.lzq.wanandroid.Api.OffAccountContract;
+import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -15,22 +15,22 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountContentPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
-    private static final String TAG = "AccountContentPresenter";
+public class ArticlesPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
+    private static final String TAG = "ArticlesPresenter";
     private WebTask mTask;
     private OffAccountContract.AccountContentView mView;
     private List<Datas> mList = new ArrayList<>();
     private int ID;
 
 
-    public AccountContentPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID) {
+    public ArticlesPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID) {
         this.mView = mView;
         this.mTask = mTask;
         this.ID = ID;
     }
 
-    public static AccountContentPresenter createPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID){
-        return new AccountContentPresenter(mView,mTask,ID);
+    public static ArticlesPresenter createPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID){
+        return new ArticlesPresenter(mView,mTask,ID);
     }
 
 

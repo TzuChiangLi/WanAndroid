@@ -161,7 +161,7 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/main_tv_top_title"
                     android:layout_marginBottom="@dimen/dp_50"
-                    tools:listitem="@layout/rv_article" />
+                    tools:listitem="@layout/rv_article_normal" />
 
             </RelativeLayout>
 
@@ -200,7 +200,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_below="@+id/main_tv_home_title"-->
             <!--android:layout_marginBottom="@dimen/dp_50"-->
-            <!--tools:listitem="@layout/rv_article" />-->
+            <!--tools:listitem="@layout/rv_article_normal" />-->
             <!--</RelativeLayout>-->
 
 

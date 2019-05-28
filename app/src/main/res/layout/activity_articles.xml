@@ -16,7 +16,7 @@
         app:backButton="true"
         android:elevation="0dp"
         app:title="公众号"
-        app:titleColor="@color/text_daily_mode"
+        app:titleColor="@color/text_daily_mode_one"
         app:titleSize="17sp" />
 
     <android.support.design.widget.TabLayout

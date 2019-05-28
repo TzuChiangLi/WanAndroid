@@ -15,8 +15,8 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.BaseFragment;
-import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.HomePresenter;
@@ -82,7 +82,6 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         mPresenter.initView();
         mPresenter.getHomeTopArticle();
 
-
         mTopArtRv.setLayoutManager(new LinearLayoutManager(mView.getContext()));
         mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
@@ -93,7 +92,6 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
                 mPresenter.getSelectedURL(mBannerList.get(position).getUrl());
             }
         });
-
 
         mRefreshView.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -135,7 +133,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
 
     @Override
     public void setEmptyTopArticle(List<Data> mList) {
-        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article, mList);
+        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article_normal, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(false);
     }
@@ -144,7 +142,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     public void setHomeTopArticle(final List<Data> mList) {
         mTopArticleList.clear();
         mTopArticleList = mList;
-        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article, mList);
+        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article_normal, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(true);
         mTopArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -175,7 +173,6 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
                 .setAutoPlay(true)
                 .setCurrentPage(0)
                 .setDelayTime(3000).start();
-
     }
 
     @Override

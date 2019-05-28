@@ -21,7 +21,7 @@ public class Data {
     private long publishTime;
     private int superChapterId;
     private String superChapterName;
-    private List<String> tags;
+    private List<Tags> tags;
     private String title;
     private int type;
     private int userId;
@@ -255,11 +255,11 @@ public class Data {
         this.superChapterName = superChapterName;
     }
 
-    public List<String> getTags() {
+    public List<Tags> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(List<Tags> tags) {
         this.tags = tags;
     }
 

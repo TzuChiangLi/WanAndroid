@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.BaseActivity;
-import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Presenter.SearchPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Custom.ClearEditText;
@@ -42,7 +42,7 @@ public class SearchActivity extends BaseActivity implements Contract.SearchView 
     }
 
     @Override
-    public void setHotKey(String[] keys) {
+    public void setHotKey(final String[] keys) {
         showSoftInputUtil(mSearchEdt);
         Log.d(TAG, "----setHotKey: " + keys[1]);
         final LayoutInflater mInflater = LayoutInflater.from(this);
@@ -54,6 +54,13 @@ public class SearchActivity extends BaseActivity implements Contract.SearchView 
                         mFlowLayout, false);
                 tv.setText(s);
                 return tv;
+            }
+        });
+        mFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                mSearchEdt.setText(keys[position]);
+                return true;
             }
         });
     }

@@ -3,11 +3,11 @@ package com.lzq.wanandroid.Presenter;
 import android.util.Log;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzq.wanandroid.Contract.Contract;
-import com.lzq.wanandroid.Contract.LoadTasksCallBack;
+import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Contract.WebTask;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,8 +48,7 @@ public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<
                     mView.setHomeTopArticle((List<Data>) data);
                     break;
                 case StringUtils.TYPE_HOME_IMG_BANNER:
-                    List<Data> tList = (List<Data>) data;
-                    mView.setHomeTopImgBanner(tList);
+                    mView.setHomeTopImgBanner((List<Data>) data);
                     break;
             }
         } catch (Exception e) {

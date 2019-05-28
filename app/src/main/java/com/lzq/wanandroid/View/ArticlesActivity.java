@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
+import com.lzq.wanandroid.Api.OffAccountContract;
+import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.BaseActivity;
-import com.lzq.wanandroid.Contract.OffAccountContract;
+import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Contract.WebTask;
-import com.lzq.wanandroid.Presenter.AccountContentPresenter;
-import com.lzq.wanandroid.Presenter.AccountTitlePresenter;
+import com.lzq.wanandroid.Presenter.ArticlesPresenter;
+import com.lzq.wanandroid.Presenter.TitlePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.ActivityUtils;
 import com.lzq.wanandroid.Utils.StringUtils;
@@ -39,12 +39,13 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
     ViewPager mVPager;
     private List<Fragment> fragments = new ArrayList<>();
     private List<Data> mList = new ArrayList<>();
-    private String[] title = {"郭霖", "玉刚说", "刘望舒", "鸿洋"},childName;
-    private AccountTitlePresenter mPresenter;
+    private String[] title = {"郭霖", "玉刚说", "刘望舒", "鸿洋"}, childName;
+    private int[] childID;
+    private TitlePresenter mPresenter;
     private OffAccountContract.AccountTitlePresenter mAccountPresenter;
     private ContentFragment mFragment;
     private Intent intent;
-    private int ID,position;
+    private int ID, position;
     private WebTask mTask = WebTask.getInstance();
 
 
@@ -53,7 +54,7 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_articles);
         ButterKnife.bind(this);
-        intent=getIntent();
+        intent = getIntent();
         initView();
         initDataList();
         initOnClickListener();
@@ -61,19 +62,22 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
 
     private void initDataList() {
         WebTask mTask = WebTask.getInstance();
-        mPresenter = new AccountTitlePresenter(ArticlesActivity.this, mTask);
+        mPresenter = new TitlePresenter(ArticlesActivity.this, mTask);
         ArticlesActivity.this.setPresenter(mPresenter);
-        mPresenter.initView();
-        mPresenter.getTitleText(intent.getIntExtra("TYPE", StringUtils.TYPE_ACCOUNT_TITLE));
+        if (intent.getIntExtra("TYPE", StringUtils.TYPE_ACCOUNT_TITLE) == StringUtils.TYPE_TREE_KNOW_ARTICLES) {
+            ID = intent.getIntExtra("ID", 0);//CID
+            childName = intent.getStringArrayExtra("TABNAME");
+            childID = intent.getIntArrayExtra("TABID");
+            position = intent.getIntExtra("POSITION", 0);
+            mPresenter.initView(position, childName, childID);
+        } else {
+            mPresenter.initView(title);
+            mPresenter.getTitleText(intent.getIntExtra("TYPE", StringUtils.TYPE_ACCOUNT_TITLE));
+        }
     }
 
     private void initView() {
         mTitleBar.setTitle(intent.getStringExtra("TITLE_BAR"));
-        if (intent.getIntExtra("TYPE",StringUtils.TYPE_ACCOUNT_TITLE)==StringUtils.TYPE_TREE_KNOW_ARTICLES){
-            ID=intent.getIntExtra("ID",0);//CID
-            childName=intent.getStringArrayExtra("TABNAME");
-            position=intent.getIntExtra("POSITION",0);
-        }
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
     }
 
@@ -101,11 +105,35 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
 
 
     @Override
-    public void setEmptyContent(List<Data> mList) {
+    public void setAccountEmptyTitle(List<Data> mList) {
         for (int i = 0; i < title.length; i++) {
             mTabLayout.addTab(mTabLayout.newTab());
             fragments.add(new ContentFragment());
             mTabLayout.getTabAt(i).setText(title[i]);
+        }
+    }
+
+    @Override
+    public void setArticlesContent(int currentPositon, List<Children> mList) {
+        if (mFragment == null) {
+            mFragment = ContentFragment.newInstance();
+            ActivityUtils.getInstance().addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
+        }
+        ArticlesPresenter mContentPresenter = null;
+        for (int i = 0; i < mList.size(); i++) {
+            mTabLayout.addTab(mTabLayout.newTab());
+            fragments.add(ContentFragment.newInstance());
+            mFragment = (ContentFragment) fragments.get(i);
+            mContentPresenter = new ArticlesPresenter(mFragment, mTask, mList.get(i).getId());
+            mFragment.setPresenter(mContentPresenter);
+        }
+
+        mTabLayout.setupWithViewPager(mVPager);
+        mVPager.setAdapter(new FragmentAdapter(getSupportFragmentManager(), fragments));
+        mVPager.setCurrentItem(currentPositon);
+        mVPager.setOffscreenPageLimit(2);
+        for (int i = 0; i < mList.size(); i++) {
+            mTabLayout.getTabAt(i).setText(mList.get(i).getName());
         }
     }
 
@@ -121,12 +149,12 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
                 mFragment = ContentFragment.newInstance();
                 ActivityUtils.getInstance().addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
             }
-            AccountContentPresenter mContentPresenter = null;
+            ArticlesPresenter mContentPresenter = null;
             for (int i = 0; i < mList.size(); i++) {
                 mTabLayout.addTab(mTabLayout.newTab());
                 fragments.add(ContentFragment.newInstance());
                 mFragment = (ContentFragment) fragments.get(i);
-                mContentPresenter = new AccountContentPresenter(mFragment, mTask, mList.get(i).getId());
+                mContentPresenter = new ArticlesPresenter(mFragment, mTask, mList.get(i).getId());
                 mFragment.setPresenter(mContentPresenter);
             }
 
