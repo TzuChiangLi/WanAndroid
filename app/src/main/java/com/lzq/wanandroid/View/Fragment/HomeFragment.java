@@ -133,7 +133,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
 
     @Override
     public void setEmptyTopArticle(List<Data> mList) {
-        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article_normal, mList);
+        mTopArticleAdapter = new ArticleAdapter(mView, StringUtils.RV_ITEM_NORMAL,R.layout.rv_article_normal, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(false);
     }
@@ -142,7 +142,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     public void setHomeTopArticle(final List<Data> mList) {
         mTopArticleList.clear();
         mTopArticleList = mList;
-        mTopArticleAdapter = new ArticleAdapter(mView, R.layout.rv_article_normal, mList);
+        mTopArticleAdapter = new ArticleAdapter(mView, StringUtils.RV_ITEM_NORMAL,R.layout.rv_article_normal, mList);
         mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(true);
         mTopArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {

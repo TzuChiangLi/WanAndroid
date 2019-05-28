@@ -1,6 +1,10 @@
 package com.lzq.wanandroid.Utils;
 
 public class StringUtils {
+
+    public static final int RV_ITEM_NORMAL=0;
+    public static final int RV_ITEM_IMG=1;
+
     public static final String URL = "https://www.wanandroid.com/";
     public static final String TREE_ARTICLES="article/list/";///+ID/json?cid=60";
     public static final String NAVI = "navi/json";
