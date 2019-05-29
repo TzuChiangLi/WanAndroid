@@ -16,8 +16,8 @@ import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
@@ -27,8 +27,8 @@ import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
 import com.lzq.wanandroid.View.Fragment.HomeFragment;
+import com.lzq.wanandroid.View.Fragment.ProjectFragment;
 import com.lzq.wanandroid.View.Fragment.SystemFragment;
-import com.lzq.wanandroid.View.Fragment.ThreeFragment;
 import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SearchActivity;
@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
         mSystemFragment.setPresenter(mSystemPresenter);
 
 
-        mList.add(ThreeFragment.newInstance());
+        mList.add(ProjectFragment.newInstance());
         if (mUserFragment == null) {
             mUserFragment = UserFragment.newInstance();
             mList.add(mUserFragment);
@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
                 .addItem(newItem(R.mipmap.tree_no, R.mipmap.tree))
-                .addItem(newItem(R.mipmap.chat_no, R.mipmap.chat))
+                .addItem(newItem(R.mipmap.project_no, R.mipmap.project_yes))
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
@@ -180,6 +180,12 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
 
             @Override
             public void onRepeat(int index) {
+                if (index == 0) {
+                    Event event = new Event();
+                    event.target = Event.TARGET_HOME;
+                    event.type = Event.TYPE_HOME_BACKTOTOP;
+                    EventBus.getDefault().post(event);
+                }
             }
         });
     }
@@ -225,9 +231,20 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                     break;
                 case Event.TYPE_CHANGE_MAIN_TITLE:
                     TitleAnim.hide(mTitleTv, mFuncImgBtn);
+                    switch (event.position) {
+                        case 0:
+                            event.data = "导航";
+                            break;
+                        case 1:
+                            event.data = "知识体系";
+                            break;
+                    }
                     TitleAnim.show(mTitleTv, mFuncImgBtn, event.data, 1);
                 case Event.TYPE_CHANGE_SYS:
-                    mVPager.setCurrentItem(1);
+                    mVPager.setCurrentItem(1, true);
+                    break;
+                case Event.TYPE_CHANGE_PROJECT:
+                    mVPager.setCurrentItem(2, true);
                     break;
             }
 

@@ -135,6 +135,22 @@ public interface Contract {
         void goWebActivity(String URL);
     }
 
+    interface ProjectPresenter {
+        void initTabView();
+
+        void initProjectData();
+    }
+    interface ProjectView extends BaseView<Contract.ProjectPresenter>{
+        void setTabView(List<Data> data);
+
+        void setProjectData();
+    }
+    interface ProjectItemPresenter {
+
+    }
+    interface ProjectItemView extends BaseView<Contract.ProjectItemPresenter>{
+
+    }
 
     interface ToDoPresenter {
     }

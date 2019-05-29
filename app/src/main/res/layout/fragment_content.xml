@@ -8,7 +8,7 @@
 
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refresh_account_content"
+        android:id="@+id/refresh_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlEnablePreviewInEditMode="true">
@@ -20,7 +20,7 @@
             android:background="@color/bg_daily_white" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_account_content"
+            android:id="@+id/rv_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"

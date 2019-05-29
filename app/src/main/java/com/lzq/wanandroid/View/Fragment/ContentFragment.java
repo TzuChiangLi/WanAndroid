@@ -36,9 +36,9 @@ import butterknife.ButterKnife;
 
 public class ContentFragment extends BaseFragment implements OffAccountContract.AccountContentView {
     private static final String TAG = "ContentFragment";
-    @BindView(R.id.rv_account_content)
+    @BindView(R.id.rv_content)
     RecyclerView mRecyclerView;
-    @BindView(R.id.refresh_account_content)
+    @BindView(R.id.refresh_content)
     SmartRefreshLayout mRefreshView;
     private OffAccountContract.AccountContentPresenter mPresenter;
     private ContentAdapter mAdapter;

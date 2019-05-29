@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.BaseFragment;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.R;
@@ -63,7 +63,7 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
                 Event event = new Event();
                 event.target = Event.TARGET_MAIN;
                 event.type = Event.TYPE_CHANGE_MAIN_TITLE;
-                event.data = tab.getText().toString();
+                event.position = tab.getPosition();
                 EventBus.getDefault().post(event);
             }
 
@@ -82,7 +82,7 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
 
 
     @Override
-    public void setTabView( String[] tabName,  int[] imgTab) {
+    public void setTabView(String[] tabName, int[] imgTab) {
         LinearLayout linearLayout = (LinearLayout) mTabLayout.getChildAt(0);
         linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
         linearLayout.setDividerDrawable(ContextCompat.getDrawable(getContext(), R.drawable.tab_divider));
@@ -97,7 +97,8 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
         //允许4个
         mViewPager.setAdapter(new FragmentAdapter(this.getChildFragmentManager(), mList));
         for (int i = 0; i < tabName.length; i++) {
-            mTabLayout.getTabAt(i).setText(tabName[i]).setIcon(imgTab[i]);
+            mTabLayout.getTabAt(i).setIcon(imgTab[i]);
+//            mTabLayout.getTabAt(i).setText(tabName[i]).setIcon(imgTab[i]);
         }
     }
 
@@ -120,7 +121,7 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
                 case Event.TYPE_CHANGE_MAIN_TITLE:
                     event.target = Event.TARGET_MAIN;
                     event.type = Event.TYPE_CHANGE_MAIN_TITLE;
-                    event.data = mTabLayout.getTabAt(mTabLayout.getSelectedTabPosition()).getText().toString();
+                    event.position = mTabLayout.getSelectedTabPosition();
                     EventBus.getDefault().post(event);
                     break;
             }

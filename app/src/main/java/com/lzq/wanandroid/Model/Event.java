@@ -82,6 +82,14 @@ public class Event {
      * 跳转到导航界面
      */
     public static final int TYPE_CHANGE_NAVI = 16;
+    /**
+     * 跳转到项目界面
+     */
+    public static final int TYPE_CHANGE_PROJECT = 17;
+    /**
+     * 跳转到项目界面
+     */
+    public static final int TYPE_HOME_BACKTOTOP = 18;
 
 
 
@@ -139,5 +147,7 @@ public class Event {
     public int type;
 
     public String data;
+
+    public int position;
 
 }

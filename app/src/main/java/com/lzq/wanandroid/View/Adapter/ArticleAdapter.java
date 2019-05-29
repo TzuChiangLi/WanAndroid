@@ -46,7 +46,6 @@ public class ArticleAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
                     helper.setText(R.id.rv_article_chapter_title, "分类：");
                     helper.setText(R.id.rv_article_author_title, "作者：");
 
-
                     helper.setBackgroundColor(R.id.rv_article_title, bg_rv_item_tv);
                     helper.setBackgroundColor(R.id.rv_article_author, bg_rv_item_tv);
                     helper.setBackgroundColor(R.id.rv_article_super_chapter, bg_rv_item_tv);
@@ -63,24 +62,17 @@ public class ArticleAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
                 }
                 break;
             case StringUtils.RV_ITEM_IMG:
-                if (TextUtils.isEmpty(item.getAuthor())) {
+                if (TextUtils.isEmpty(item.getTitle())) {
                     return;
                 } else {
                     helper.setText(R.id.rv_article_img_title, item.getTitle());
                     helper.setText(R.id.rv_article_img_desc, item.getDesc());
                     helper.setText(R.id.rv_article_img_date, item.getNiceDate());
 
-
                     helper.setBackgroundColor(R.id.rv_article_img_title, bg_rv_item_tv);
                     helper.setBackgroundColor(R.id.rv_article_img_desc, bg_rv_item_tv);
                     helper.setBackgroundColor(R.id.rv_article_img_date, bg_rv_item_tv);
 
-                    helper.addOnClickListener(R.id.rv_article_imgbtn_save);
-                    if (item.isCollect()) {
-                        helper.setImageResource(R.id.rv_article_imgbtn_save, R.mipmap.collect_yes);
-                    } else {
-                        helper.setImageResource(R.id.rv_article_imgbtn_save, R.mipmap.collect_normal);
-                    }
                 }
                 break;
         }
