@@ -15,7 +15,7 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemSwipeListener;
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;

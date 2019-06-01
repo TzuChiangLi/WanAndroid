@@ -12,9 +12,8 @@ import android.view.ViewGroup;
 
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Presenter.ArticlesPresenter;
 import com.lzq.wanandroid.Presenter.ProjectItemPresenter;
 import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.R;

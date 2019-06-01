@@ -1,6 +1,6 @@
 package com.lzq.wanandroid.Api;
 
-import com.lzq.wanandroid.BaseView;
+import com.lzq.wanandroid.Base.BaseView;
 
 public interface WebContract {
 

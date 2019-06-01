@@ -1,6 +1,7 @@
 package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.Api.OffAccountContract;
@@ -10,7 +11,7 @@ import com.lzq.wanandroid.Model.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TitlePresenter implements OffAccountContract.AccountTitlePresenter, LoadTasksCallBack<List<Data>> {
+public class TitlePresenter extends BasePresenter implements OffAccountContract.AccountTitlePresenter, LoadTasksCallBack<List<Data>> {
     private static final String TAG = "TitlePresenter";
     private WebTask mTask;
     private OffAccountContract.AccountTitleView mView;

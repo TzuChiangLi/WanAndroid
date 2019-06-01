@@ -1,9 +1,10 @@
 package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.R;
 
-public class SystemPresenter implements Contract.SystemPresenter {
+public class SystemPresenter extends BasePresenter implements Contract.SystemPresenter {
     private Contract.SystemView mView;
 
 

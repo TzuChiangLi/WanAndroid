@@ -4,12 +4,14 @@ import android.app.Activity;
 
 import com.lzq.wanandroid.Api.LoginContract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Utils.AnimationUtil;
 import com.lzq.wanandroid.Utils.StringUtils;
 
-public class LoginPresenter implements LoginContract.LoginPresenter, LoadTasksCallBack<Data> {
+public class LoginPresenter extends BasePresenter
+        implements LoginContract.LoginPresenter, LoadTasksCallBack<Data> {
     private static final String TAG = "LoginPresenter";
     private WebTask mTask;
     private LoginContract.LoginView mView;

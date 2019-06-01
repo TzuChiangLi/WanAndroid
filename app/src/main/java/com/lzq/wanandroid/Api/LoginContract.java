@@ -2,7 +2,7 @@ package com.lzq.wanandroid.Api;
 
 import android.app.Activity;
 
-import com.lzq.wanandroid.BaseView;
+import com.lzq.wanandroid.Base.BaseView;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
 

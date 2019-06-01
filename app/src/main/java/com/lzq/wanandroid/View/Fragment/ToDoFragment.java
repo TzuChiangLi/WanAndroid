@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;

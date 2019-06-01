@@ -2,8 +2,9 @@ package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Base.BasePresenter;
 
-public class ProjectPresenter implements Contract.ProjectPresenter {
+public class ProjectPresenter extends BasePresenter implements Contract.ProjectPresenter {
     private static final String TAG = "WebPresenter";
     private Contract.ProjectView mView;
     private WebTask mTask;

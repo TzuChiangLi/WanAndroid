@@ -2,6 +2,7 @@ package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
@@ -9,7 +10,7 @@ import com.lzq.wanandroid.Utils.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CollectPresenter implements Contract.CollectPresenter, LoadTasksCallBack<Object> {
+public class CollectPresenter extends BasePresenter implements Contract.CollectPresenter, LoadTasksCallBack<Object> {
     private Contract.CollectView mView;
     private WebTask mTask;
 

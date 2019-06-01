@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ActivityUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.FlowTagCallBack;
 import com.lzq.wanandroid.Api.WebTask;

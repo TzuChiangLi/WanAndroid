@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Api.WebTask;

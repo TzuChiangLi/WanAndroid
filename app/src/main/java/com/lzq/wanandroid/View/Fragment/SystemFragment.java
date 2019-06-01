@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.R;

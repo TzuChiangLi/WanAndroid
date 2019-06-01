@@ -20,7 +20,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.BaseActivity;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Api.LoginContract;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;

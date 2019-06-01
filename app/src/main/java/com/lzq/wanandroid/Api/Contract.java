@@ -1,6 +1,7 @@
 package com.lzq.wanandroid.Api;
 
-import com.lzq.wanandroid.BaseView;
+import com.lzq.wanandroid.Base.BasePresenter;
+import com.lzq.wanandroid.Base.BaseView;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
 

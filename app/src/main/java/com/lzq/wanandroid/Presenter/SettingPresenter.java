@@ -2,13 +2,14 @@ package com.lzq.wanandroid.Presenter;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.store.CookieStore;
 
 import okhttp3.HttpUrl;
 
-public class SettingPresenter implements Contract.SettingPresenter {
+public class SettingPresenter extends BasePresenter implements Contract.SettingPresenter {
     private static final String TAG = "SettingPresenter";
     private Contract.SettingView mView;
 

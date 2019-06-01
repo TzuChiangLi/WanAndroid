@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.BaseFragment;
+import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.OffAccountContract;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Api.WebTask;

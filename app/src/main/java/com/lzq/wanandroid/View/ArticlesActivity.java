@@ -12,7 +12,7 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.lzq.wanandroid.Api.OffAccountContract;
 import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.BaseActivity;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Presenter.ArticlesPresenter;

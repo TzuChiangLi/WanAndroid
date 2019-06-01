@@ -5,6 +5,7 @@ import android.util.Log;
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Api.WebTask;
@@ -15,7 +16,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePresenter implements Contract.HomePresenter, LoadTasksCallBack<Object> {
+public class HomePresenter extends BasePresenter implements Contract.HomePresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "HomePresenter";
     private WebTask mTask;
     private Contract.HomeView mView;

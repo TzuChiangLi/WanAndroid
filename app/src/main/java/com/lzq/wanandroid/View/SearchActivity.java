@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gyf.immersionbar.ImmersionBar;
-import com.lzq.wanandroid.BaseActivity;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Presenter.SearchPresenter;

@@ -2,13 +2,14 @@ package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Utils.StringUtils;
 
 import java.util.List;
 
-public class SearchPresenter implements Contract.SearchPresenter, LoadTasksCallBack {
+public class SearchPresenter extends BasePresenter implements Contract.SearchPresenter, LoadTasksCallBack {
     private Contract.SearchView mView;
     private WebTask mTask;
 

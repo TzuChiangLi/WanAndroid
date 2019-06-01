@@ -1,4 +1,4 @@
-package com.lzq.wanandroid;
+package com.lzq.wanandroid.Base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.lzq.wanandroid.R;
 
 public abstract class BaseFragment extends Fragment {
 

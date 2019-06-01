@@ -17,6 +17,7 @@ import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;

@@ -1,14 +1,12 @@
-package com.lzq.wanandroid;
+package com.lzq.wanandroid.Base;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -16,12 +14,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.R;
 
 import java.lang.reflect.Method;
-import java.util.UUID;
 
 
 public abstract class BaseActivity extends AppCompatActivity {

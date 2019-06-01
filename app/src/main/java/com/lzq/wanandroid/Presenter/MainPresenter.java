@@ -2,8 +2,9 @@ package com.lzq.wanandroid.Presenter;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Base.BasePresenter;
 
-public class MainPresenter implements Contract.MainPresenter {
+public class MainPresenter extends BasePresenter implements Contract.MainPresenter {
     private static final String TAG = "MainPresenter";
     private Contract.MainView mView;
 

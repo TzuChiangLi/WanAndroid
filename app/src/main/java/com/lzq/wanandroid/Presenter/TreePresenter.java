@@ -1,6 +1,7 @@
 package com.lzq.wanandroid.Presenter;
 
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.DataBase.Tree;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Model.Data;
@@ -12,7 +13,7 @@ import org.litepal.LitePal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreePresenter implements Contract.TreePresenter, LoadTasksCallBack {
+public class TreePresenter extends BasePresenter implements Contract.TreePresenter, LoadTasksCallBack {
     private static final String TAG = "TreePresenter";
     private Contract.TreeView mView;
     private WebTask mTask;

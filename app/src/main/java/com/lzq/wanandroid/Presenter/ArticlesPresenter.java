@@ -5,6 +5,7 @@ import android.util.Log;
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.OffAccountContract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
+import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Api.WebTask;
@@ -15,7 +16,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArticlesPresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
+public class ArticlesPresenter extends BasePresenter implements OffAccountContract.AccountContentPresenter, LoadTasksCallBack<Object> {
     private static final String TAG = "ArticlesPresenter";
     private WebTask mTask;
     private OffAccountContract.AccountContentView mView;
@@ -27,6 +28,7 @@ public class ArticlesPresenter implements OffAccountContract.AccountContentPrese
         this.mView = mView;
         this.mTask = mTask;
         this.ID = ID;
+
     }
 
     public static ArticlesPresenter createPresenter(OffAccountContract.AccountContentView mView, WebTask mTask, int ID){

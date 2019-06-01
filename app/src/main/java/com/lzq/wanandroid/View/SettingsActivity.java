@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.lzq.wanandroid.BaseActivity;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.SettingPresenter;
