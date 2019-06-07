@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_daily_mode"
+    android:orientation="vertical"
+    tools:context=".View.SearchResultActivity">
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/search_result_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/bg_daily_mode"
+        android:elevation="0dp"
+        app:backButton="true"
+        app:title="搜索结果"
+        app:titleColor="@color/text_daily_mode_one"
+        app:titleSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginHorizontal="@dimen/dp_8"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前查找关键词："
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/search_result_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxWidth="@dimen/dp_100"
+            android:text="占位"
+            android:textColor="@color/text_daily_mode"
+            android:textSize="13sp" />
+
+
+    </LinearLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/search_result_refresh_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnablePreviewInEditMode="true">
+        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_daily_white" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_result_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/rv_article_normal" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_daily_white" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</LinearLayout>

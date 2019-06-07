@@ -31,14 +31,22 @@
             app:layout_constraintEnd_toStartOf="@+id/rv_article_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        <ImageButton
+            android:id="@+id/rv_article_imgbtn_save"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/collect_normal" />
 
         <ImageView
             android:id="@+id/rv_article_img"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_alignParentTop="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/rv_article_imgbtn_save"
             android:layout_alignParentEnd="true"
+            android:layout_marginTop="24dp"
             android:background="@color/bg_rv_item_tv" />
 
 

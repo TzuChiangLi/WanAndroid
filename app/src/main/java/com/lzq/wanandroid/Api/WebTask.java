@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.SearchResult;
 import com.lzq.wanandroid.Model.WanAndroid;
 import com.lzq.wanandroid.Model.WanAndroid_Content;
 import com.lzq.wanandroid.Utils.StringUtils;
@@ -33,29 +34,29 @@ public class WebTask implements NetTask<Data> {
     public void execute(final LoadTasksCallBack callBack, final int... params) {
         switch (params[0]) {
             case StringUtils.TYPE_TREE_NAVI:
-                OkGo.<String>get(StringUtils.URL+StringUtils.NAVI)
+                OkGo.<String>get(StringUtils.URL + StringUtils.NAVI)
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
-                                String result=response.body();
-                                Gson gson=new Gson();
-                                WanAndroid wanAndroid=gson.fromJson(result,WanAndroid.class);
-                                if (wanAndroid.getErrorCode()==0){
-                                    callBack.onSuccess(wanAndroid.getData(),StringUtils.TYPE_TREE_NAVI);
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid wanAndroid = gson.fromJson(result, WanAndroid.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    callBack.onSuccess(wanAndroid.getData(), StringUtils.TYPE_TREE_NAVI);
                                 }
                             }
                         });
                 break;
             case StringUtils.TYPE_TREE_KNOW:
-                OkGo.<String>get(StringUtils.URL+StringUtils.TREE)
+                OkGo.<String>get(StringUtils.URL + StringUtils.TREE)
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
-                                String result=response.body();
-                                Gson gson=new Gson();
-                                WanAndroid wanAndroid=gson.fromJson(result,WanAndroid.class);
-                                if (wanAndroid.getErrorCode()==0){
-                                    callBack.onSuccess(wanAndroid.getData(),StringUtils.TYPE_TREE_KNOW);
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                WanAndroid wanAndroid = gson.fromJson(result, WanAndroid.class);
+                                if (wanAndroid.getErrorCode() == 0) {
+                                    callBack.onSuccess(wanAndroid.getData(), StringUtils.TYPE_TREE_KNOW);
                                 }
                             }
                         });
@@ -263,6 +264,29 @@ public class WebTask implements NetTask<Data> {
     @Override
     public void execute(final LoadTasksCallBack callBack, String... infos) {
         switch (infos[0]) {
+            case StringUtils.TYPE_HOTKEY_CONTENT:
+                OkGo.<String>post(StringUtils.URL + StringUtils.HOT_KEY_CONTENT + infos[2] + "/json")
+                        .params("k",infos[1])
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                SearchResult searchResult=gson.fromJson(result,SearchResult.class);
+                                switch (searchResult.getErrorCode()) {
+                                    case 0:
+                                        callBack.onSuccess(searchResult.getData(), StringUtils.TYPE_HOT_KEY_CONTENT);
+                                        break;
+                                    case -1:
+                                        callBack.onError(searchResult.getErrorCode(), searchResult.getErrorMsg());
+                                        break;
+                                    default:
+                                        callBack.onFailed();
+                                        break;
+                                }
+                            }
+                        });
+                break;
             case StringUtils.TYPE_LOGIN:
                 OkGo.<String>post(StringUtils.URL + StringUtils.USER_LOGIN)
                         .params("username", infos[1])

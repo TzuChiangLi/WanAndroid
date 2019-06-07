@@ -5,8 +5,10 @@ import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Model.SearchResult;
 import com.lzq.wanandroid.Utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchPresenter extends BasePresenter implements Contract.SearchPresenter, LoadTasksCallBack {
@@ -29,10 +31,29 @@ public class SearchPresenter extends BasePresenter implements Contract.SearchPre
     }
 
     @Override
+    public void initView() {
+        List<SearchResult.DataBean.Datas> mList=new ArrayList();
+        for (int i = 0; i < 3; i++) {
+            mList.add(new SearchResult.DataBean.Datas());
+        }
+        mView.initView(mList);
+    }
+
+    @Override
+    public void getHotKeyContent(String hotkeys,int page) {
+        mTask.execute(this,StringUtils.TYPE_HOTKEY_CONTENT,hotkeys,String.valueOf(page));
+    }
+
+    @Override
     public void onSuccess(Object o, int flag) {
         switch (flag) {
+            case  StringUtils.TYPE_HOT_KEY_CONTENT:
+                SearchResult.DataBean dataBean= (SearchResult.DataBean) o;
+                if (dataBean.getCurPage()!=0&&dataBean.getDatas()!=null){
+                    mView.setHotKeyContent(dataBean.getDatas());
+                }
+                break;
             case StringUtils.TYPE_HOT_KEY:
-
                 List<Data> mList = (List<Data>) o;
                 if (mList.size() != 0 || mList != null) {
                     String[] keys = new String[mList.size()];

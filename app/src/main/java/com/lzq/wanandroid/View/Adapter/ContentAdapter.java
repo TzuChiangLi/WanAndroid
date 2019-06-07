@@ -72,6 +72,7 @@ public class ContentAdapter extends BaseItemDraggableAdapter<Datas, BaseViewHold
     }
 
 
+    @Override
     public List<Datas> getData(){
         return mList;
     }

@@ -4,6 +4,7 @@ import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Base.BaseView;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.Model.SearchResult;
 
 import java.util.List;
 
@@ -33,10 +34,18 @@ public interface Contract {
 
     interface SearchPresenter {
         void getHotKey();
+
+        void initView();
+
+        void getHotKeyContent(String hotkeys,int page);
     }
 
     interface SearchView extends BaseView<Contract.SearchPresenter> {
         void setHotKey(String[] keys);
+
+        void initView(List<SearchResult.DataBean.Datas> data);
+
+        void setHotKeyContent(List<SearchResult.DataBean.Datas> datas);
     }
 
     /**************************Fragment***************************/

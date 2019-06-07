@@ -10,6 +10,7 @@ public class StringUtils {
     public static final String NAVI = "navi/json";
     public static final String TREE = "tree/json";
     public static final String HOT_KEY = "/hotkey/json";
+    public static final String HOT_KEY_CONTENT = "article/query/";  //0/json
     public static final String COLLECT_LIST = "lg/collect/list/";
     public static final String COLLECT_ARTICCLE = "lg/collect/";
     public static final String CANCEL_COLLECT = "lg/uncollect_originId/";
@@ -42,8 +43,9 @@ public class StringUtils {
     public static final int TYPE_TREE_KNOW_ARTICLES = 15;
     public static final int TYPE_TREE_KNOW_ARTICLES_TITLE = 16;
     public static final int TYPE_TREE_KNOW_ARTICLES_CONTENT = 17;
+    public static final int TYPE_HOT_KEY_CONTENT = 18;
 
-
+    public static final String TYPE_HOTKEY_CONTENT = "HOTKEY_CONTENT";
     public static final String TYPE_IMG_BANNER = "IMGBANNER";
     public static final String TYPE_TOP_ARTICLE = "TOPARTICLE";
     public static final String TYPE_LOGIN = "LOGIN";

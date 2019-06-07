@@ -117,7 +117,7 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
     public void setArticlesContent(int currentPositon, List<Children> mList) {
         if (mFragment == null) {
             mFragment = ContentFragment.newInstance();
-            ActivityUtils.getInstance().addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
         }
         ArticlesPresenter mContentPresenter = null;
         for (int i = 0; i < mList.size(); i++) {
@@ -147,7 +147,7 @@ public class ArticlesActivity extends BaseActivity implements OffAccountContract
             fragments.clear();
             if (mFragment == null) {
                 mFragment = ContentFragment.newInstance();
-                ActivityUtils.getInstance().addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
+                ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), mFragment, R.id.official_account_viewpager);
             }
             ArticlesPresenter mContentPresenter = null;
             for (int i = 0; i < mList.size(); i++) {
