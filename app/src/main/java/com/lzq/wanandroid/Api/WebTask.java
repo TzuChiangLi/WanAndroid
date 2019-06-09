@@ -262,20 +262,25 @@ public class WebTask implements NetTask<Data> {
     }
 
     @Override
-    public void execute(final LoadTasksCallBack callBack, String... infos) {
+    public void execute(final LoadTasksCallBack callBack, final String... infos) {
         switch (infos[0]) {
-            case StringUtils.TYPE_HOTKEY_CONTENT:
+            case StringUtils.TYPE_HOTKEY_CONTENT_ADD:
+            case StringUtils.TYPE_HOTKEY_CONTENT_LOAD:
                 OkGo.<String>post(StringUtils.URL + StringUtils.HOT_KEY_CONTENT + infos[2] + "/json")
-                        .params("k",infos[1])
+                        .params("k", infos[1])
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
                                 Gson gson = new Gson();
-                                SearchResult searchResult=gson.fromJson(result,SearchResult.class);
+                                SearchResult searchResult = gson.fromJson(result, SearchResult.class);
                                 switch (searchResult.getErrorCode()) {
                                     case 0:
-                                        callBack.onSuccess(searchResult.getData(), StringUtils.TYPE_HOT_KEY_CONTENT);
+                                        if (infos[0].equals(StringUtils.TYPE_HOTKEY_CONTENT_ADD)) {
+                                            callBack.onSuccess(searchResult.getData(), StringUtils.TYPE_HOT_KEY_CONTENT_ADD);
+                                        } else {
+                                            callBack.onSuccess(searchResult.getData(), StringUtils.TYPE_HOT_KEY_CONTENT_LOAD);
+                                        }
                                         break;
                                     case -1:
                                         callBack.onError(searchResult.getErrorCode(), searchResult.getErrorMsg());

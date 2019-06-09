@@ -39,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CollectFragment extends BaseFragment implements Contract.CollectView {
+public class    CollectFragment extends BaseFragment implements Contract.CollectView {
     private static final String TAG = "CollectFragment";
     @BindView(R.id.rv_collect_list)
     RecyclerView mRecyclerView;

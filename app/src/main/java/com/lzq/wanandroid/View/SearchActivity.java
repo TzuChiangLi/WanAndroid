@@ -55,6 +55,7 @@ public class SearchActivity extends BaseActivity implements Contract.SearchView 
             Intent intent = new Intent(this, SearchResultActivity.class);
             intent.putExtra("HOT_KEY", mSearchEdt.getText().toString());
             startActivity(intent);
+            finish();
         }
     }
 
@@ -92,7 +93,17 @@ public class SearchActivity extends BaseActivity implements Contract.SearchView 
 
 
     @Override
-    public void setHotKeyContent(List<SearchResult.DataBean.Datas> datas) {
+    public void setHotKeyContent(int flag,List<SearchResult.DataBean.Datas> datas) {
+
+    }
+
+    @Override
+    public void collectedArticle(int position, boolean isCollect) {
+
+    }
+
+    @Override
+    public void goWebActivity(String URL) {
 
     }
 

@@ -115,7 +115,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
 
     @Override
     public void collectedArticle(int position, boolean isCollect) {
-        mContentList.get(position).setCollect(isCollect);
+        mAdapter.getData().get(position).setCollect(isCollect);
         mAdapter.notifyItemChanged(position);
         ToastUtils.show(isCollect ? "收藏成功" : "取消收藏");
     }

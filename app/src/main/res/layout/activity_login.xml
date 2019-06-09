@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        android:layout_marginTop="@dimen/dp_100"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,15 +28,15 @@
 
         <!--<TextView-->
 
-            <!--android:id="@+id/login_tv_title_2nd"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:letterSpacing="0.2"-->
-            <!--android:text="@string/user_btn_login"-->
-            <!--android:textColor="@color/text_daily_mode"-->
-            <!--android:textSize="24sp"-->
-            <!--android:textStyle="bold" />-->
+        <!--android:id="@+id/login_tv_title_2nd"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:letterSpacing="0.2"-->
+        <!--android:text="@string/user_btn_login"-->
+        <!--android:textColor="@color/text_daily_mode"-->
+        <!--android:textSize="24sp"-->
+        <!--android:textStyle="bold" />-->
 
 
     </LinearLayout>

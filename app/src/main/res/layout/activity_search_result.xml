@@ -62,6 +62,8 @@
             android:id="@+id/search_result_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
             tools:listitem="@layout/rv_article_normal" />
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter

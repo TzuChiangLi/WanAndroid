@@ -1,12 +1,16 @@
 package com.lzq.wanandroid.Presenter;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.LoadTasksCallBack;
 import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Model.SearchResult;
 import com.lzq.wanandroid.Utils.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,16 +45,50 @@ public class SearchPresenter extends BasePresenter implements Contract.SearchPre
 
     @Override
     public void getHotKeyContent(String hotkeys,int page) {
-        mTask.execute(this,StringUtils.TYPE_HOTKEY_CONTENT,hotkeys,String.valueOf(page));
+        mTask.execute(this,StringUtils.TYPE_HOTKEY_CONTENT_LOAD,hotkeys,String.valueOf(page));
+    }
+    @Override
+    public void addHotKeyContent(String hotkeys,int page) {
+        mTask.execute(this,StringUtils.TYPE_HOTKEY_CONTENT_ADD,hotkeys,String.valueOf(page));
+    }
+
+    @Override
+    public void collectArticle(int ID, boolean isCollect, int position) {
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
+            if (isCollect) {
+                mTask.execute(this, StringUtils.TYPE_COLLECT_NO, ID, position);
+            } else {
+                mTask.execute(this, StringUtils.TYPE_COLLECT_YES, ID, position);
+            }
+        } else {
+            Event event = new Event();
+            event.target = Event.TARGET_MAIN;
+            event.type = Event.TYPE_NEED_LOGIN;
+            EventBus.getDefault().post(event);
+        }
+    }
+
+    @Override
+    public void getSelectedURL(String URL) {
+        mView.goWebActivity(URL);
     }
 
     @Override
     public void onSuccess(Object o, int flag) {
         switch (flag) {
-            case  StringUtils.TYPE_HOT_KEY_CONTENT:
+            case StringUtils.TYPE_COLLECT_NO:
+                int position = (int) o;
+                mView.collectedArticle(position, false);
+                break;
+            case StringUtils.TYPE_COLLECT_YES:
+                position = (int) o;
+                mView.collectedArticle(position, true);
+                break;
+            case  StringUtils.TYPE_HOT_KEY_CONTENT_ADD:
+            case  StringUtils.TYPE_HOT_KEY_CONTENT_LOAD:
                 SearchResult.DataBean dataBean= (SearchResult.DataBean) o;
                 if (dataBean.getCurPage()!=0&&dataBean.getDatas()!=null){
-                    mView.setHotKeyContent(dataBean.getDatas());
+                    mView.setHotKeyContent(flag,dataBean.getDatas());
                 }
                 break;
             case StringUtils.TYPE_HOT_KEY:

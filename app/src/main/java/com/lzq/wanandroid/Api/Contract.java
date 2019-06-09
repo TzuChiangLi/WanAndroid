@@ -37,7 +37,13 @@ public interface Contract {
 
         void initView();
 
-        void getHotKeyContent(String hotkeys,int page);
+        void getHotKeyContent(String hotkeys, int page);
+
+        void addHotKeyContent(String hotkeys, int page);
+
+        void collectArticle(int ID, boolean isCollect, int position);
+
+        void getSelectedURL(String URL);
     }
 
     interface SearchView extends BaseView<Contract.SearchPresenter> {
@@ -45,7 +51,11 @@ public interface Contract {
 
         void initView(List<SearchResult.DataBean.Datas> data);
 
-        void setHotKeyContent(List<SearchResult.DataBean.Datas> datas);
+        void setHotKeyContent(int flag, List<SearchResult.DataBean.Datas> datas);
+
+        void collectedArticle(int position, boolean isCollect);
+
+        void goWebActivity(String URL);
     }
 
     /**************************Fragment***************************/
@@ -150,15 +160,18 @@ public interface Contract {
 
         void initProjectData();
     }
-    interface ProjectView extends BaseView<Contract.ProjectPresenter>{
+
+    interface ProjectView extends BaseView<Contract.ProjectPresenter> {
         void setTabView(List<Data> data);
 
         void setProjectData();
     }
+
     interface ProjectItemPresenter {
 
     }
-    interface ProjectItemView extends BaseView<Contract.ProjectItemPresenter>{
+
+    interface ProjectItemView extends BaseView<Contract.ProjectItemPresenter> {
 
     }
 

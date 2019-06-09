@@ -43,9 +43,11 @@ public class StringUtils {
     public static final int TYPE_TREE_KNOW_ARTICLES = 15;
     public static final int TYPE_TREE_KNOW_ARTICLES_TITLE = 16;
     public static final int TYPE_TREE_KNOW_ARTICLES_CONTENT = 17;
-    public static final int TYPE_HOT_KEY_CONTENT = 18;
+    public static final int TYPE_HOT_KEY_CONTENT_LOAD = 18;
+    public static final int TYPE_HOT_KEY_CONTENT_ADD = 19;
 
-    public static final String TYPE_HOTKEY_CONTENT = "HOTKEY_CONTENT";
+    public static final String TYPE_HOTKEY_CONTENT_LOAD = "HOTKEY_CONTENT_LOAD";
+    public static final String TYPE_HOTKEY_CONTENT_ADD = "HOTKEY_CONTENT_ADD";
     public static final String TYPE_IMG_BANNER = "IMGBANNER";
     public static final String TYPE_TOP_ARTICLE = "TOPARTICLE";
     public static final String TYPE_LOGIN = "LOGIN";
