@@ -13,6 +13,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bg_daily_mode"
         app:title="@string/web_title"
+        app:lineVisible="false"
         app:titleColor="@color/text_daily_mode"
         app:titleSize="17sp" />
 

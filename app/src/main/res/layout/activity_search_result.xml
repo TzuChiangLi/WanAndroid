@@ -15,6 +15,7 @@
         android:background="@color/bg_daily_mode"
         android:elevation="0dp"
         app:backButton="true"
+        app:lineVisible="false"
         app:title="搜索结果"
         app:titleColor="@color/text_daily_mode_one"
         app:titleSize="17sp" />
