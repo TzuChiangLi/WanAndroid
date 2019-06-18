@@ -140,6 +140,7 @@ public class SearchResultActivity extends BaseActivity implements Contract.Searc
         Intent intent = new Intent(this, WebActivity.class);
         intent.putExtra("URL", URL);
         startActivity(intent);
+        overridePendingTransition(R.anim.enter_fade_out,R.anim.enter_fade_in);
     }
 
     @Override

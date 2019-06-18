@@ -164,7 +164,7 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
                         EventBus.getDefault().post(event);
                         break;
                     case 2:
-                        TitleAnim.show(mTitleTv, mFuncImgBtn, "反馈", 2);
+                        TitleAnim.show(mTitleTv, mFuncImgBtn, "项目", 2);
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
