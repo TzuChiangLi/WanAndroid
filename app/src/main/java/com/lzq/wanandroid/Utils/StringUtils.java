@@ -6,6 +6,8 @@ public class StringUtils {
     public static final int RV_ITEM_IMG=1;
 
     public static final String URL = "https://www.wanandroid.com/";
+    public static final String PROJECT_LOAD="project/list/";//1/json?cid=294
+    public static final String PROJECT_TREE="project/tree/json";
     public static final String TREE_ARTICLES="article/list/";///+ID/json?cid=60";
     public static final String NAVI = "navi/json";
     public static final String TREE = "tree/json";
@@ -45,6 +47,9 @@ public class StringUtils {
     public static final int TYPE_TREE_KNOW_ARTICLES_CONTENT = 17;
     public static final int TYPE_HOT_KEY_CONTENT_LOAD = 18;
     public static final int TYPE_HOT_KEY_CONTENT_ADD = 19;
+    public static final int TYPE_PROJECT_ITEM_LOAD = 20;
+    public static final int TYPE_PROJECT_ITEM_ADD = 21;
+    public static final int TYPE_PROJECT_TREE = 22;
 
     public static final String TYPE_HOTKEY_CONTENT_LOAD = "HOTKEY_CONTENT_LOAD";
     public static final String TYPE_HOTKEY_CONTENT_ADD = "HOTKEY_CONTENT_ADD";

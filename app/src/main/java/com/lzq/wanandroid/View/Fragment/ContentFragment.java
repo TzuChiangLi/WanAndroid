@@ -67,7 +67,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
         mRefreshView.setReboundDuration(300);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         if (mPresenter == null) {
-            mPresenter = ArticlesPresenter.createPresenter(this, new WebTask(), 0);
+            mPresenter = ArticlesPresenter.createPresenter(this, WebTask.getInstance(), 0);
         } else {
             mPresenter.initView();
             mPresenter.getContent(mPresenter.showID(), page);

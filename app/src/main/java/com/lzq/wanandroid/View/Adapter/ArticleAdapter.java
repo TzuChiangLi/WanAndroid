@@ -38,7 +38,7 @@ public class ArticleAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
                 if (TextUtils.isEmpty(item.getAuthor())) {
                     return;
                 } else {
-                    helper.setText(R.id.rv_article_title, item.getTitle());
+                    helper.setText(R.id.rv_article_title, item.getTitle().replace("&quot;","\""));
                     helper.setText(R.id.rv_article_author, item.getAuthor());
                     helper.setText(R.id.rv_article_super_chapter, item.getSuperChapterName());
                     helper.setText(R.id.rv_article_chapter, "/" + item.getChapterName());

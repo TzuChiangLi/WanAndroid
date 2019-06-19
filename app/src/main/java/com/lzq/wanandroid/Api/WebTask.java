@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.ProjectItem;
+import com.lzq.wanandroid.Model.ProjectTree;
 import com.lzq.wanandroid.Model.SearchResult;
 import com.lzq.wanandroid.Model.WanAndroid;
 import com.lzq.wanandroid.Model.WanAndroid_Content;
@@ -33,6 +35,35 @@ public class WebTask implements NetTask<Data> {
     @Override
     public void execute(final LoadTasksCallBack callBack, final int... params) {
         switch (params[0]) {
+            case StringUtils.TYPE_PROJECT_ITEM_LOAD:
+                //1/json?cid=294
+                OkGo.<String>get(StringUtils.URL+StringUtils.PROJECT_LOAD+params[1]+"/json?cid="+params[2])
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson= new Gson();
+                                ProjectItem projectItem=gson.fromJson(result,ProjectItem.class);
+                                if (projectItem.getErrorCode()==0){
+                                    callBack.onSuccess(projectItem.getData().getDatas(),params[0]);
+                                }
+                            }
+                        });
+                break;
+            case StringUtils.TYPE_PROJECT_TREE:
+                OkGo.<String>get(StringUtils.URL + StringUtils.PROJECT_TREE)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                ProjectTree projectTree = gson.fromJson(result, ProjectTree.class);
+                                if (projectTree.getErrorCode() == 0) {
+                                    callBack.onSuccess(projectTree.getData(), params[0]);
+                                }
+                            }
+                        });
+                break;
             case StringUtils.TYPE_TREE_NAVI:
                 OkGo.<String>get(StringUtils.URL + StringUtils.NAVI)
                         .execute(new StringCallback() {
@@ -81,6 +112,7 @@ public class WebTask implements NetTask<Data> {
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
+                                Log.d(TAG, "----onSuccess 检查: "+params[1]+"/"+params[2]);
                                 String result = response.body();
                                 Gson gson = new Gson();
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
@@ -188,7 +220,6 @@ public class WebTask implements NetTask<Data> {
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
                                 int code = wanAndroid.getErrorCode();
                                 if (code == 0) {
-                                    Log.d(TAG, "----onSuccess 公众号: ");
                                     callBack.onSuccess(wanAndroid.getData().getDatas(), StringUtils.TYPE_ACCOUNT_CONTENT_LOAD);
                                 } else {
                                     callBack.onFailed();

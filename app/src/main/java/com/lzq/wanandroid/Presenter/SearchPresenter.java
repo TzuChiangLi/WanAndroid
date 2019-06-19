@@ -37,7 +37,7 @@ public class SearchPresenter extends BasePresenter implements Contract.SearchPre
     @Override
     public void initView() {
         List<SearchResult.DataBean.Datas> mList=new ArrayList();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 7; i++) {
             mList.add(new SearchResult.DataBean.Datas());
         }
         mView.initView(mList);

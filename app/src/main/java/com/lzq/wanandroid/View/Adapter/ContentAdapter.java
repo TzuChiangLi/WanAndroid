@@ -38,7 +38,7 @@ public class ContentAdapter extends BaseItemDraggableAdapter<Datas, BaseViewHold
         if (TextUtils.isEmpty(item.getAuthor())) {
             return;
         } else {
-            helper.setText(R.id.rv_article_title, item.getTitle());
+            helper.setText(R.id.rv_article_title, item.getTitle().replace("&quot;","\"").replace("&ldquo;","\"").replace("&rdquo;","\""));
             helper.setText(R.id.rv_article_author, item.getAuthor());
             helper.setText(R.id.rv_article_super_chapter, item.getSuperChapterName());
             helper.setText(R.id.rv_article_chapter, "/" + item.getChapterName());

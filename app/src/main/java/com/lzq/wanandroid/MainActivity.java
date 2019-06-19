@@ -21,6 +21,7 @@ import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;
+import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
@@ -46,7 +47,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity implements Contract.MainView {
+public class MainActivity extends NetChangeActivity implements Contract.MainView {
     private static final String TAG = "MainActivity";
     @BindView(R.id.main_viewpager)
     ViewPager mVPager;
@@ -64,6 +65,8 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
     private UserPresenter mUserPresenter;
     private SystemPresenter mSystemPresenter;
     private UserFragment mUserFragment;
+    private ProjectFragment mProjectFragment;
+    private ProjectPresenter mProjectPresenter;
     private FragmentAdapter mFAdapter;
     private int oldHeight;
 
@@ -126,8 +129,13 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
         mSystemPresenter = new SystemPresenter(mSystemFragment);
         mSystemFragment.setPresenter(mSystemPresenter);
 
+        if (mProjectFragment == null) {
+            mProjectFragment = ProjectFragment.newInstance();
+            mList.add(mProjectFragment);
+        }
+        mProjectPresenter = new ProjectPresenter(mProjectFragment, mTask);
+        mProjectFragment.setPresenter(mProjectPresenter);
 
-        mList.add(ProjectFragment.newInstance());
         if (mUserFragment == null) {
             mUserFragment = UserFragment.newInstance();
             mList.add(mUserFragment);
@@ -256,6 +264,14 @@ public class MainActivity extends BaseActivity implements Contract.MainView {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void doNetWork() {
+        Event event=new Event();
+        event.target=Event.TARGET_PROJECT;
+        event.type=Event.TYPE_PROJECT_REFRESH;
+        EventBus.getDefault().post(event);
     }
 
 

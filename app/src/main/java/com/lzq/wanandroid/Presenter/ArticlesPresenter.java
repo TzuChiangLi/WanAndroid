@@ -39,7 +39,6 @@ public class ArticlesPresenter extends BasePresenter implements OffAccountContra
     @Override
     public void onSuccess(Object data, int flag) {
         int position;
-        Log.d(TAG, "----onSuccess flag: "+flag);
         try {
             switch (flag) {
                 case StringUtils.TYPE_COLLECT_NO:

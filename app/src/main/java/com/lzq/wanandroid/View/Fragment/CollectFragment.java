@@ -81,7 +81,6 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
                 if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
                     mPresenter.getCollectList();
                     mRecyclerView.setVisibility(View.VISIBLE);
-
                     if (onFinishLoad()) {
                         mRefreshView.finishRefresh();
                     }
@@ -99,6 +98,8 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
         this.mList = mList;
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mRecyclerView.setNestedScrollingEnabled(false);//禁止滑动
+        mRefreshView.setEnableLoadMore(false);
+        mRefreshView.setEnableLoadMore(false);
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setUpFetchEnable(true);
@@ -109,8 +110,9 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
         mList.clear();
         mList = data;
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
-        mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setNestedScrollingEnabled(true);//禁止滑动
+        mRefreshView.setEnableLoadMore(true);
+        mRecyclerView.setAdapter(mAdapter);
         mAdapter.enableSwipeItem();
         mAdapter.setOnItemSwipeListener(new OnItemSwipeListener() {
             @Override

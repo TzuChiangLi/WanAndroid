@@ -1,9 +1,10 @@
 package com.lzq.wanandroid.Api;
 
-import com.lzq.wanandroid.Base.BasePresenter;
 import com.lzq.wanandroid.Base.BaseView;
 import com.lzq.wanandroid.Model.Data;
 import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.Model.ProjectItem;
+import com.lzq.wanandroid.Model.ProjectTree;
 import com.lzq.wanandroid.Model.SearchResult;
 
 import java.util.List;
@@ -156,23 +157,37 @@ public interface Contract {
     }
 
     interface ProjectPresenter {
+        void initView();
         void initTabView();
 
         void initProjectData();
     }
 
     interface ProjectView extends BaseView<Contract.ProjectPresenter> {
-        void setTabView(List<Data> data);
+        void setEmptyTabView(String[] title);
+        void setTabView(List<ProjectTree.DataBean> data);
 
         void setProjectData();
     }
 
     interface ProjectItemPresenter {
+        void initView();
 
+        void initProjectData(int flag, int page);
+
+        void collectArticle(int ID, boolean isCollect, int position);
+
+        void getSelectedURL(String URL);
     }
 
     interface ProjectItemView extends BaseView<Contract.ProjectItemPresenter> {
+        void setEmptyContent(List<ProjectItem.DataBean.Datas> data, int flag);
 
+        void setProjectContent(List<ProjectItem.DataBean.Datas> data, int flag);
+
+        void collectedArticle(int position, boolean isCollect);
+
+        void goWebActivity(String URL);
     }
 
     interface ToDoPresenter {

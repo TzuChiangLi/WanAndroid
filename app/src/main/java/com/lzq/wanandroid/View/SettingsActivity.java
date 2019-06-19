@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Api.Contract;
+import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.SettingPresenter;
 import com.lzq.wanandroid.R;
@@ -33,8 +34,8 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
     SwitchButton mNightBtn;
     @BindView(R.id.set_btn_logout)
     Button mLogoutBtn;
-    @BindView(R.id.set_btn_about)
-    Button mAboutBtn;
+    @BindView(R.id.set_tv_version)
+    TextView mVersionTv;
     private Contract.SettingPresenter mPresenter;
 
 
@@ -51,6 +52,7 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
     }
 
     private void initView() {
+        mVersionTv.setText("1.0.0");
         boolean nightMode = SPUtils.getInstance(StringUtils.CONFIG_SETTINGS, MODE_PRIVATE).getBoolean(StringUtils.KEY_NIGHT_MODE, false);
         mNightBtn.setChecked(nightMode);
         mNightBtn.setOnCheckedChangeListener(this);
@@ -65,6 +67,7 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
             public void onTitleClick(View v) {
 
             }
+
             @Override
             public void onRightClick(View v) {
 
@@ -72,15 +75,10 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         });
     }
 
-    @OnClick(R.id.set_btn_about)
-    public void doAbout(){
-
-    }
-
 
     @OnClick(R.id.set_btn_logout)
     public void doLogout() {
-        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")==false) {
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin") == false) {
             startActivity(LoginActivity.class);
             finish();
         } else {

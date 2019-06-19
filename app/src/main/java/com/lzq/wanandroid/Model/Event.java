@@ -90,6 +90,11 @@ public class Event {
      * 跳转到项目界面
      */
     public static final int TYPE_HOME_BACKTOTOP = 18;
+    /**
+     * 跳转到项目界面
+     */
+    public static final int TYPE_PROJECT_REFRESH = 19;
+
 
 
 

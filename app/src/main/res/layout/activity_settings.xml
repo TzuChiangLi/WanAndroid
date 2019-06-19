@@ -61,14 +61,35 @@
         android:paddingTop="@dimen/dp_10"
         android:paddingBottom="@dimen/dp_10">
 
-        <Button
-            android:id="@+id/set_btn_about"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:text="@string/set_about"
+            android:layout_weight="10"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:text="@string/set_version"
             android:textColor="@color/text_daily_mode"
             android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/set_tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="24dp"
+            android:layout_weight="0.25"
+            android:gravity="center_vertical"
+            android:text="1.0.0"
+            android:textColor="@color/text_daily_mode"
+            android:textSize="16sp" />
+        <!--<Button-->
+        <!--android:id="@+id/set_btn_about"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:text="@string/set_about"-->
+        <!--android:textColor="@color/text_daily_mode"-->
+        <!--android:textSize="16sp" />-->
 
     </LinearLayout>
 

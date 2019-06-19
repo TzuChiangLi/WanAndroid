@@ -6,19 +6,27 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Base.BaseFragment;
-import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.Event;
+import com.lzq.wanandroid.Model.ProjectTree;
 import com.lzq.wanandroid.Presenter.ProjectItemPresenter;
 import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.ActivityUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,15 +56,39 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_c, container, false);
         ButterKnife.bind(this, view);
-        if (mPresenter==null){
-            ProjectPresenter.createPresenter(this, WebTask.getInstance());
+        EventBus.getDefault().register(this);
+        if (mPresenter == null) {
+            mPresenter = ProjectPresenter.createPresenter(this, WebTask.getInstance());
         }
-//        mPresenter.initTabView();
+        mPresenter.initView();
+        mPresenter.initTabView();
         return view;
     }
 
     @Override
-    public void setTabView(List<Data> mList) {
+    public void setEmptyTabView(String[] title) {
+        ProjectItemPresenter mItemPresenter = null;
+        for (int i = 0; i < title.length; i++) {
+            mTabLayout.addTab(mTabLayout.newTab());
+            fragments.add(ProjectItemFragment.newInstance());
+            mFragment = (ProjectItemFragment) fragments.get(i);
+            mItemPresenter = new ProjectItemPresenter(mFragment, WebTask.getInstance(), 0);
+            mFragment.setPresenter(mItemPresenter);
+        }
+        mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), fragments));
+        mTabLayout.setupWithViewPager(mViewPager);
+        for (int i = 0; i < title.length; i++) {
+            mTabLayout.getTabAt(i).setText(title[i]);
+        }
+
+    }
+
+    @Override
+    public void setTabView(List<ProjectTree.DataBean> mList) {
+        if (mList != null && mList.size() != 0) {
+            mTabLayout.removeAllTabs();
+            fragments.clear();
+        }
         if (mFragment == null) {
             mFragment = ProjectItemFragment.newInstance();
             ActivityUtils.getInstance().addFragmentToActivity(getChildFragmentManager(), mFragment, R.id.project_viewpager);
@@ -66,16 +98,17 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
             mTabLayout.addTab(mTabLayout.newTab());
             fragments.add(ProjectItemFragment.newInstance());
             mFragment = (ProjectItemFragment) fragments.get(i);
-            mItemPresenter = new ProjectItemPresenter(mFragment,WebTask.getInstance());
+            mItemPresenter = new ProjectItemPresenter(mFragment, WebTask.getInstance(), mList.get(i).getId());
             mFragment.setPresenter(mItemPresenter);
         }
 
-        mTabLayout.setupWithViewPager(mViewPager);
+//        mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), fragments));
         mViewPager.setCurrentItem(0);
         mViewPager.setOffscreenPageLimit(2);
         for (int i = 0; i < mList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mList.get(i).getName());
+            Log.d(TAG, "----setTabView: " + mList.get(i).getName());
         }
     }
 
@@ -88,4 +121,21 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
     public void setPresenter(Contract.ProjectPresenter presenter) {
         mPresenter = presenter;
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(Event event) {
+        if (event.target == Event.TARGET_PROJECT) {
+            if (event.type == Event.TYPE_PROJECT_REFRESH) {
+                mPresenter.initTabView();
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+
 }

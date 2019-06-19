@@ -81,8 +81,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         EventBus.getDefault().register(this);
         mBanner.requestDisallowInterceptTouchEvent(true);
         if (mPresenter == null) {
-            WebTask mTask = WebTask.getInstance();
-            mPresenter = HomePresenter.createPresenter(this, mTask);
+            mPresenter = HomePresenter.createPresenter(this, WebTask.getInstance());
         }
         mPresenter.getHomeTopImgBanner();
         mPresenter.initView();
@@ -152,8 +151,8 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
     @Override
     public void setEmptyTopArticle(List<Data> mList) {
         mTopArticleAdapter = new ArticleAdapter(mView, StringUtils.RV_ITEM_NORMAL, R.layout.rv_article_normal, mList);
-        mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(false);
+        mTopArtRv.setAdapter(mTopArticleAdapter);
     }
 
     @Override
@@ -161,8 +160,8 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
         mTopArticleList.clear();
         mTopArticleList = mList;
         mTopArticleAdapter = new ArticleAdapter(mView, StringUtils.RV_ITEM_NORMAL, R.layout.rv_article_normal, mList);
-        mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArtRv.setNestedScrollingEnabled(true);
+        mTopArtRv.setAdapter(mTopArticleAdapter);
         mTopArticleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

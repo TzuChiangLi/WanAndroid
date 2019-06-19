@@ -85,20 +85,22 @@ public class SearchResultActivity extends BaseActivity implements Contract.Searc
         mPresenter.getHotKeyContent(hotkeys, page);
     }
 
-    @Override
-    public void setHotKey(String[] keys) {
-
-    }
 
     @Override
     public void initView(List<SearchResult.DataBean.Datas> data) {
         mAdapter = new SearchResultAdapter(StringUtils.RV_ITEM_IMG, R.layout.rv_article_normal, data);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRefreshView.setEnableRefresh(false);
+        mRefreshView.setEnableLoadMore(false);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void setHotKeyContent(int flag, final List<SearchResult.DataBean.Datas> datas) {
+        mRecyclerView.setNestedScrollingEnabled(true);
+        mRefreshView.setEnableRefresh(true);
+        mRefreshView.setEnableLoadMore(true);
         if (flag == StringUtils.TYPE_HOT_KEY_CONTENT_LOAD) {
             mList=datas;
             mAdapter = new SearchResultAdapter(StringUtils.RV_ITEM_IMG, R.layout.rv_article_normal, datas);
@@ -163,4 +165,9 @@ public class SearchResultActivity extends BaseActivity implements Contract.Searc
     public void onRightClick(View v) {
 
     }
+    @Override
+    public void setHotKey(String[] keys) {
+
+    }
+
 }

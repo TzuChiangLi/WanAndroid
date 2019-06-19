@@ -93,4 +93,5 @@ dependencies {
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     //LitePal
     implementation 'org.litepal.android:java:3.0.0'
+    implementation files('libs/commons-lang3-3.8.1.jar')
 }
