@@ -57,7 +57,9 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         if (mPresenter == null) {
             mPresenter = UserPresenter.createPresenter(this);
         }
