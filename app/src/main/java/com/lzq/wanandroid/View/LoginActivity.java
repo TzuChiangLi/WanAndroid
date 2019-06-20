@@ -159,12 +159,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @OnClick(R.id.user_btn_register_now)
     public void Register() {
         if (mLoginBtn.getText().toString().equals("登录")) {
-            mRegisterNowBtn.setText("已有账号，直接登录");
+            mRegisterNowBtn.setText("登录");
             mLoginBtn.setText(strRegister);
             doAnimation(2);
 
         } else {
-            mRegisterNowBtn.setText("没有账号？注册一个");
+            mRegisterNowBtn.setText("注册");
             mLoginBtn.setText(strLogin);
             doAnimation(1);
 
