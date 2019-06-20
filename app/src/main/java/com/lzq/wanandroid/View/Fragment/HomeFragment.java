@@ -28,6 +28,7 @@ import com.lzq.wanandroid.Utils.GlideImageLoader;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.ArticleAdapter;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
+import com.lzq.wanandroid.View.Animation.CollectAnim;
 import com.lzq.wanandroid.View.ArticlesActivity;
 import com.lzq.wanandroid.View.WebActivity;
 import com.ms.banner.Banner;
@@ -218,6 +219,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rv_article_imgbtn_save:
+                        CollectAnim.getInstance().show(view);
                         mPresenter.collectArticle(StringUtils.TYPE_HOME_MORE_COLLECT,mMoreAdapter.getData().get(position).getId(), mMoreAdapter.getData().get(position).isCollect(), position);
                         break;
                     default:
@@ -245,6 +247,7 @@ public class HomeFragment extends BaseFragment implements Contract.HomeView {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rv_article_imgbtn_save:
+                        CollectAnim.getInstance().show(view);
                         mPresenter.collectArticle(StringUtils.TYPE_HOME_TOP_COLLECT,mList.get(position).getId(), mTopArticleList.get(position).isCollect(), position);
                         break;
                     default:

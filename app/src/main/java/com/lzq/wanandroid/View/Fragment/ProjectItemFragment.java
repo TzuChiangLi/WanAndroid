@@ -24,6 +24,7 @@ import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.ArticleAdapter;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
 import com.lzq.wanandroid.View.Adapter.ProjectItemAdapter;
+import com.lzq.wanandroid.View.Animation.CollectAnim;
 import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -128,6 +129,7 @@ public class ProjectItemFragment extends BaseFragment implements Contract.Projec
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rv_article_imgbtn_save:
+                        CollectAnim.getInstance().show(view);
                         mPresenter.collectArticle(mAdapter.getData().get(position).getId(), mAdapter.getData().get(position).isCollect(), position);
                         break;
                     default:

@@ -23,6 +23,7 @@ import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.View.Adapter.ContentAdapter;
+import com.lzq.wanandroid.View.Animation.CollectAnim;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -141,6 +142,7 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rv_article_imgbtn_save:
+                        CollectAnim.getInstance().show(view);
                         mPresenter.cancelCollect(data.get(position).getId(), position, data.get(position).getOriginId());
                         break;
                     default:

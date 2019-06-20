@@ -162,7 +162,7 @@ public class WebTask implements NetTask<Data> {
                                 if (wanAndroid.getErrorCode() == 0) {
                                     if (params.length > 3) {
                                         if (params[3] == StringUtils.TYPE_HOME_TOP_COLLECT || params[3] == StringUtils.TYPE_HOME_MORE_COLLECT) {
-                                            callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_YES, params[3]);
+                                            callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_NO, params[3]);
                                             return;
                                         }
                                     }
