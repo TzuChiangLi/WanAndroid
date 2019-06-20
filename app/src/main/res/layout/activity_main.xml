@@ -32,6 +32,7 @@
             android:background="@android:color/transparent"
             android:layout_marginEnd="24dp"
             android:scaleType="centerCrop"
+            android:visibility="visible"
             android:src="@mipmap/search" />
     </RelativeLayout>
 

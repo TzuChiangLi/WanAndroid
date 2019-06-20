@@ -64,7 +64,7 @@ public class LoginPresenter extends BasePresenter
 
 
     @Override
-    public void onSuccess(Data data, int flag) {
+    public void onSuccess(Data data, int...params) {
         mView.LoginSuccess(data);
     }
 

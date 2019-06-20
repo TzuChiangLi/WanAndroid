@@ -22,12 +22,16 @@ public interface Contract {
     }
 
     interface SettingPresenter {
+        void getVersion();
+
         void changeDisplayMode(boolean flag);
 
         void Logout();
     }
 
     interface SettingView extends BaseView<Contract.SettingPresenter> {
+        void setVersion(String version);
+
         void afterChangeMode();
 
         void afterLogout();
@@ -68,18 +72,22 @@ public interface Contract {
         //获取玩安卓置顶文章
         void getHomeTopArticle();
 
+        void getMoreArticle(int flag,int page);
+
         //获取玩安卓顶部图片
         void getHomeTopImgBanner();
 
         void getSelectedURL(String URL);
 
-        void collectArticle(int ID, boolean isCollect, int position);
+        void collectArticle(int flag,int ID, boolean isCollect, int position);
 
     }
 
     interface HomeView extends BaseView<Contract.HomePresenter> {
         //与V层交互，需要将获取的信息展示出来
         void setEmptyTopArticle(List<Data> mList);
+
+        void setMoreArticle(int flag,List<Datas> mList);
 
         void setHomeTopArticle(List<Data> mList);
 
@@ -89,7 +97,9 @@ public interface Contract {
 
         boolean onFinishLoad();
 
-        void collectedArticle(int position, boolean isCollect);
+        void collectedTopArticle(int position, boolean isCollect);
+        void collectedMoreArticle(int position, boolean isCollect);
+
     }
 
     interface UserPresenter {

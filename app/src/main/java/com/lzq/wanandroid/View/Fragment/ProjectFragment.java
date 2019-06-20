@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Base.BaseFragment;
@@ -22,7 +21,6 @@ import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.ActivityUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,6 +41,7 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
     private Contract.ProjectPresenter mPresenter;
     private ProjectItemFragment mFragment;
     private List<Fragment> fragments = new ArrayList<>();
+    private boolean isRefresh = false;
 
     public ProjectFragment() {
     }
@@ -56,7 +55,9 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_c, container, false);
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         if (mPresenter == null) {
             mPresenter = ProjectPresenter.createPresenter(this, WebTask.getInstance());
         }
@@ -80,35 +81,35 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
         for (int i = 0; i < title.length; i++) {
             mTabLayout.getTabAt(i).setText(title[i]);
         }
-
     }
 
     @Override
     public void setTabView(List<ProjectTree.DataBean> mList) {
-        if (mList != null && mList.size() != 0) {
+        try {
             mTabLayout.removeAllTabs();
             fragments.clear();
-        }
-        if (mFragment == null) {
-            mFragment = ProjectItemFragment.newInstance();
-            ActivityUtils.getInstance().addFragmentToActivity(getChildFragmentManager(), mFragment, R.id.project_viewpager);
-        }
-        ProjectItemPresenter mItemPresenter = null;
-        for (int i = 0; i < mList.size(); i++) {
-            mTabLayout.addTab(mTabLayout.newTab());
-            fragments.add(ProjectItemFragment.newInstance());
-            mFragment = (ProjectItemFragment) fragments.get(i);
-            mItemPresenter = new ProjectItemPresenter(mFragment, WebTask.getInstance(), mList.get(i).getId());
-            mFragment.setPresenter(mItemPresenter);
-        }
+            if (mFragment == null) {
+                mFragment = ProjectItemFragment.newInstance();
+                ActivityUtils.getInstance().addFragmentToActivity(getChildFragmentManager(), mFragment, R.id.project_viewpager);
+            }
+            ProjectItemPresenter mItemPresenter = null;
+            for (int i = 0; i < mList.size(); i++) {
+                mTabLayout.addTab(mTabLayout.newTab());
+                fragments.add(ProjectItemFragment.newInstance());
+                mFragment = (ProjectItemFragment) fragments.get(i);
+                mItemPresenter = new ProjectItemPresenter(mFragment, WebTask.getInstance(), mList.get(i).getId());
+                mFragment.setPresenter(mItemPresenter);
+            }
 
-//        mTabLayout.setupWithViewPager(mViewPager);
-        mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), fragments));
-        mViewPager.setCurrentItem(0);
-        mViewPager.setOffscreenPageLimit(2);
-        for (int i = 0; i < mList.size(); i++) {
-            mTabLayout.getTabAt(i).setText(mList.get(i).getName());
-            Log.d(TAG, "----setTabView: " + mList.get(i).getName());
+            mTabLayout.setupWithViewPager(mViewPager);
+            mViewPager.setAdapter(new FragmentAdapter(getChildFragmentManager(), fragments));
+            mViewPager.setCurrentItem(0);
+            mViewPager.setOffscreenPageLimit(2);
+            for (int i = 0; i < mList.size(); i++) {
+                mTabLayout.getTabAt(i).setText(mList.get(i).getName());
+                Log.d(TAG, "----setTabView: " + mList.get(i).getName());
+            }
+        } catch (Exception e) {
         }
     }
 
@@ -124,10 +125,8 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
-        if (event.target == Event.TARGET_PROJECT) {
-            if (event.type == Event.TYPE_PROJECT_REFRESH) {
-                mPresenter.initTabView();
-            }
+        if (event.target == Event.TARGET_RESFRESH) {
+            mPresenter.initTabView();
         }
     }
 

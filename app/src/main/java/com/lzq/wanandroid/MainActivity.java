@@ -17,7 +17,7 @@ import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BaseActivity;
+import com.lzq.wanandroid.Base.NetChangeActivity;
 import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.HomePresenter;
 import com.lzq.wanandroid.Presenter.MainPresenter;
@@ -69,6 +69,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private ProjectPresenter mProjectPresenter;
     private FragmentAdapter mFAdapter;
     private int oldHeight;
+    private boolean isConnect = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
-        Log.d(TAG, "----onCreate: ");
         initView();
         initOnListener();
     }
@@ -152,7 +152,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
-        mVPager.setOffscreenPageLimit(2);
+        mVPager.setOffscreenPageLimit(4);
         mFAdapter = new FragmentAdapter(getSupportFragmentManager(), mList);
         mVPager.setAdapter(mFAdapter);
         //自动适配ViewPager页面切换
@@ -195,6 +195,8 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                     event.type = Event.TYPE_HOME_BACKTOTOP;
                     EventBus.getDefault().post(event);
                 }
+                if (index == 2) {
+                }
             }
         });
     }
@@ -228,6 +230,8 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
             switch (event.type) {
                 case Event.TYPE_CHANGE_DAY_NIGHT_MODE:
                     recreate();
+                    mFuncImgBtn.setVisibility(View.VISIBLE);
+                    mFuncImgBtn.setAlpha(1f);
                     break;
                 case Event.TYPE_LOGIN_SUCCESS:
                     TitleAnim.hide(mTitleTv);
@@ -268,9 +272,9 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     @Override
     public void doNetWork() {
-        Event event=new Event();
-        event.target=Event.TARGET_PROJECT;
-        event.type=Event.TYPE_PROJECT_REFRESH;
+        Log.d(TAG, "----doNetWork: " + isConnect);
+        Event event = new Event();
+        event.target = Event.TARGET_RESFRESH;
         EventBus.getDefault().post(event);
     }
 

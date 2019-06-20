@@ -145,6 +145,11 @@ public class Event {
      * 目标界面-导航体系
      */
     public static final int TARGET_SYSTEM = 10;
+    /**
+     * 目标界面-全局刷新
+     */
+    public static final int TARGET_RESFRESH = 11;
+
 
 
     public int target;

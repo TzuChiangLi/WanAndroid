@@ -23,8 +23,8 @@ public class TitlePresenter extends BasePresenter implements OffAccountContract.
     }
 
     @Override
-    public void onSuccess(List<Data> mList, int flag) {
-        switch (flag) {
+    public void onSuccess(List<Data> mList, int...params) {
+        switch (params[0]) {
             case StringUtils.TYPE_ACCOUNT_TITLE:
                 mView.setTitleText(mList);
                 break;

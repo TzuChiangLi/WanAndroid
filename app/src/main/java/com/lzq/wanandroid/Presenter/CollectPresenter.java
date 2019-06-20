@@ -49,8 +49,8 @@ public class CollectPresenter extends BasePresenter implements Contract.CollectP
 
 
     @Override
-    public void onSuccess(Object o, int flag) {
-        switch (flag) {
+    public void onSuccess(Object o, int...params) {
+        switch (params[0]) {
             case StringUtils.TYPE_COLLECT_CONTENT_LOAD:
                 List<Datas> mList = (List<Datas>) o;
                 for (int i = 0; i < mList.size(); i++) {

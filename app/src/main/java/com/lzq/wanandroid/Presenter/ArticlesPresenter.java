@@ -37,10 +37,10 @@ public class ArticlesPresenter extends BasePresenter implements OffAccountContra
 
 
     @Override
-    public void onSuccess(Object data, int flag) {
+    public void onSuccess(Object data, int...params) {
         int position;
         try {
-            switch (flag) {
+            switch (params[0]) {
                 case StringUtils.TYPE_COLLECT_NO:
                     position = (int) data;
                     mView.collectedArticle(position, false);

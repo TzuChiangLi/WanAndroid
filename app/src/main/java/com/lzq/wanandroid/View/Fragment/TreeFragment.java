@@ -17,6 +17,7 @@ import com.lzq.wanandroid.Api.FlowTagCallBack;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Model.Children;
 import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.TreePresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
@@ -26,6 +27,10 @@ import com.lzq.wanandroid.View.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -55,6 +60,9 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView, Flo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tree, container, false);
         ButterKnife.bind(this, view);
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
         mView = view;
         if (mPresenter == null) {
             WebTask mTask = WebTask.getInstance();
@@ -131,5 +139,16 @@ public class TreeFragment extends BaseFragment implements Contract.TreeView, Flo
     @Override
     public void getTreeLink(String URL) {
 
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(Event event) {
+        if (event.target == Event.TARGET_RESFRESH) {
+            mRefreshView.autoRefresh();
+        }
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -1,5 +1,9 @@
 package com.lzq.wanandroid.Presenter;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 import com.blankj.utilcode.util.SPUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Base.BasePresenter;
@@ -12,15 +16,30 @@ import okhttp3.HttpUrl;
 public class SettingPresenter extends BasePresenter implements Contract.SettingPresenter {
     private static final String TAG = "SettingPresenter";
     private Contract.SettingView mView;
+    private Context mContext;
 
-    public SettingPresenter(Contract.SettingView mView) {
+    public SettingPresenter(Contract.SettingView mView, Context mContext) {
         this.mView = mView;
+        this.mContext=mContext;
     }
 
-    public static SettingPresenter createPresenter(Contract.SettingView mView) {
-        return new SettingPresenter(mView);
+    public static SettingPresenter createPresenter(Contract.SettingView mView, Context mContext) {
+        return new SettingPresenter(mView,mContext);
     }
 
+
+    @Override
+    public void getVersion() {
+        try {
+            // 获取packagemanager的实例
+            PackageManager packageManager = mContext.getPackageManager();
+            // getPackageName()是你当前类的包名，0代表是获取版本信息
+            PackageInfo packInfo = packageManager.getPackageInfo(mContext.getPackageName(), 0);
+            String version = packInfo.versionName;
+            mView.setVersion(version);
+        } catch (Exception e) {
+        }
+    }
 
     @Override
     public void changeDisplayMode(boolean flag) {

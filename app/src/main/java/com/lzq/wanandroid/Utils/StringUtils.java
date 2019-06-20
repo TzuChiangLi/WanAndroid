@@ -17,7 +17,7 @@ public class StringUtils {
     public static final String COLLECT_ARTICCLE = "lg/collect/";
     public static final String CANCEL_COLLECT = "lg/uncollect_originId/";
     public static final String CANCEL_COLLECT_USER = "lg/uncollect/";
-    public static final String HOME_MORE_ARTICLE = "article/list/";
+    public static final String HOME_MORE_ARTICLE = "article/list/";//article/list/0/json
     public static final String HOME_TOP_ARTICLE = "article/top/json";
     public static final String HOME_IMG_BANNER = "banner/json";
     public static final String OFFICIAL_ACCOUNT = "wxarticle/chapters/json";
@@ -29,7 +29,7 @@ public class StringUtils {
 
     public static final int TYPE_HOME_TOP_ARTICLE = 0;
     public static final int TYPE_HOME_IMG_BANNER = 1;
-    public static final int TYPE_HOME_MORE_ARTICLE = 2;
+    public static final int TYPE_HOME_MORE_ARTICLE_LOAD = 2;
     public static final int TYPE_COLLECT_YES = 3;
     public static final int TYPE_COLLECT_NO = 4;
     public static final int TYPE_ACCOUNT_TITLE = 5;
@@ -50,11 +50,15 @@ public class StringUtils {
     public static final int TYPE_PROJECT_ITEM_LOAD = 20;
     public static final int TYPE_PROJECT_ITEM_ADD = 21;
     public static final int TYPE_PROJECT_TREE = 22;
+    public static final int TYPE_HOME_MORE_ARTICLE_ADD = 23;
+    public static final int TYPE_HOME_TOP_COLLECT = 23;
+    public static final int TYPE_HOME_MORE_COLLECT = 24;
 
     public static final String TYPE_HOTKEY_CONTENT_LOAD = "HOTKEY_CONTENT_LOAD";
     public static final String TYPE_HOTKEY_CONTENT_ADD = "HOTKEY_CONTENT_ADD";
     public static final String TYPE_IMG_BANNER = "IMGBANNER";
     public static final String TYPE_TOP_ARTICLE = "TOPARTICLE";
+    public static final String TYPE_MORE_ARTICLE = "MOREARTICLE";
     public static final String TYPE_LOGIN = "LOGIN";
     public static final String TYPE_REGISTER = "REGISTER";
     public static final String CONFIG_SETTINGS = "settings";

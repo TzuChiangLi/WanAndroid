@@ -46,7 +46,8 @@ public class ToDoFragment extends BaseFragment implements Contract.ToDoView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todo, container, false);
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+        EventBus.getDefault().register(this);}
         mView = view;
         return view;
     }

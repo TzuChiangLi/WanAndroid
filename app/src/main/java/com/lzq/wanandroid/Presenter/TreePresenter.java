@@ -55,30 +55,30 @@ public class TreePresenter extends BasePresenter implements Contract.TreePresent
     }
 
     @Override
-    public void onSuccess(Object o, final int flag) {
+    public void onSuccess(Object o, final int...params) {
         final List<Data> data = (List<Data>) o;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Tree tree = null;
-                LitePal.deleteAll(Tree.class, "type=?", String.valueOf(flag));
-                switch (flag) {
+                LitePal.deleteAll(Tree.class, "type=?", String.valueOf(params[0]));
+                switch (params[0]) {
                     case StringUtils.TYPE_TREE_NAVI:
                         for (int i = 0; i < data.size(); i++) {
-                            tree = new Tree(data.get(i).getCid(), data.get(i).getName(), flag);
+                            tree = new Tree(data.get(i).getCid(), data.get(i).getName(), params[0]);
                             tree.save();
                         }
                         break;
                     case StringUtils.TYPE_TREE_KNOW:
                         for (int i = 0; i < data.size(); i++) {
-                            tree = new Tree(data.get(i).getId(), data.get(i).getName(), flag);
+                            tree = new Tree(data.get(i).getId(), data.get(i).getName(), params[0]);
                             tree.save();
                         }
                         break;
                 }
             }
         }).start();
-        mView.onLoadTreeData(flag, data);
+        mView.onLoadTreeData(params[0], data);
         mView.onFinishLoad();
     }
 

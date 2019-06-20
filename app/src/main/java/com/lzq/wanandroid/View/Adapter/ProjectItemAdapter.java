@@ -44,7 +44,7 @@ public class ProjectItemAdapter extends BaseQuickAdapter<ProjectItem.DataBean.Da
         if (TextUtils.isEmpty(item.getAuthor())) {
             return;
         } else {
-            helper.setText(R.id.rv_article_img_title, item.getTitle().replace("&quot;", "\"").replace("&ldquo;", "\"").replace("&rdquo;", "\""));
+            helper.setText(R.id.rv_article_img_title, item.getTitle().replace("&mdash;","——").replace("&quot;", "\"").replace("&ldquo;", "\"").replace("&rdquo;", "\""));
             helper.setText(R.id.rv_article_img_date, item.getNiceDate());
             helper.setText(R.id.rv_article_img_desc, StringEscapeUtils.unescapeHtml4(item.getDesc()));
             Glide.with(mView.getContext())

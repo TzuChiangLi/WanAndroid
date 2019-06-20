@@ -62,7 +62,8 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_collect, container, false);
         ButterKnife.bind(this, view);
-        EventBus.getDefault().register(this);
+        if (!EventBus.getDefault().isRegistered(this)){
+        EventBus.getDefault().register(this);}
         mView = view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
 
@@ -195,6 +196,9 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
                 default:
                     break;
             }
+        }
+        if (event.target==Event.TARGET_RESFRESH){
+            mRefreshView.autoRefresh();
         }
     }
 

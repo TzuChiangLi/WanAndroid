@@ -28,7 +28,7 @@ public class ProjectPresenter extends BasePresenter implements Contract.ProjectP
 
     @Override
     public void initView() {
-        String[] title = new String[]{"完整项目", "跨平台应用", "资源聚合类", "动画"};
+        String[] title = new String[]{"完整项目", "跨平台应用", "资源聚合类", "动画","RV列表动效","项目基础功能"};
         mView.setEmptyTabView(title);
     }
 
@@ -43,11 +43,10 @@ public class ProjectPresenter extends BasePresenter implements Contract.ProjectP
     }
 
     @Override
-    public void onSuccess(List<ProjectTree.DataBean> data, int flag) {
-        switch (flag) {
+    public void onSuccess(List<ProjectTree.DataBean> data,int...params) {
+        switch (params[0]) {
             case StringUtils.TYPE_PROJECT_TREE:
                 mView.setTabView(data);
-                Log.d(TAG, "---onSuccess项目: " + flag);
                 break;
         }
     }

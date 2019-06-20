@@ -35,17 +35,38 @@ public class WebTask implements NetTask<Data> {
     @Override
     public void execute(final LoadTasksCallBack callBack, final int... params) {
         switch (params[0]) {
-            case StringUtils.TYPE_PROJECT_ITEM_LOAD:
-                //1/json?cid=294
-                OkGo.<String>get(StringUtils.URL+StringUtils.PROJECT_LOAD+params[1]+"/json?cid="+params[2])
+            case StringUtils.TYPE_HOME_MORE_ARTICLE_LOAD:
+            case StringUtils.TYPE_HOME_MORE_ARTICLE_ADD:
+                OkGo.<String>get(StringUtils.URL + StringUtils.HOME_MORE_ARTICLE + params[1] + "/json")
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
                                 String result = response.body();
-                                Gson gson= new Gson();
-                                ProjectItem projectItem=gson.fromJson(result,ProjectItem.class);
-                                if (projectItem.getErrorCode()==0){
-                                    callBack.onSuccess(projectItem.getData().getDatas(),params[0]);
+                                Gson gson = new Gson();
+                                WanAndroid_Content wanAndroid_content = gson.fromJson(result, WanAndroid_Content.class);
+                                if (wanAndroid_content.getErrorCode() == 0) {
+                                    callBack.onSuccess(wanAndroid_content.getData().getDatas(), params[0]);
+                                }
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                super.onFinish();
+                                callBack.onFinish();
+                            }
+                        });
+                break;
+            case StringUtils.TYPE_PROJECT_ITEM_LOAD:
+                //1/json?cid=294
+                OkGo.<String>get(StringUtils.URL + StringUtils.PROJECT_LOAD + params[1] + "/json?cid=" + params[2])
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                String result = response.body();
+                                Gson gson = new Gson();
+                                ProjectItem projectItem = gson.fromJson(result, ProjectItem.class);
+                                if (projectItem.getErrorCode() == 0) {
+                                    callBack.onSuccess(projectItem.getData().getDatas(), params[0]);
                                 }
                             }
                         });
@@ -112,11 +133,17 @@ public class WebTask implements NetTask<Data> {
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
-                                Log.d(TAG, "----onSuccess 检查: "+params[1]+"/"+params[2]);
+                                Log.d(TAG, "----onSuccess 检查: " + params[1] + "/" + params[2]);
                                 String result = response.body();
                                 Gson gson = new Gson();
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
                                 if (wanAndroid.getErrorCode() == 0) {
+                                    if (params.length > 3) {
+                                        if (params[3] == StringUtils.TYPE_HOME_TOP_COLLECT || params[3] == StringUtils.TYPE_HOME_MORE_COLLECT) {
+                                            callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_YES, params[3]);
+                                            return;
+                                        }
+                                    }
                                     callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_YES);
                                 }
 
@@ -133,6 +160,12 @@ public class WebTask implements NetTask<Data> {
                                 Gson gson = new Gson();
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
                                 if (wanAndroid.getErrorCode() == 0) {
+                                    if (params.length > 3) {
+                                        if (params[3] == StringUtils.TYPE_HOME_TOP_COLLECT || params[3] == StringUtils.TYPE_HOME_MORE_COLLECT) {
+                                            callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_YES, params[3]);
+                                            return;
+                                        }
+                                    }
                                     callBack.onSuccess(params[2], StringUtils.TYPE_COLLECT_NO);
                                 }
                             }

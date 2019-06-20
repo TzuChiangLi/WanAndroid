@@ -74,8 +74,8 @@ public class SearchPresenter extends BasePresenter implements Contract.SearchPre
     }
 
     @Override
-    public void onSuccess(Object o, int flag) {
-        switch (flag) {
+    public void onSuccess(Object o,int...params) {
+        switch (params[0]) {
             case StringUtils.TYPE_COLLECT_NO:
                 int position = (int) o;
                 mView.collectedArticle(position, false);
@@ -88,7 +88,7 @@ public class SearchPresenter extends BasePresenter implements Contract.SearchPre
             case  StringUtils.TYPE_HOT_KEY_CONTENT_LOAD:
                 SearchResult.DataBean dataBean= (SearchResult.DataBean) o;
                 if (dataBean.getCurPage()!=0&&dataBean.getDatas()!=null){
-                    mView.setHotKeyContent(flag,dataBean.getDatas());
+                    mView.setHotKeyContent(params[0],dataBean.getDatas());
                 }
                 break;
             case StringUtils.TYPE_HOT_KEY:

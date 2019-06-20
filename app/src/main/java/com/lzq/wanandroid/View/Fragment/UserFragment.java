@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Base.BaseFragment;
+import com.lzq.wanandroid.Model.Event;
 import com.lzq.wanandroid.Presenter.CollectPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.R;
@@ -57,7 +57,7 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user, container, false);
         ButterKnife.bind(this, view);
-        if (!EventBus.getDefault().isRegistered(this)){
+        if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
         if (mPresenter == null) {
@@ -79,6 +79,7 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
                 mPresenter.initView();
             }
         }
+
     }
 
 
@@ -103,9 +104,10 @@ public class UserFragment extends BaseFragment implements Contract.UserView {
         WebTask mTask = WebTask.getInstance();
         CollectPresenter mCollectPresenter;
         CollectFragment mFragment;
-
-        mList.add(new CollectFragment());
-        mList.add(new ToDoFragment());
+        if (mList.size() == 0 || mList == null) {
+            mList.add(new CollectFragment());
+            mList.add(new ToDoFragment());
+        }
         for (int i = 0; i < tabName.length; i++) {
             mTabLayout.addTab(mTabLayout.newTab());
         }

@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.SearchResultActivity"></activity>
+        <activity android:name=".View.VersionActivity"></activity>
+        <activity android:name=".View.SearchResultActivity" />
         <activity android:name=".View.SearchActivity" />
         <activity android:name=".View.LoginActivity" />
         <activity android:name=".View.WebActivity" />

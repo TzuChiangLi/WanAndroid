@@ -1,4 +1,4 @@
-package com.lzq.wanandroid;
+package com.lzq.wanandroid.Base;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -50,7 +50,7 @@ public abstract class NetChangeActivity extends BaseActivity {
             if (networkInfo != null && networkInfo.isConnected()&& NetworkUtils.isAvailableByPing()) {
                 doNetWork();
             } else {
-                ToastUtils.show("您当前网络有问题，请检查设置！");
+//                ToastUtils.show("您当前网络有问题，请检查设置！");
             }
         }
     }

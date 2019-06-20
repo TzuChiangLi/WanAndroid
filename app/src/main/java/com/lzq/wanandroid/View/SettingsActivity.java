@@ -1,5 +1,7 @@
 package com.lzq.wanandroid.View;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
@@ -45,17 +47,17 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
         if (mPresenter == null) {
-            mPresenter = SettingPresenter.createPresenter(this);
+            mPresenter = SettingPresenter.createPresenter(this,this);
         }
         initView();
 
     }
 
     private void initView() {
-        mVersionTv.setText("1.0.0");
         boolean nightMode = SPUtils.getInstance(StringUtils.CONFIG_SETTINGS, MODE_PRIVATE).getBoolean(StringUtils.KEY_NIGHT_MODE, false);
         mNightBtn.setChecked(nightMode);
         mNightBtn.setOnCheckedChangeListener(this);
+        mPresenter.getVersion();
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
         mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
@@ -75,6 +77,10 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         });
     }
 
+    @OnClick(R.id.set_btn_about)
+    public void showAbout() {
+        startActivity(VersionActivity.class);
+    }
 
     @OnClick(R.id.set_btn_logout)
     public void doLogout() {
@@ -99,6 +105,11 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         }
 
 
+    }
+
+    @Override
+    public void setVersion(String version) {
+        mVersionTv.setText(version);
     }
 
     @Override
@@ -127,6 +138,7 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         EventBus.getDefault().post(event);
         finishActivity();
     }
+
 
     @Override
     public void setPresenter(Contract.SettingPresenter presenter) {

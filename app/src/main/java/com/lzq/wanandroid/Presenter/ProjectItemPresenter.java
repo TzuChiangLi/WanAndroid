@@ -79,9 +79,9 @@ public class ProjectItemPresenter extends BasePresenter implements Contract.Proj
     }
 
     @Override
-    public void onSuccess(Object data, int flag) {
+    public void onSuccess(Object data, int...params) {
         int position;
-        switch (flag) {
+        switch (params[0]) {
             case StringUtils.TYPE_COLLECT_YES:
                 position = (int) data;
                 mView.collectedArticle(position, true);
@@ -92,7 +92,7 @@ public class ProjectItemPresenter extends BasePresenter implements Contract.Proj
                 break;
             case StringUtils.TYPE_PROJECT_ITEM_LOAD:
             case StringUtils.TYPE_PROJECT_ITEM_ADD:
-                mView.setProjectContent((List<ProjectItem.DataBean.Datas>)data, flag);
+                mView.setProjectContent((List<ProjectItem.DataBean.Datas>)data, params[0]);
                 break;
         }
     }

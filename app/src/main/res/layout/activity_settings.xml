@@ -107,6 +107,12 @@
 
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divide_line" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
