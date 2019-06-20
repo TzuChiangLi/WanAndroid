@@ -1,5 +1,6 @@
 package com.lzq.wanandroid.View.Animation;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.view.View;
 
@@ -22,8 +23,10 @@ public class CollectAnim {
 
 
     public static void show(View view) {
-        ObjectAnimator scaleCollect = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.2f,1.5f,1.7f,1.5f,1.2f, 1f);
-        scaleCollect.setDuration(200);
-        scaleCollect.start();
+        ObjectAnimator scaleCollectX = ObjectAnimator.ofFloat(view, "scaleX", 1f,1.4f, 1f);
+        ObjectAnimator scaleCollectY = ObjectAnimator.ofFloat(view, "scaleY", 1f,1.4f, 1f);
+        AnimatorSet scaleSet=new AnimatorSet();
+        scaleSet.playTogether(scaleCollectX,scaleCollectY);
+        scaleSet.setDuration(200).start();
     }
 }
