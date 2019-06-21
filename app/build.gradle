@@ -6,7 +6,7 @@ android {
         applicationId "com.lzq.wanandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode getAPpVersionCode()
+        versionCode getAPPVersionCode()
         versionName getIncreasedVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi", "armeabi-v7a", "armeabi-v8a", "x86", "x86_64", "mips" }
@@ -20,7 +20,7 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "WanAndroid_${variant.versionName}_${variant.name}.apk"
+            outputFileName = "WanAndroid_${variant.versionName}_${variant.versionCode}_${variant.name}.apk"
         }
     }
 
@@ -35,7 +35,7 @@ def getIncreasedVersionName() {
     return (String) "1.0." + getIncreasedVersionCode()
 }
 
-def getAPpVersionCode(){
+def getAPPVersionCode(){
     def stdout = new ByteArrayOutputStream()
     exec {
         commandLine 'git','tag','--list'
