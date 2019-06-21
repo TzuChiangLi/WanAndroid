@@ -22,9 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <!--<meta-data-->
+        <!--android:name="android.max_aspect"-->
+        <!--android:value="2.1" />-->
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.1" />
+            android:value="ratio_float" />
 
         <activity android:name=".View.VersionActivity"></activity>
         <activity android:name=".View.SearchResultActivity" />

@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_daily_white"
-        android:textColor="@color/text_daily_mode_one"
+        android:textColor="@color/text_daily_mode"
         android:textSize="23sp"
         android:padding="12dp"
         android:text="@string/ver_intro_title" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:background="@color/bg_daily_white"
         android:lineSpacingExtra="@dimen/dp_2"
-        android:textColor="@color/text_daily_mode_one"
+        android:textColor="@color/text_daily_mode"
         android:textSize="15sp"
         android:paddingHorizontal="12dp"
         android:text="@string/ver_intro_author" />
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_daily_white"
-        android:textColor="@color/text_daily_mode_one"
+        android:textColor="@color/text_daily_mode"
         android:textSize="15sp"
         android:paddingHorizontal="12dp"
         android:text="@string/ver_intro_content" />

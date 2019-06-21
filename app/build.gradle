@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 
 android {
@@ -6,7 +8,7 @@ android {
         applicationId "com.lzq.wanandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode getAPPVersionCode()
+        versionCode getIncreasedVersionCode()
         versionName getIncreasedVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi", "armeabi-v7a", "armeabi-v8a", "x86", "x86_64", "mips" }
@@ -27,21 +29,40 @@ android {
 }
 
 //versionCode取时间戳对应的天数（即1970.1.1到当前天数）
-def getIncreasedVersionCode() {
+def getVersion() {
     return (int) (System.currentTimeMillis() / (1000 * 60 * 60 * 24))
 }
 
 def getIncreasedVersionName() {
-    return (String) "1.0." + getIncreasedVersionCode()
+    return (String) ("1.0." + getVersion())
 }
 
-def getAPPVersionCode(){
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git','tag','--list'
-        standardOutput = stdout
+
+def getIncreasedVersionCode() {// 获取版本号
+    def versionFile = file('version.properties')// 读取第一步新建的文件
+    if (versionFile.canRead()) {// 判断文件读取异常
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def versionCode = versionProps['VERSION_CODE'].toInteger()// 读取文件里面的版本号
+        switch (gradle.startParameter.toString().split("\\,").length) {
+            case 31://仅在Release时增加版本号,其他渠道包在此分别配置
+            case 28:
+                versionCode = versionCode + 1
+                versionProps['VERSION_CODE'] = String.valueOf(versionCode)
+                versionProps.store(versionFile.newWriter(), null)
+            case 24://Build Ctrl+F9
+            case 27://Clean Project
+            case 34://Debug shift+F10
+                break
+            default:
+                versionProps.put("UN_DEFINED" + new SimpleDateFormat("yyMMddHHmmss").format(new Date()),
+                        String.valueOf(gradle.startParameter.toString().split("\\,").length))
+                versionProps.store(versionFile.newWriter(), null)
+        }
+        return (int) versionCode // 返回自增之后的版本号
+    } else {
+        throw new FileNotFoundException("Could not read version.properties!")
     }
-    return stdout.toString().split("\n").size()
 }
 
 

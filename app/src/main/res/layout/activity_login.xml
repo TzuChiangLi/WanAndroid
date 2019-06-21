@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp_60"
-        android:elevation="@dimen/dp_8"
+        android:elevation="12dp"
         app:cardCornerRadius="@dimen/dp_8"
         app:layout_constraintBottom_toTopOf="@+id/user_btn_login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,15 +178,15 @@
 
     </android.support.v7.widget.CardView>
 
-    <Button
+    <TextView
         android:id="@+id/user_btn_register_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"
         android:text="@string/user_btn_register"
-        android:textColor="@color/text_daily_mode"
+        android:textColor="@color/text_daily_mode_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

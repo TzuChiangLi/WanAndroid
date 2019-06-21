@@ -41,8 +41,9 @@
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_below="@id/main_topbar" />
+        android:layout_above="@+id/main_bottom_bar"
+        android:layout_below="@id/main_topbar"
+         />
 
     <com.bottom.PageNavigationView
         android:id="@+id/main_bottom_bar"

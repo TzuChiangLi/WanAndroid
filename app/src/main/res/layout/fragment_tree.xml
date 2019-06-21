@@ -17,6 +17,5 @@
         android:id="@+id/tree_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/dp_50"
         tools:listitem="@layout/rv_tree_item" />
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>

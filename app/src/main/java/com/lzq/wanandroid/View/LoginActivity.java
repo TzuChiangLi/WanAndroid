@@ -51,7 +51,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @BindView(R.id.user_btn_login)
     Button mLoginBtn;
     @BindView(R.id.user_btn_register_now)
-    Button mRegisterNowBtn;
+    TextView mRegisterNowBtn;
     @BindView(R.id.user_ll_confirm)
     LinearLayout mConfirmView;
     @BindView(R.id.user_line_confirm)

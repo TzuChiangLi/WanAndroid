@@ -217,6 +217,5 @@
     <com.scwang.smartrefresh.layout.footer.ClassicsFooter
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_50"
         android:background="@color/bg_daily_mode" />
 </com.scwang.smartrefresh.layout.SmartRefreshLayout>
