@@ -11,8 +11,8 @@
         android:id="@+id/login_ll_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="@dimen/dp_70"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -47,8 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp_60"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:elevation="@dimen/dp_8"
         app:cardCornerRadius="@dimen/dp_8"
         app:layout_constraintBottom_toTopOf="@+id/user_btn_login"
@@ -59,7 +57,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:background="@color/bg_card_view"
             android:gravity="center"
             android:orientation="vertical"
@@ -185,12 +182,13 @@
         android:id="@+id/user_btn_register_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
-        android:text="@string/user_btn_register_now"
+        android:text="@string/user_btn_register"
         android:textColor="@color/text_daily_mode"
-        app:layout_constraintEnd_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/user_btn_login"

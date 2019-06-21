@@ -9,6 +9,7 @@ import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.SPCookieStore;
+import com.tencent.bugly.Bugly;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 
@@ -31,7 +32,7 @@ public class WanAndroid extends Application {
         AppCompatDelegate.setDefaultNightMode(nightMode ? AppCompatDelegate.MODE_NIGHT_YES :
                 AppCompatDelegate.MODE_NIGHT_NO);
         QbSdk.initX5Environment(this, null);
-        CrashReport.initCrashReport(getApplicationContext(), "2aa3615a5e", false);
+        Bugly.init(getApplicationContext(), "2aa3615a5e", false);
         LitePal.initialize(this);
         LitePal.getDatabase();
         /**

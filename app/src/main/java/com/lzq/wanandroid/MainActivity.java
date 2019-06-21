@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.bottom.NavigationController;
@@ -70,6 +71,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private FragmentAdapter mFAdapter;
     private int oldHeight;
     private boolean isConnect = false;
+    private long lastClickBackTime = System.currentTimeMillis() - 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -288,6 +290,18 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     public void afterCheckLogin(boolean flag) {
         if (flag != true) {
             startActivityWithoutAnimation(LoginActivity.class);
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - lastClickBackTime > 2000) { // 后退阻断
+            Toast.makeText(this, "再点一次退出", Toast.LENGTH_LONG).show();
+            lastClickBackTime = System.currentTimeMillis();
+        } else { // 关掉app
+            System.exit(0);//完全退出  再次启动很慢
+            finish();//保留进程 再次启动较快
         }
     }
 }

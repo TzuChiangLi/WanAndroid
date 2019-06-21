@@ -6,7 +6,7 @@ android {
         applicationId "com.lzq.wanandroid"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode getIncreasedVersionCode()
+        versionCode getAPpVersionCode()
         versionName getIncreasedVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk { abiFilters "armeabi", "armeabi-v7a", "armeabi-v8a", "x86", "x86_64", "mips" }
@@ -34,6 +34,16 @@ def getIncreasedVersionCode() {
 def getIncreasedVersionName() {
     return (String) "1.0." + getIncreasedVersionCode()
 }
+
+def getAPpVersionCode(){
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git','tag','--list'
+        standardOutput = stdout
+    }
+    return stdout.toString().split("\n").size()
+}
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -89,7 +99,7 @@ dependencies {
     implementation files('libs/tbs_sdk_thirdapp_v4.3.0.1072_43646_sharewithdownloadwithfile_withoutGame_obfs_20190429_175122.jar')
     //X5内核
     implementation 'com.just.agentwebX5:agentwebX5:2.0.0'
-    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
     //流式布局
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     //LitePal
