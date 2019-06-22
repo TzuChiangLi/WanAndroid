@@ -102,7 +102,6 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mRecyclerView.setNestedScrollingEnabled(false);//禁止滑动
         mRefreshView.setEnableLoadMore(false);
-        mRefreshView.setEnableLoadMore(false);
         mAdapter.openLoadAnimation();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setUpFetchEnable(true);
@@ -110,34 +109,16 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
 
     @Override
     public void setCollectList(final List<Datas> data) {
+        if (data.size()==0||data==null){
+            mAdapter.setEmptyView(getView());
+            return;
+        }
         mList.clear();
         mList = data;
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
         mRecyclerView.setNestedScrollingEnabled(true);//禁止滑动
         mRefreshView.setEnableLoadMore(true);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.enableSwipeItem();
-        mAdapter.setOnItemSwipeListener(new OnItemSwipeListener() {
-            @Override
-            public void onItemSwipeStart(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void clearView(RecyclerView.ViewHolder viewHolder, int pos) {
-
-            }
-
-            @Override
-            public void onItemSwiped(RecyclerView.ViewHolder viewHolder, int pos) {
-                mPresenter.cancelCollect(data.get(pos).getId(), pos, data.get(pos).getOriginId());
-            }
-
-            @Override
-            public void onItemSwipeMoving(Canvas canvas, RecyclerView.ViewHolder viewHolder, float dX, float dY, boolean isCurrentlyActive) {
-
-            }
-        });
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
