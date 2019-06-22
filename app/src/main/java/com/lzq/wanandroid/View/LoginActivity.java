@@ -1,6 +1,7 @@
 package com.lzq.wanandroid.View;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -19,7 +20,11 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
+import com.kongzue.dialog.v2.DialogSettings;
+import com.kongzue.dialog.v2.Notification;
 import com.lzq.wanandroid.Base.BaseActivity;
 import com.lzq.wanandroid.Api.LoginContract;
 import com.lzq.wanandroid.Model.Data;
@@ -38,8 +43,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginContract.LoginView {
+import static com.kongzue.dialog.v2.DialogSettings.STYLE_KONGZUE;
+
+public class LoginActivity extends BaseActivity implements LoginContract.LoginView, OnTitleBarListener {
     private static final String TAG = "LoginActivity";
+    @BindView(R.id.login_titlebar)
+    TitleBar mTitleBar;
     @BindView(R.id.cardView)
     CardView mCardView;
     @BindView(R.id.user_edt_id)
@@ -50,8 +59,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     ClearEditText mConfirmEdt;
     @BindView(R.id.user_btn_login)
     Button mLoginBtn;
-    @BindView(R.id.user_btn_register_now)
-    TextView mRegisterNowBtn;
+//    @BindView(R.id.user_btn_register_now)
+//    TextView mRegisterNowBtn;
     @BindView(R.id.user_ll_confirm)
     LinearLayout mConfirmView;
     @BindView(R.id.user_line_confirm)
@@ -72,10 +81,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        Log.d(TAG, "----创建了几次");
+        ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
         EventBus.getDefault().register(this);
         doAnimation(0);
-        ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
+        mTitleBar.setRightTitle("注册");
+        mTitleBar.setOnTitleBarListener(this);
         mLoginLayout = (ConstraintLayout.LayoutParams) mLoginBtn.getLayoutParams();
         if (mPresenter == null) {
             WebTask mTask = WebTask.getInstance();
@@ -142,14 +152,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     public void setLoginLocation(int height) {
         mLoginLayout.bottomMargin = 16;//此处单位是dp
         mLoginBtn.setLayoutParams(mLoginLayout);
-        mRegisterNowBtn.setVisibility(View.GONE);
+//        mRegisterNowBtn.setVisibility(View.GONE);
     }
 
     @Override
     public void refreshLocation(int height) {
         mLoginLayout.bottomMargin = ConvertUtils.dp2px(100);
         mLoginBtn.setLayoutParams(mLoginLayout);
-        mRegisterNowBtn.setVisibility(View.VISIBLE);
+//        mRegisterNowBtn.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -157,20 +167,22 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         mPresenter = presenter;
     }
 
-    @OnClick(R.id.user_btn_register_now)
-    public void Register() {
-        if (mLoginBtn.getText().toString().equals("登录")) {
-            mRegisterNowBtn.setText("登录");
-            mLoginBtn.setText(strRegister);
-            doAnimation(2);
-
-        } else {
-            mRegisterNowBtn.setText("注册");
-            mLoginBtn.setText(strLogin);
-            doAnimation(1);
-
-        }
-    }
+//    @OnClick(R.id.user_btn_register_now)
+//    public void Register() {
+//        if (mLoginBtn.getText().toString().equals("登录")) {
+//            mTitleBar.setRightTitle("登录");
+////            mRegisterNowBtn.setText("登录");
+//            mLoginBtn.setText(strRegister);
+//            doAnimation(2);
+//
+//        } else {
+//            mTitleBar.setRightTitle("注册");
+////            mRegisterNowBtn.setText("注册");
+//            mLoginBtn.setText(strLogin);
+//            doAnimation(1);
+//
+//        }
+//    }
 
     @OnClick(R.id.user_btn_login)
     public void Login() {
@@ -224,17 +236,17 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
         Float OldCardHeight = mCardView.getTranslationY();
         Float OldLoginBtnHeight = mLoginBtn.getTranslationY();
-        Float OldRegisterBtnHeight = mRegisterNowBtn.getTranslationY();
+        Float OldRegisterBtnHeight = mTitleBar.getTranslationY();
 
 
         ObjectAnimator alpha_CardView = ObjectAnimator.ofFloat(mCardView, "alpha", 0, 1);
-        ObjectAnimator alpha_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "alpha", 0, 1);
+        ObjectAnimator alpha_RegisterNow = ObjectAnimator.ofFloat(mTitleBar, "alpha", 0, 1);
         ObjectAnimator alpha_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "alpha", 0, 1);
 
 
         ObjectAnimator translationY_CardView = ObjectAnimator.ofFloat(mCardView, "translationY", mCardView.getTranslationY(), -45, OldCardHeight + 20, OldCardHeight);
         ObjectAnimator translationY_LoginBtn = ObjectAnimator.ofFloat(mLoginBtn, "translationY", mLoginBtn.getTranslationY(), -45, OldCardHeight + 20, OldLoginBtnHeight);
-        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mRegisterNowBtn, "translationY", mRegisterNowBtn.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
+        ObjectAnimator translationY_RegisterNow = ObjectAnimator.ofFloat(mTitleBar, "translationY", mTitleBar.getTranslationY(), -45, OldCardHeight + 20, OldRegisterBtnHeight);
 
         ObjectAnimator alpha_line_hide = ObjectAnimator.ofFloat(mLineView, "alpha", 1, 0);
         ObjectAnimator alpha_confirm_hide = ObjectAnimator.ofFloat(mConfirmView, "alpha", 1, 0);
@@ -346,6 +358,34 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
             default:
                 break;
+        }
+    }
+
+
+    @Override
+    public void onLeftClick(View v) {
+
+    }
+
+    @Override
+    public void onTitleClick(View v) {
+
+    }
+
+    @Override
+    public void onRightClick(View v) {
+
+        if (mLoginBtn.getText().toString().equals("登录")) {
+            mTitleBar.setRightTitle("登录");
+            mLoginBtn.setText(strRegister);
+            doAnimation(2);
+
+            Notification.show(this, 0, "注册账号无需使用手机、邮箱等个人信息。",Notification.TYPE_ERROR ).setDialogStyle(STYLE_KONGZUE);
+        } else {
+            mTitleBar.setRightTitle("注册");
+            mLoginBtn.setText(strLogin);
+            doAnimation(1);
+
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.lzq.wanandroid.View;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;

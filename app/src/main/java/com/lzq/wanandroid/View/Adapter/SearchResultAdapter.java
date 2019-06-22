@@ -40,9 +40,7 @@ public class SearchResultAdapter extends BaseQuickAdapter<SearchResult.DataBean.
                     if (TextUtils.isEmpty(item.getAuthor())) {
                         return;
                     } else {
-                        ;
-
-                        helper.setText(R.id.rv_article_title, item.getTitle().replace("&mdash;","——").replace("<em class='highlight'>", "").replace("</em>",""));
+                        helper.setText(R.id.rv_article_title, item.getTitle().replace("&ldquo;","\"").replace("&rdquo;","\"").replace("&mdash;","——").replace("<em class='highlight'>", "").replace("</em>",""));
                         helper.setText(R.id.rv_article_author, item.getAuthor());
                         helper.setText(R.id.rv_article_super_chapter, item.getSuperChapterName());
                         helper.setText(R.id.rv_article_chapter, "/" + item.getChapterName());

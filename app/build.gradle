@@ -136,4 +136,5 @@ dependencies {
     implementation files('libs/commons-lang3-3.8.1.jar')
     //滑动返回
     implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar'
+    implementation 'com.kongzue.dialog:dialog:2.5.1'
 }

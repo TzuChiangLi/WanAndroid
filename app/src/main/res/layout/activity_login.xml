@@ -7,14 +7,26 @@
     android:background="@color/bg_daily_mode"
     tools:context=".View.LoginActivity">
 
+    <com.hjq.bar.TitleBar
+        android:id="@+id/login_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:backButton="false"
+        app:barStyle="transparent"
+        app:rightColor="@color/text_daily_mode_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lineVisible="false" />
+
     <LinearLayout
         android:id="@+id/login_ll_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_70"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/login_titlebar">
 
         <TextView
             android:id="@+id/login_tv_title_1st"
@@ -178,17 +190,17 @@
 
     </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/user_btn_register_now"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:padding="16dp"
-        android:text="@string/user_btn_register"
-        android:textColor="@color/text_daily_mode_one"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--<TextView-->
+        <!--android:id="@+id/user_btn_register_now"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:padding="16dp"-->
+        <!--android:text="@string/user_btn_register"-->
+        <!--android:textColor="@color/text_daily_mode_one"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/cardView"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
 
     <Button
         android:id="@+id/user_btn_login"

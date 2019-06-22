@@ -21,6 +21,12 @@
 #-renamesourcefileattribute SourceFile
 
 
+#----------------------------空祖Dialog---------------------------#
+-keep class com.kongzue.dialog.** { *; }
+-dontwarn com.kongzue.dialog.**
+
+# 额外的，建议将 android.view 也列入 keep 范围：
+-keep class android.view.** { *; }
 
 
 ##---------------Begin: proguard configuration for Gson  ----------

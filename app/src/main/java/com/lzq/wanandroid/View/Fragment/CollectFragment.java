@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemSwipeListener;
 import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
@@ -41,7 +40,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class    CollectFragment extends BaseFragment implements Contract.CollectView {
+public class CollectFragment extends BaseFragment implements Contract.CollectView {
     private static final String TAG = "CollectFragment";
     @BindView(R.id.rv_collect_list)
     RecyclerView mRecyclerView;
