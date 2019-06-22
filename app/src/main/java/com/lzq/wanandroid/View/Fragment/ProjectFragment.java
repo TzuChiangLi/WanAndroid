@@ -107,7 +107,6 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
             mViewPager.setOffscreenPageLimit(2);
             for (int i = 0; i < mList.size(); i++) {
                 mTabLayout.getTabAt(i).setText(mList.get(i).getName());
-                Log.d(TAG, "----setTabView: " + mList.get(i).getName());
             }
         } catch (Exception e) {
         }

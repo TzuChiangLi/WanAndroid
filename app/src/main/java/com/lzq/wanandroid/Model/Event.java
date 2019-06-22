@@ -94,6 +94,11 @@ public class Event {
      * 跳转到项目界面
      */
     public static final int TYPE_PROJECT_REFRESH = 19;
+    /**
+     * 刷新时是否已登录
+     */
+    public static final int TYPE_REFRESH_ISLOGIN = 20;
+    public static final int TYPE_REFRESH_NOTLOGIN = 21;
 
 
 

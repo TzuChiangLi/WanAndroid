@@ -97,8 +97,6 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         if (isChecked) {
             ToastUtils("开");
             mPresenter.changeDisplayMode(true);
-
-
         } else {
             ToastUtils("关");
             mPresenter.changeDisplayMode(false);

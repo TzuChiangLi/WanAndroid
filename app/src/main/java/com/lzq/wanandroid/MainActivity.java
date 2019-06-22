@@ -70,8 +70,8 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private ProjectPresenter mProjectPresenter;
     private FragmentAdapter mFAdapter;
     private int oldHeight;
-    private boolean isConnect = false;
     private long lastClickBackTime = System.currentTimeMillis() - 3000;
+    private static int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +146,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
         mUserFragment.setPresenter(mUserPresenter);
 
 
-        PageNavigationView.CustomBuilder custom = mBottomBar.custom();
+        final PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
                 .addItem(newItem(R.mipmap.tree_no, R.mipmap.tree))
@@ -183,7 +183,10 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                             event.type = Event.TYPE_COLLECT_REFRESH;
                             EventBus.getDefault().post(event);
                         } else {
+                            if (flag==0){
                             startActivityWithoutAnimation(LoginActivity.class);
+                            flag++;
+                            }
                         }
                         break;
                 }
@@ -196,8 +199,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                     event.target = Event.TARGET_HOME;
                     event.type = Event.TYPE_HOME_BACKTOTOP;
                     EventBus.getDefault().post(event);
-                }
-                if (index == 2) {
                 }
             }
         });
@@ -228,12 +229,13 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
+        Log.d(TAG, "----main target: " + event.target + "---- type:" + event.type);
         if (event.target == Event.TARGET_MAIN) {
             switch (event.type) {
                 case Event.TYPE_CHANGE_DAY_NIGHT_MODE:
-                    recreate();
                     mFuncImgBtn.setVisibility(View.VISIBLE);
                     mFuncImgBtn.setAlpha(1f);
+                    recreate();
                     break;
                 case Event.TYPE_LOGIN_SUCCESS:
                     TitleAnim.hide(mTitleTv);
@@ -274,9 +276,13 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     @Override
     public void doNetWork() {
-        Log.d(TAG, "----doNetWork: " + isConnect);
         Event event = new Event();
         event.target = Event.TARGET_RESFRESH;
+        if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
+            event.type = Event.TYPE_REFRESH_ISLOGIN;
+        } else {
+            event.type = Event.TYPE_REFRESH_NOTLOGIN;
+        }
         EventBus.getDefault().post(event);
     }
 

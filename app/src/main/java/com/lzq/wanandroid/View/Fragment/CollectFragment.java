@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -185,6 +186,7 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
+        Log.d(TAG, "----collect target: "+event.target+"---- type:"+event.type);
         if (event.target == Event.TARGET_COLLECT) {
             switch (event.type) {
                 case Event.TYPE_LOGIN_SUCCESS:
@@ -200,7 +202,9 @@ public class    CollectFragment extends BaseFragment implements Contract.Collect
             }
         }
         if (event.target==Event.TARGET_RESFRESH){
-            mRefreshView.autoRefresh();
+            if (event.type==Event.TYPE_REFRESH_ISLOGIN){
+                mRefreshView.autoRefresh();
+            }
         }
     }
 
