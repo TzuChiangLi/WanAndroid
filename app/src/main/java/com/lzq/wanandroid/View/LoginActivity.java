@@ -72,6 +72,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        Log.d(TAG, "----创建了几次");
         EventBus.getDefault().register(this);
         doAnimation(0);
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();

@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindColor;
 import butterknife.ButterKnife;
 
-public class ContentAdapter extends BaseItemDraggableAdapter<Datas, BaseViewHolder>  {
+public class ContentAdapter extends BaseQuickAdapter<Datas, BaseViewHolder>  {
     @BindColor(R.color.bg_rv_item_tv)
     int bg_rv_item_tv;
     private List<Datas> mList = new ArrayList<>();
