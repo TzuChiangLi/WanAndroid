@@ -100,6 +100,8 @@ public class Event {
     public static final int TYPE_REFRESH_ISLOGIN = 20;
     public static final int TYPE_REFRESH_NOTLOGIN = 21;
 
+    public static final int TYPE_SYS_LOAD = 22;
+
 
 
 

@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +60,8 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
         if (mPresenter == null) {
             mPresenter = ProjectPresenter.createPresenter(this, WebTask.getInstance());
         }
-        mPresenter.initView();
-        mPresenter.initTabView();
+//        mPresenter.initView();
+//        mPresenter.initTabView();
         return view;
     }
 
@@ -126,6 +125,12 @@ public class ProjectFragment extends BaseFragment implements Contract.ProjectVie
     public void onEvent(Event event) {
         if (event.target == Event.TARGET_RESFRESH) {
             mPresenter.initTabView();
+        }
+        if (event.target == Event.TARGET_PROJECT) {
+            if (event.type == Event.TYPE_PROJECT_REFRESH) {
+                mPresenter.initView();
+                mPresenter.initTabView();
+            }
         }
     }
 

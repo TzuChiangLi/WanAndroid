@@ -71,7 +71,9 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private FragmentAdapter mFAdapter;
     private int oldHeight;
     private long lastClickBackTime = System.currentTimeMillis() - 3000;
-    private static int flag=0;
+    private static int flag = 0;
+    private boolean projectIsLoaded = false, homeIsLoaded = false, sysIsLoaded = false, userLoaded = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +156,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
-        mVPager.setOffscreenPageLimit(4);
+        mVPager.setOffscreenPageLimit(3);
         mFAdapter = new FragmentAdapter(getSupportFragmentManager(), mList);
         mVPager.setAdapter(mFAdapter);
         //自动适配ViewPager页面切换
@@ -172,9 +174,20 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                         event.target = Event.TARGET_SYSTEM;
                         event.type = Event.TYPE_CHANGE_MAIN_TITLE;
                         EventBus.getDefault().post(event);
+                        if (sysIsLoaded==false){
+                            event.target = Event.TARGET_SYSTEM;
+                            event.type = Event.TYPE_SYS_LOAD;
+                            EventBus.getDefault().post(event);
+                        }
                         break;
                     case 2:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "项目", 2);
+                        if (projectIsLoaded == false) {
+                            event.target = Event.TARGET_PROJECT;
+                            event.type = Event.TYPE_PROJECT_REFRESH;
+                            EventBus.getDefault().post(event);
+                            projectIsLoaded = true;
+                        }
                         break;
                     case 3:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "我", 3);
@@ -183,9 +196,9 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                             event.type = Event.TYPE_COLLECT_REFRESH;
                             EventBus.getDefault().post(event);
                         } else {
-                            if (flag==0){
-                            startActivityWithoutAnimation(LoginActivity.class);
-                            flag++;
+                            if (flag == 0) {
+                                startActivityWithoutAnimation(LoginActivity.class);
+                                flag++;
                             }
                         }
                         break;
@@ -236,6 +249,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                     mFuncImgBtn.setVisibility(View.VISIBLE);
                     mFuncImgBtn.setAlpha(1f);
                     recreate();
+
                     break;
                 case Event.TYPE_LOGIN_SUCCESS:
                     TitleAnim.hide(mTitleTv);
