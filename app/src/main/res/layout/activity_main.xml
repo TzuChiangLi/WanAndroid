@@ -3,11 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_daily_mode"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/main_launch_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/logo"
+        android:alpha="0"
+        android:layout_marginTop="@dimen/dp_80"
+        android:layout_centerInParent="true"/>
 
     <RelativeLayout
         android:id="@+id/main_topbar"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="@color/bg_daily_mode"
@@ -41,6 +53,7 @@
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_above="@+id/main_bottom_bar"
         android:layout_below="@id/main_topbar"
          />
@@ -49,6 +62,7 @@
         android:id="@+id/main_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:background="@color/bg_daily_mode" />
 

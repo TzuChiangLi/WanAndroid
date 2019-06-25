@@ -7,17 +7,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="LauncherTheme">
-        <!-- Customize your theme here. -->
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowBackground">@drawable/shape_launcher</item>
+
+    <style name="SplashLogoDailyTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/bg_daily_main_daily</item>
     </style>
 
-    <!--&lt;!&ndash;dialog底部弹出动画&ndash;&gt;-->
-    <!--<style name="dialog_rep_anim" mce_bogus="1" parent="android:Animation">-->
-        <!--<item name="android:windowEnterAnimation">@anim/dialog_rep_enter_anim</item>-->
-        <!--<item name="android:windowExitAnimation">@anim/dialog_rep_exit_anim</item>-->
-    <!--</style>-->
+    <style name="SplashLogoNightTheme" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/bg_daily_main_night</item>
+    </style>
+
 
     <style name="imageViewAtTop" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>

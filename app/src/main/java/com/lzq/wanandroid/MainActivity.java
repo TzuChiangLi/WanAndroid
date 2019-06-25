@@ -3,10 +3,12 @@ package com.lzq.wanandroid;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +28,9 @@ import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
+import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
+import com.lzq.wanandroid.View.Animation.LaunchAnim;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
 import com.lzq.wanandroid.View.Custom.OnlyIconView;
 import com.lzq.wanandroid.View.Fragment.HomeFragment;
@@ -50,8 +54,12 @@ import butterknife.OnClick;
 
 public class MainActivity extends NetChangeActivity implements Contract.MainView {
     private static final String TAG = "MainActivity";
+    @BindView(R.id.main_launch_logo)
+    ImageView mLogoImg;
     @BindView(R.id.main_viewpager)
     ViewPager mVPager;
+    @BindView(R.id.main_topbar)
+    View mTopView;
     @BindView(R.id.main_bottom_bar)
     PageNavigationView mBottomBar;
     @BindView(R.id.main_tv_title)
@@ -78,6 +86,8 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.setTheme(SPUtils.getInstance(StringUtils.CONFIG_SETTINGS).getBoolean
+                (StringUtils.KEY_NIGHT_MODE, false)?R.style.SplashLogoNightTheme:R.style.SplashLogoDailyTheme);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
@@ -111,6 +121,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     private void initView() {
         ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
+        LaunchAnim.showLogo(mLogoImg, mTopView, mVPager, mBottomBar);
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(MainActivity.this);
@@ -174,10 +185,11 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                         event.target = Event.TARGET_SYSTEM;
                         event.type = Event.TYPE_CHANGE_MAIN_TITLE;
                         EventBus.getDefault().post(event);
-                        if (sysIsLoaded==false){
+                        if (sysIsLoaded == false) {
                             event.target = Event.TARGET_SYSTEM;
                             event.type = Event.TYPE_SYS_LOAD;
                             EventBus.getDefault().post(event);
+                            sysIsLoaded = true;
                         }
                         break;
                     case 2:
@@ -286,6 +298,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+
     }
 
     @Override
@@ -324,4 +337,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
             finish();//保留进程 再次启动较快
         }
     }
+
+
 }

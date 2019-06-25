@@ -27,6 +27,7 @@ public class TitleAnim {
         return INSTANCE;
     }
 
+    private ObjectAnimator alpha_tv,alpha_imgBtn;
     //title文字及右部图标的渐现
     public static void show(View tv, final View imgBtn, String text, final int page) {
         TextView mTextView = (TextView) tv;
@@ -76,4 +77,5 @@ public class TitleAnim {
         alpha_Title.setDuration(500)
                 .start();
     }
+
 }

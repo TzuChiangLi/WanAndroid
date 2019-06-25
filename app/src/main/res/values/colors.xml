@@ -36,10 +36,13 @@
     <color name="progress_bar_web_start">#37b537</color>
     <color name="progress_bar_web_center">#37b537</color>
     <color name="progress_bar_web_end">#37b537</color>
+    <color name="bg_daily_main_daily">#fafafa</color>
+    <color name="bg_daily_main_night">#303030</color>
 
     <!--日间模式-->
     <color name="bg_daily_mode">#FFF</color>
     <color name="bg_daily_layout">#e6e7ed</color>
+    <color name="bg_daily_main">#fafafa</color>
     <color name="bg_daily_white">#FFF</color>
     <color name="bg_card_view">#FFF</color>
     <color name="bg_edt_view">#e6e7ed</color>

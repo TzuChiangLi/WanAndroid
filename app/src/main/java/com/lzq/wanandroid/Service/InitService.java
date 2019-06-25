@@ -37,15 +37,10 @@ public class InitService extends IntentService {
         //SDK初始化的操作
         QbSdk.initX5Environment(this, null);
 
-
         Bugly.init(this, "2aa3615a5e", false);
         Beta.autoInit = true;
         Beta.initDelay = 2 * 1000;
 
-        boolean nightMode = SPUtils.getInstance(StringUtils.CONFIG_SETTINGS).getBoolean
-                (StringUtils.KEY_NIGHT_MODE, false);
-        AppCompatDelegate.setDefaultNightMode(nightMode ? AppCompatDelegate.MODE_NIGHT_YES :
-                AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 
