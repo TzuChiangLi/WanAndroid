@@ -172,6 +172,7 @@ public class WebTask implements NetTask<Data> {
                         });
                 break;
             case StringUtils.TYPE_COLLECT_CONTENT_LOAD:
+                Log.d(TAG, "----execute: "+StringUtils.URL + StringUtils.COLLECT_LIST + params[1] + "/json");
                 OkGo.<String>get(StringUtils.URL + StringUtils.COLLECT_LIST + params[1] + "/json")
                         .execute(new StringCallback() {
                             @Override
@@ -180,6 +181,7 @@ public class WebTask implements NetTask<Data> {
                                 Gson gson = new Gson();
                                 WanAndroid_Content wanAndroid = gson.fromJson(result, WanAndroid_Content.class);
                                 int code = wanAndroid.getErrorCode();
+                                Log.d(TAG, "----onSuccess: "+code);
                                 if (code == 0) {
                                     callBack.onSuccess(wanAndroid.getData().getDatas(), StringUtils.TYPE_COLLECT_CONTENT_LOAD);
                                 } else {
@@ -191,12 +193,14 @@ public class WebTask implements NetTask<Data> {
                             public void onError(Response<String> response) {
                                 super.onError(response);
                                 callBack.onFailed();
+                                Log.d(TAG, "----onError: ");
                             }
 
                             @Override
                             public void onFinish() {
                                 super.onFinish();
                                 callBack.onFinish();
+                                Log.d(TAG, "----onFinish: ");
                             }
                         });
                 break;

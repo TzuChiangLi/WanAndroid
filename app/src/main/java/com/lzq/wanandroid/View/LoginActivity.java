@@ -152,14 +152,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     public void setLoginLocation(int height) {
         mLoginLayout.bottomMargin = 16;//此处单位是dp
         mLoginBtn.setLayoutParams(mLoginLayout);
-//        mRegisterNowBtn.setVisibility(View.GONE);
     }
 
     @Override
     public void refreshLocation(int height) {
         mLoginLayout.bottomMargin = ConvertUtils.dp2px(100);
         mLoginBtn.setLayoutParams(mLoginLayout);
-//        mRegisterNowBtn.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Model.Datas;
@@ -26,6 +27,8 @@ import com.lzq.wanandroid.View.Adapter.ContentAdapter;
 import com.lzq.wanandroid.View.Animation.CollectAnim;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.WebActivity;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cookie.store.CookieStore;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -39,6 +42,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Cookie;
+import okhttp3.HttpUrl;
 
 public class CollectFragment extends BaseFragment implements Contract.CollectView {
     private static final String TAG = "CollectFragment";
@@ -82,7 +87,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 if (SPUtils.getInstance("userinfo").getBoolean("isLogin")) {
                     mPresenter.getCollectList();
-                    mRecyclerView.setVisibility(View.VISIBLE);
+//                    mRecyclerView.setVisibility(View.VISIBLE);
                     if (onFinishLoad()) {
                         mRefreshView.finishRefresh();
                     }
@@ -108,6 +113,13 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
 
     @Override
     public void setCollectList(final List<Datas> data) {
+        if (data.size()==0||data==null){
+            mList.clear();
+            mAdapter.notifyDataSetChanged();
+            mAdapter=new ContentAdapter(mView,R.layout.rv_article_normal,null);
+            mAdapter.setEmptyView(R.layout.empty_view, (ViewGroup) mRecyclerView.getParent());
+            mRecyclerView.setAdapter(mAdapter);
+        }else {
         mList.clear();
         mList = data;
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
@@ -133,7 +145,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 mPresenter.getSelectedURL(data.get(position).getLink());
             }
-        });
+        });}
 
     }
 

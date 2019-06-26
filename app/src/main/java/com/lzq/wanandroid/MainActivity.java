@@ -84,7 +84,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private int oldHeight;
     private long lastClickBackTime = System.currentTimeMillis() - 3000;
     private static int flag = 0;
-    private boolean projectIsLoaded = false, homeIsLoaded = false, sysIsLoaded = false, userLoaded = false;
+    private boolean projectIsLoaded = false;
 
 
     @Override
