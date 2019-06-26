@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.just.agentwebX5.IFileUploadChooser;
 import com.lzq.wanandroid.R;
 
 /**
@@ -58,7 +59,10 @@ public class TitleAnim {
             @Override
             public void onAnimationEnd(Animator animation) {
                 if (page==1||page==2){
-                    imgBtn.setVisibility(View.GONE);
+                    if (imgBtn.getVisibility()!=View.GONE) imgBtn.setVisibility(View.GONE);
+                }
+                if (page==0||page==3){
+                    if (imgBtn.getVisibility()!=View.VISIBLE) imgBtn.setVisibility(View.VISIBLE);
                 }
             }
         });

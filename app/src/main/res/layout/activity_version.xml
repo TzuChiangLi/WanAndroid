@@ -17,7 +17,7 @@
         app:lineVisible="false"
         app:title="@string/set_about"
         app:titleColor="@color/text_daily_mode"
-        app:titleSize="17sp" />
+        app:titleSize="16sp" />
 
     <TextView
         android:layout_width="match_parent"

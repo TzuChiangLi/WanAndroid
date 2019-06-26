@@ -15,7 +15,7 @@
         app:title="@string/web_title"
         app:lineVisible="false"
         app:titleColor="@color/text_daily_mode"
-        app:titleSize="17sp" />
+        app:titleSize="17dp" />
 
     <com.lzq.wanandroid.View.Custom.ProgressWebview
         android:id="@+id/web_x5_view"

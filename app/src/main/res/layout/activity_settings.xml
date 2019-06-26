@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="wrap_content"
         android:background="@color/bg_daily_mode"
         android:orientation="horizontal"
         android:paddingTop="@dimen/dp_10"
@@ -55,7 +55,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="wrap_content"
         android:background="@color/bg_daily_mode"
         android:orientation="horizontal"
         android:paddingTop="@dimen/dp_10"
@@ -81,7 +81,7 @@
             android:gravity="center_vertical"
             android:text="1.0.0"
             android:textColor="@color/text_daily_mode"
-            android:textSize="16sp" />
+            android:textSize="16dp" />
 
     </LinearLayout>
 
@@ -92,7 +92,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="wrap_content"
         android:background="@color/bg_daily_mode"
         android:gravity="center">
 
@@ -102,8 +102,9 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="@string/set_about"
+            android:textSize="16sp"
             android:textColor="@color/text_daily_mode"
-            android:textSize="16sp" />
+            />
 
 
     </LinearLayout>
@@ -115,7 +116,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
+        android:layout_height="wrap_content"
         android:background="@color/bg_daily_mode"
         android:gravity="center">
 

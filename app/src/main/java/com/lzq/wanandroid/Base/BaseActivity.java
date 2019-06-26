@@ -15,6 +15,7 @@ import android.widget.EditText;
 
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.R;
+import com.lzq.wanandroid.Utils.FitUtil;
 
 import java.lang.reflect.Method;
 
@@ -32,6 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BGASwipe
     protected void onCreate(Bundle savedInstanceState) {
         initSwipeBackFinish();
         super.onCreate(savedInstanceState);
+//        FitUtil.autoFit(this,false);
         setScreenRoate(isAllowScrRoate);
     }
 

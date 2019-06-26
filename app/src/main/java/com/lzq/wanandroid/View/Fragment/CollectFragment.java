@@ -108,10 +108,6 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
 
     @Override
     public void setCollectList(final List<Datas> data) {
-        if (data.size()==0||data==null){
-            mAdapter.setEmptyView(getView());
-            return;
-        }
         mList.clear();
         mList = data;
         mAdapter = new ContentAdapter(mView, R.layout.rv_article_normal, mList);
@@ -166,7 +162,6 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
-        Log.d(TAG, "----collect target: "+event.target+"---- type:"+event.type);
         if (event.target == Event.TARGET_COLLECT) {
             switch (event.type) {
                 case Event.TYPE_LOGIN_SUCCESS:

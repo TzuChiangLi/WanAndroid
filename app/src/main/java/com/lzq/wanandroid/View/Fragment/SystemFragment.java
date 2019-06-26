@@ -56,7 +56,7 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
         if (mPresenter == null) {
             mPresenter = SystemPresenter.createPresenter(this);
         }
-//        mPresenter.initTabView();
+        mPresenter.initTabView();
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -124,10 +124,10 @@ public class SystemFragment extends BaseFragment implements Contract.SystemView 
                     event.position = mTabLayout.getSelectedTabPosition();
                     EventBus.getDefault().post(event);
                     break;
-                case Event.TYPE_SYS_LOAD:
-                    mPresenter.initTabView();
+//                case Event.TYPE_SYS_LOAD:
+//                    mPresenter.initTabView();
 
-                    break;
+//                    break;
             }
         }
 

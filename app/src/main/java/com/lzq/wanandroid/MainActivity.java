@@ -1,12 +1,15 @@
 package com.lzq.wanandroid;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
+import com.lzq.wanandroid.Utils.FitUtil;
 import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.LaunchAnim;
@@ -86,8 +90,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setTheme(SPUtils.getInstance(StringUtils.CONFIG_SETTINGS).getBoolean
-                (StringUtils.KEY_NIGHT_MODE, false)?R.style.SplashLogoNightTheme:R.style.SplashLogoDailyTheme);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
@@ -185,12 +187,12 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                         event.target = Event.TARGET_SYSTEM;
                         event.type = Event.TYPE_CHANGE_MAIN_TITLE;
                         EventBus.getDefault().post(event);
-                        if (sysIsLoaded == false) {
-                            event.target = Event.TARGET_SYSTEM;
-                            event.type = Event.TYPE_SYS_LOAD;
-                            EventBus.getDefault().post(event);
-                            sysIsLoaded = true;
-                        }
+//                        if (sysIsLoaded == false) {
+//                            event.target = Event.TARGET_SYSTEM;
+//                            event.type = Event.TYPE_SYS_LOAD;
+//                            EventBus.getDefault().post(event);
+//                            sysIsLoaded = true;
+//                        }
                         break;
                     case 2:
                         TitleAnim.show(mTitleTv, mFuncImgBtn, "项目", 2);
@@ -254,7 +256,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(Event event) {
-        Log.d(TAG, "----main target: " + event.target + "---- type:" + event.type);
         if (event.target == Event.TARGET_MAIN) {
             switch (event.type) {
                 case Event.TYPE_CHANGE_DAY_NIGHT_MODE:

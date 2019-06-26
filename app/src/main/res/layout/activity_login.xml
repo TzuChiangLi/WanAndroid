@@ -81,7 +81,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_8">
+                android:padding="@dimen/dp_4">
 
                 <ImageView
                     android:id="@+id/user_img_id"
@@ -118,7 +118,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_8">
+                android:padding="@dimen/dp_4">
 
                 <ImageView
                     android:id="@+id/user_img_pwd"
@@ -160,7 +160,7 @@
                 android:layout_weight="1"
                 android:alpha="0"
                 android:orientation="horizontal"
-                android:padding="@dimen/dp_8"
+                android:padding="@dimen/dp_4"
                 android:visibility="gone">
 
 

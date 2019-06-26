@@ -18,7 +18,7 @@
         app:lineVisible="false"
         app:title="搜索结果"
         app:titleColor="@color/text_daily_mode_one"
-        app:titleSize="17sp" />
+        app:titleSize="@dimen/home_top_title_one_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="当前查找关键词："
             android:textColor="@color/text_daily_mode"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
 
         <TextView
             android:id="@+id/search_result_tv"
@@ -42,7 +42,7 @@
             android:maxWidth="@dimen/dp_100"
             android:text="占位"
             android:textColor="@color/text_daily_mode"
-            android:textSize="13sp" />
+            android:textSize="13dp" />
 
 
     </LinearLayout>

@@ -11,4 +11,4 @@
     android:layout_marginHorizontal="@dimen/dp_6"
     android:layout_marginVertical="@dimen/dp_6"
     android:textColor="@color/text_daily_mode"
-    android:textSize="14sp" />
+    android:textSize="14dp" />
