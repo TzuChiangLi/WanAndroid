@@ -72,7 +72,6 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
         EventBus.getDefault().register(this);}
         mView = view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mView.getContext()));
-
         if (mPresenter == null) {
             mPresenter = CollectPresenter.createPresenter(this, WebTask.getInstance());
         }
@@ -131,7 +130,7 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.rv_article_imgbtn_save:
-                        CollectAnim.getInstance().show(view);
+                        CollectAnim.show(view);
                         mPresenter.cancelCollect(data.get(position).getId(), position, data.get(position).getOriginId());
                         break;
                     default:
