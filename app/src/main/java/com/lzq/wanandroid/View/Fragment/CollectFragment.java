@@ -159,6 +159,10 @@ public class CollectFragment extends BaseFragment implements Contract.CollectVie
     public void removeItem(int position) {
         mAdapter.remove(position);
         mAdapter.notifyDataSetChanged();
+        if (mAdapter.getData().size()==0){
+            mAdapter.setEmptyView(R.layout.empty_view, (ViewGroup) mRecyclerView.getParent());
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
 
     @Override
