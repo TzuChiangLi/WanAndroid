@@ -1,7 +1,10 @@
 package com.lzq.wanandroid;
 
+import android.Manifest;
 import android.app.Application;
+import android.os.Environment;
 import android.support.v7.app.AppCompatDelegate;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.hjq.toast.ToastUtils;
@@ -10,8 +13,18 @@ import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.SPCookieStore;
+import com.qw.soul.permission.SoulPermission;
+import com.qw.soul.permission.bean.Permission;
+import com.qw.soul.permission.bean.Permissions;
+import com.qw.soul.permission.callbcak.CheckRequestPermissionListener;
+import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.smtt.sdk.QbSdk;
 
 import org.litepal.LitePal;
+
+import java.io.File;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import okhttp3.OkHttpClient;
@@ -31,6 +44,7 @@ public class WanAndroid extends Application {
         OkGo.getInstance().setOkHttpClient(builder.build()).init(this);
         LitePal.initialize(this);
         LitePal.getDatabase();
+
         /**
          * 必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回
          * 第一个参数：应用程序上下文
@@ -39,6 +53,5 @@ public class WanAndroid extends Application {
         BGASwipeBackHelper.init(this, null);
         InitService.start(this);
     }
-
 
 }

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +13,10 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.Base.BaseFragment;
 import com.lzq.wanandroid.Api.OffAccountContract;
-import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Api.WebTask;
+import com.lzq.wanandroid.Base.BaseFragment;
+import com.lzq.wanandroid.Model.Datas;
 import com.lzq.wanandroid.Presenter.ArticlesPresenter;
 import com.lzq.wanandroid.R;
 import com.lzq.wanandroid.Utils.StringUtils;
@@ -44,7 +43,7 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
     private OffAccountContract.AccountContentPresenter mPresenter;
     private ContentAdapter mAdapter;
     private List<Datas> mContentList = new ArrayList<>();
-    private int page = 1, maxPage,type;
+    private int page = 1, maxPage, type;
     private View mView;
 
 
@@ -159,10 +158,6 @@ public class ContentFragment extends BaseFragment implements OffAccountContract.
 
     @Override
     public void setPresenter(OffAccountContract.AccountContentPresenter presenter) {
-        if (mPresenter == null) {
-            Log.d(TAG, "----setPresenter: null");
-        }
         mPresenter = presenter;
-
     }
 }
