@@ -95,8 +95,7 @@ dependencies {
     //轮子哥titlebar框架
     implementation 'com.hjq:titlebar:5.0'
     //动态申请权限
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.2'
+    implementation 'com.qw:soulpermission:1.1.8'
     //RecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
     //底部导航栏
@@ -136,5 +135,6 @@ dependencies {
     implementation files('libs/commons-lang3-3.8.1.jar')
     //滑动返回
     implementation 'cn.bingoogolapple:bga-swipebacklayout:1.2.0@aar'
+    //弹窗
     implementation 'com.kongzue.dialog:dialog:2.5.1'
 }

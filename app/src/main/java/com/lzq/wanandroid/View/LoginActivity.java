@@ -136,6 +136,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
         event.target = Event.TARGET_COLLECT;
         event.type = Event.TYPE_LOGIN_SUCCESS;
         EventBus.getDefault().post(event);
+        hideSoftInputUtil();
         finish();
         //不必传cookie，只需要传返回的结果，用Presenter层来实现
         //cookie在App启动的时候检测一下size和null，如果为0或者为null，就说明需要登录

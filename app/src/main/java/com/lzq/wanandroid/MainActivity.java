@@ -169,7 +169,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
         //允许4个
-        mVPager.setOffscreenPageLimit(3);
+        mVPager.setOffscreenPageLimit(4);
         mFAdapter = new FragmentAdapter(getSupportFragmentManager(), mList);
         mVPager.setAdapter(mFAdapter);
         //自动适配ViewPager页面切换
