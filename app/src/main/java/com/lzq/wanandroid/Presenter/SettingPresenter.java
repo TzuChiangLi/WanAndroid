@@ -60,8 +60,6 @@ public class SettingPresenter extends BasePresenter implements Contract.SettingP
         HttpUrl httpUrl = HttpUrl.parse(StringUtils.URL);
         CookieStore cookieStore = OkGo.getInstance().getCookieJar().getCookieStore();
         cookieStore.removeCookie(httpUrl);
-        List<Cookie> allCookie = cookieStore.getAllCookie();
-        ToastUtils.show("所有cookie如下：" + allCookie.toString());
         mView.afterLogout();
     }
 }

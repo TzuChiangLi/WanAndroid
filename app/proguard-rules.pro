@@ -74,9 +74,6 @@
 #okio
 -dontwarn okio.**
 -keep class okio.**{*;}
-#okgo
--dontwarn com.lzy.okgo.**
--keep class com.lzy.okgo.**{*;}
 
 
 
