@@ -4,10 +4,15 @@
 ----
 当时毕业公司安排我学习Android的开发以快速开发项目，所以在公司一直MVC的模式开发，在看了现在的主流及趋势后，发现MVP是进步路上的必修课，所以就参考了很多大神的项目学习MVP的写法和思路。
 这个项目只是我学习MVP后的一点总结，并没有使用RxJava（因为还没学会）等等高手进阶的技术内容。
+
 下载地址：
 ----
 ![baiduyun](https://github.com/TzuChiangLi/WanAndroid/blob/master/introduce/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190629112245.jpg?raw=true "下载地址")
+
 界面截图：
+----
+![screencut](https://github.com/TzuChiangLi/WanAndroid/blob/master/introduce/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190629112248.jpg?raw=true "截图")
+![screencut](https://github.com/TzuChiangLi/WanAndroid/blob/master/introduce/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190629112320.jpg?raw=true "截图")
 
 
 
