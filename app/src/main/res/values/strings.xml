@@ -14,6 +14,6 @@
     <string name="home_article_title">   文章</string>
     <string name="home_back_top">回到顶部</string>
     <string name="ver_intro_title">项目名：玩安卓</string>
-    <string name="ver_intro_author">特别感谢鸿洋大神开源学习安卓的社区API：\nhttps://www.wanandroid.com\n设计及开发：\n@TzuChiangLi\n启动图标(制作中)：\n杨设计@Designer.Yang\n图标素材(感谢阿里对于开源项目的贡献)：\nhttps://www.iconfont.cn\n项目开源地址(暂时闭源)：\nhttps://github.com/TzuChiangLi/WanAndroid</string>
-    <string name="ver_intro_content">本项目开发目标：整合各大Android领域大神的技术文章，为有志于、已跻身于移动领域开发的同学、同行们提供快捷舒适的浏览体验。\n由于手中没有较新的Android设备，因此可能在小米、魅族以及华为等深度定制的ROM上有不足之处。目前已知问题有：\n1.全面屏的适配可能还存在问题，在魅族Flyme系统上已通过测试，其他厂商仍需学习适配。\n2.启动速度已经得到优化，在华为EMUI\魅族Flyme系统上已测试通过。但是在小米MIUI（仅在小米Note3的MIUI10开发版上测试）上很不理想，暂时无法查出原因。\n下步计划是响应式编程或微信小程序方向。\n再次感谢各位大神对于开源社区的贡献。</string>
+    <string name="ver_intro_author">特别感谢鸿洋大神开源学习安卓的社区API：\nhttps://www.wanandroid.com\n设计及开发：\n@TzuChiangLi\n启动图标(制作中)：\n杨设计@Designer.Yang\n图标素材(感谢阿里对于开源项目的贡献)：\nhttps://www.iconfont.cn\n项目地址(暂时闭源)：\nhttps://github.com/TzuChiangLi/WanAndroid</string>
+    <string name="ver_intro_content">本项目开发目标：整合Android领域大神们的技术文章，为有志于、已跻身于移动领域开发的同学、同行们提供快捷舒适的浏览体验。\n由于手中没有较新的Android设备，因此可能在小米、魅族以及华为等深度定制的ROM上有不足之处。目前已知问题有：\n1.全面屏的适配可能还存在问题，在魅族Flyme系统上已通过测试，其他厂商尚未测试。\n2.启动速度已经得到优化，在华为EMUI\魅族Flyme系统上已测试通过。但是在小米MIUI（仅在小米Note3的MIUI10开发版上测试）上很不理想，暂时无法查出原因。\n下步计划是响应式编程或微信小程序方向。\n再次感谢各位大神对于开源社区的贡献。</string>
 </resources>

@@ -19,35 +19,50 @@
         app:titleColor="@color/text_daily_mode"
         app:titleSize="16sp" />
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_daily_white"
-        android:textColor="@color/text_daily_mode"
-        android:textSize="23sp"
-        android:padding="12dp"
-        android:text="@string/ver_intro_title" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_daily_white"
-        android:lineSpacingExtra="@dimen/dp_2"
-        android:textColor="@color/text_daily_mode"
-        android:textSize="15sp"
-        android:paddingHorizontal="12dp"
-        android:text="@string/ver_intro_author" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_daily_white"
-        android:textColor="@color/text_daily_mode"
-        android:textSize="15sp"
-        android:paddingHorizontal="12dp"
-        android:text="@string/ver_intro_content" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_daily_white"
+                android:padding="12dp"
+                android:text="@string/ver_intro_title"
+                android:textColor="@color/text_daily_mode"
+                android:textSize="23sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_daily_white"
+                android:lineSpacingExtra="@dimen/dp_2"
+                android:paddingHorizontal="12dp"
+                android:text="@string/ver_intro_author"
+                android:textColor="@color/text_daily_mode"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_daily_white"
+                android:paddingHorizontal="12dp"
+                android:text="@string/ver_intro_content"
+                android:textColor="@color/text_daily_mode"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/ver_rv_about"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
+    <!--android:id="@+id/ver_rv_about"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent" />-->
 
 </LinearLayout>
