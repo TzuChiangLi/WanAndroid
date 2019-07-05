@@ -72,7 +72,7 @@ public class Data {
 //    private List<String> chapterTops;
 //    private List<String> collectIds;
 //    private String email;
-//    private String icon;
+//    private String ic_launcher_round;
 //    private int id;
 //    private String password;
 //    private String token;
