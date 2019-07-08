@@ -45,7 +45,7 @@ public class InitService extends IntentService {
         QbSdk.initX5Environment(this, null);
         Bugly.init(this, "2aa3615a5e", false);
         Beta.autoInit = true;
-        Beta.initDelay = 1000;
+        Beta.initDelay = 3000;
     }
 
         private boolean checkPermission() {

@@ -58,6 +58,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends NetChangeActivity implements Contract.MainView {
     private static final String TAG = "MainActivity";
+    @BindView(R.id.main_launch_background)
+    View mBackgroundView;
     @BindView(R.id.main_launch_logo)
     ImageView mLogoImg;
     @BindView(R.id.main_viewpager)
@@ -119,11 +121,14 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                 }
             }
         });
+
+
     }
 
     private void initView() {
-        ImmersionBar.with(this).statusBarColor(R.color.bg_daily_mode).autoDarkModeEnable(true).fitsSystemWindows(true).keyboardEnable(true).init();
-        LaunchAnim.showLogo(mLogoImg, mTopView, mVPager, mBottomBar);
+        ImmersionBar.with(this).statusBarColor(R.color.bg_splash).fullScreen(true).autoDarkModeEnable(true).keyboardEnable(true).init();
+        LaunchAnim.showLogo(this,mLogoImg, mTopView, mVPager, mBottomBar,mBackgroundView);
+
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(MainActivity.this);

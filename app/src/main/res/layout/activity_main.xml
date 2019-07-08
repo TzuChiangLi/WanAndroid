@@ -6,24 +6,29 @@
     android:background="@color/bg_daily_mode"
     tools:context=".MainActivity">
 
+    <View
+        android:id="@+id/main_launch_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_splash" />
+
     <ImageView
         android:id="@+id/main_launch_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:alpha="1"
         android:scaleType="centerCrop"
-        android:src="@mipmap/logo"
-        android:alpha="0"
-        android:layout_marginTop="@dimen/dp_80"
-        android:layout_centerInParent="true"/>
+        android:src="@mipmap/logo" />
 
     <RelativeLayout
         android:id="@+id/main_topbar"
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentTop="true"
         android:background="@color/bg_daily_mode"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/main_tv_title"
@@ -41,11 +46,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
             android:layout_marginEnd="24dp"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
-            android:visibility="visible"
-            android:src="@mipmap/search" />
+            android:src="@mipmap/search"
+            android:visibility="visible" />
     </RelativeLayout>
 
 
@@ -53,17 +58,16 @@
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_above="@+id/main_bottom_bar"
         android:layout_below="@id/main_topbar"
-         />
+        android:visibility="gone" />
 
     <com.bottom.PageNavigationView
         android:id="@+id/main_bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:visibility="gone"
         android:layout_alignParentBottom="true"
-        android:background="@color/bg_daily_mode" />
+        android:background="@color/bg_daily_mode"
+        android:visibility="gone" />
 
 </RelativeLayout>
