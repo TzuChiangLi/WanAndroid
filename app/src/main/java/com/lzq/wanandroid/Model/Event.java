@@ -1,8 +1,8 @@
 package com.lzq.wanandroid.Model;
 
 /**
- * @author wangyz
- * @time 2019/1/23 15:45
+ * @author TzuchiangLi
+ * @time 2019年7月5日10:55:25
  * @description Event
  */
 public class Event {
@@ -98,8 +98,13 @@ public class Event {
      * 刷新时是否已登录
      */
     public static final int TYPE_REFRESH_ISLOGIN = 20;
+    /**
+     * 刷新时是否已登录
+     */
     public static final int TYPE_REFRESH_NOTLOGIN = 21;
-
+    /**
+     * 全局加载
+     */
     public static final int TYPE_SYS_LOAD = 22;
 
 

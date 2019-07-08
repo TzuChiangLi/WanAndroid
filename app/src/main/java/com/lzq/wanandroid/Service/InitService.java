@@ -43,16 +43,9 @@ public class InitService extends IntentService {
         initPermission();
         //SDK初始化的操作
         QbSdk.initX5Environment(this, null);
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/WanAndroid/");
-        if (checkPermission()) {
-            if (!file.exists()) {
-                file.mkdirs();
-            }
-        }
         Bugly.init(this, "2aa3615a5e", false);
         Beta.autoInit = true;
-        Beta.storageDir = file;
-        Beta.initDelay = 3000;
+        Beta.initDelay = 1000;
     }
 
         private boolean checkPermission() {
