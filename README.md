@@ -2,6 +2,8 @@
 
 项目介绍：
 ----
+![logo](https://github.com/TzuChiangLi/WanAndroid/blob/master/app/src/main/res/mipmap-xhdpi/icon_launcher_round.png?raw=true "")
+
 本项目启动LOGO设计来自越来越美丽的杨设计@Designer Yang
 
 当时毕业公司安排我学习Android的开发以快速开发项目，所以在公司一直MVC的模式开发，在看了现在的主流及趋势后，发现MVP是进步路上的必修课，所以就参考了很多大神的项目学习MVP的写法和思路。
