@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.hjq.toast.ToastUtils;
+import com.lzq.wanandroid.R;
 import com.qw.soul.permission.SoulPermission;
 import com.qw.soul.permission.bean.Permission;
 import com.qw.soul.permission.bean.Permissions;
@@ -33,7 +35,6 @@ public class InitService extends IntentService {
     }
 
     public static void start(Context context) {
-
         Intent intent = new Intent(context, InitService.class);
         intent.setAction(ACTION_INIT_WHEN_APP_CREATE);
         context.startService(intent);
@@ -46,6 +47,7 @@ public class InitService extends IntentService {
         Bugly.init(this, "2aa3615a5e", false);
         Beta.autoInit = true;
         Beta.initDelay = 3000;
+        Beta.largeIconId = R.mipmap.icon_launcher;
     }
 
         private boolean checkPermission() {
@@ -54,19 +56,8 @@ public class InitService extends IntentService {
         }
 
     private void initPermission() {
-        SoulPermission.getInstance().checkAndRequestPermissions(
-                Permissions.build(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
-                //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
-                new CheckRequestPermissionsListener() {
-                    @Override
-                    public void onAllPermissionOk(Permission[] allPermissions) {
-                    }
 
-                    @Override
-                    public void onPermissionDenied(Permission[] refusedPermissions) {
-                        ToastUtils.show("如果你拒绝文件读写权限，那么很可能将无法及时获取更新版本！");
-                    }
-                });
+
 
     }
 
