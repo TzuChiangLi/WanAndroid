@@ -1,5 +1,6 @@
 package com.lzq.wanandroid;
 
+import android.Manifest;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
 import com.gyf.immersionbar.ImmersionBar;
+import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.Api.Contract;
 import com.lzq.wanandroid.Api.WebTask;
 import com.lzq.wanandroid.Base.NetChangeActivity;
@@ -44,6 +46,10 @@ import com.lzq.wanandroid.View.Fragment.UserFragment;
 import com.lzq.wanandroid.View.LoginActivity;
 import com.lzq.wanandroid.View.SearchActivity;
 import com.lzq.wanandroid.View.SettingsActivity;
+import com.qw.soul.permission.SoulPermission;
+import com.qw.soul.permission.bean.Permission;
+import com.qw.soul.permission.bean.Permissions;
+import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -128,7 +134,18 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     private void initView() {
         ImmersionBar.with(this).statusBarColor(R.color.bg_splash).fullScreen(true).autoDarkModeEnable(true).keyboardEnable(true).init();
         LaunchAnim.showLogo(this,mLogoImg, mTopView, mVPager, mBottomBar,mBackgroundView);
-
+        SoulPermission.getInstance().checkAndRequestPermissions(
+                Permissions.build(Manifest.permission.REQUEST_INSTALL_PACKAGES,Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
+                //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
+                new CheckRequestPermissionsListener() {
+                    @Override
+                    public void onAllPermissionOk(Permission[] allPermissions) {
+                    }
+                    @Override
+                    public void onPermissionDenied(Permission[] refusedPermissions) {
+                        ToastUtils.show("如果你拒绝文件读写权限，那么很可能将无法及时获取更新版本！");
+                    }
+                });
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(MainActivity.this);

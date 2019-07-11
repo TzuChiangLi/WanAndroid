@@ -46,18 +46,7 @@ public class WanAndroid extends Application {
         OkGo.getInstance().setOkHttpClient(builder.build()).init(this);
         LitePal.initialize(this);
         LitePal.getDatabase();
-        SoulPermission.getInstance().checkAndRequestPermissions(
-                Permissions.build(Manifest.permission.REQUEST_INSTALL_PACKAGES,Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
-                //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
-                new CheckRequestPermissionsListener() {
-                    @Override
-                    public void onAllPermissionOk(Permission[] allPermissions) {
-                    }
-                    @Override
-                    public void onPermissionDenied(Permission[] refusedPermissions) {
-                        ToastUtils.show("如果你拒绝文件读写权限，那么很可能将无法及时获取更新版本！");
-                    }
-                });
+
         /**
          * 必须在 Application 的 onCreate 方法中执行 BGASwipeBackHelper.init 来初始化滑动返回
          * 第一个参数：应用程序上下文
