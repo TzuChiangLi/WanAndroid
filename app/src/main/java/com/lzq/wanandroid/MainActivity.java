@@ -1,16 +1,11 @@
 package com.lzq.wanandroid;
 
 import android.Manifest;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatDelegate;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,8 +28,6 @@ import com.lzq.wanandroid.Presenter.ProjectPresenter;
 import com.lzq.wanandroid.Presenter.SystemPresenter;
 import com.lzq.wanandroid.Presenter.UserPresenter;
 import com.lzq.wanandroid.Utils.AnimationUtil;
-import com.lzq.wanandroid.Utils.FitUtil;
-import com.lzq.wanandroid.Utils.StringUtils;
 import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
 import com.lzq.wanandroid.View.Animation.LaunchAnim;
 import com.lzq.wanandroid.View.Animation.TitleAnim;
@@ -133,14 +126,15 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
     private void initView() {
         ImmersionBar.with(this).statusBarColor(R.color.bg_splash).fullScreen(true).autoDarkModeEnable(true).keyboardEnable(true).init();
-        LaunchAnim.showLogo(this,mLogoImg, mTopView, mVPager, mBottomBar,mBackgroundView);
+        LaunchAnim.showLogo(this, mLogoImg, mTopView, mVPager, mBottomBar, mBackgroundView);
         SoulPermission.getInstance().checkAndRequestPermissions(
-                Permissions.build(Manifest.permission.REQUEST_INSTALL_PACKAGES,Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
+                Permissions.build(Manifest.permission.REQUEST_INSTALL_PACKAGES, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
                 //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
                 new CheckRequestPermissionsListener() {
                     @Override
                     public void onAllPermissionOk(Permission[] allPermissions) {
                     }
+
                     @Override
                     public void onPermissionDenied(Permission[] refusedPermissions) {
                         ToastUtils.show("如果你拒绝文件读写权限，那么很可能将无法及时获取更新版本！");
@@ -284,7 +278,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                     mFuncImgBtn.setVisibility(View.VISIBLE);
                     mFuncImgBtn.setAlpha(1f);
                     recreate();
-
                     break;
                 case Event.TYPE_LOGIN_SUCCESS:
                     TitleAnim.hide(mTitleTv);
@@ -321,7 +314,6 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-
     }
 
     @Override

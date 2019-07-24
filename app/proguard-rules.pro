@@ -21,6 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 #------------------------大部分常用混淆规则------------------------#
+
 #指定压缩级别
 -optimizationpasses 5
 
@@ -42,6 +43,9 @@
 -keepattributes SourceFile,LineNumberTable
 #保持泛型
 -keepattributes Signature
+
+#避免对FileProvider进行混淆
+-keep public class android.support.v4.content.FileProvider {*;}
 
 #保持所有实现 Serializable 接口的类成员
 -keepclassmembers class * implements java.io.Serializable {

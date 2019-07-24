@@ -74,6 +74,11 @@
         </provider>
 
         <service android:name=".Service.InitService" />
+
+
+
+
+
     </application>
 
 </manifest>

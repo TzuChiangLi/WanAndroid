@@ -38,6 +38,8 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
     Button mLogoutBtn;
     @BindView(R.id.set_tv_version)
     TextView mVersionTv;
+    @BindView(R.id.set_btn_about)
+    Button mAboutBtn;
     private Contract.SettingPresenter mPresenter;
 
 
@@ -77,10 +79,11 @@ public class SettingsActivity extends BaseActivity implements Contract.SettingVi
         });
     }
 
+
     @OnClick(R.id.set_btn_about)
-    public void showAbout() {
-        startActivity(VersionActivity.class);
-    }
+    public void showAbout(){startActivity(VersionActivity.class);}
+
+
 
     @OnClick(R.id.set_btn_logout)
     public void doLogout() {
