@@ -11,7 +11,7 @@
 
 下载地址：
 ----
-![baiduyun](https://github.com/TzuChiangLi/WanAndroid/blob/master/app/release/10109.png?raw=true "下载地址")
+![baiduyun](https://github.com/TzuChiangLi/WanAndroid/blob/master/app/release/10114.png?raw=true "下载地址")
 
 界面截图：
 ----
