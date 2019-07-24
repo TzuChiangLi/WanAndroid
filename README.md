@@ -11,8 +11,8 @@
 
 下载地址：
 ----
-![baiduyun](https://github.com/TzuChiangLi/WanAndroid/blob/master/app/release/10114.png?raw=true "下载地址")  
-[点击下载](https://github.com/TzuChiangLi/WanAndroid/raw/master/app/release/WanAndroid_1.0.18101_10114_release.apk)
+[点击下载](https://github.com/TzuChiangLi/WanAndroid/raw/master/app/release/WanAndroid_1.0.18101_10114_release.apk)  
+![baiduyun](https://github.com/TzuChiangLi/WanAndroid/blob/master/app/release/10114.png?raw=true "下载地址")
 
 界面截图：
 ----
