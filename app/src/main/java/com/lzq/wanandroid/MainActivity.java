@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
@@ -42,7 +43,9 @@ import com.lzq.wanandroid.View.SettingsActivity;
 import com.qw.soul.permission.SoulPermission;
 import com.qw.soul.permission.bean.Permission;
 import com.qw.soul.permission.bean.Permissions;
+import com.qw.soul.permission.bean.Special;
 import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener;
+import com.qw.soul.permission.callbcak.SpecialPermissionListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -137,9 +140,17 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
 
                     @Override
                     public void onPermissionDenied(Permission[] refusedPermissions) {
-                        ToastUtils.show("如果你拒绝文件读写权限，那么很可能将无法及时获取更新版本！");
                     }
                 });
+        //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
+        SoulPermission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
+            @Override
+            public void onGranted(Special permission) {
+            }
+            @Override
+            public void onDenied(Special permission) {
+            }
+        });
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(MainActivity.this);
@@ -266,6 +277,8 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                 break;
             case 3:
                 startActivity(SettingsActivity.class);
+                break;
+            default:
                 break;
         }
     }

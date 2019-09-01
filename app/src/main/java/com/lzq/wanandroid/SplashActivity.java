@@ -17,7 +17,6 @@ public class SplashActivity extends BaseActivity {
         //跳转页面
         Intent intent = new Intent(SplashActivity.this,MainActivity.class);
         startActivity(intent);
-//        InitService.start(this);
         finish();
     }
 }

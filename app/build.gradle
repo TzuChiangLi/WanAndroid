@@ -95,7 +95,7 @@ dependencies {
     //轮子哥titlebar框架
     implementation 'com.hjq:titlebar:5.0'
     //动态申请权限
-    implementation 'com.qw:soulpermission:1.1.8'
+    implementation 'com.qw:soulpermission:1.2.1'
     //RecyclerViewAdapterHelper
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
     //底部导航栏
