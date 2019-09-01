@@ -6,7 +6,9 @@
 
 本项目启动LOGO设计来自越来越美丽的杨设计@Designer Yang  
 项目作者：TzuChiangLi
-
+Please star before forking,3ku.
+请在fork前star，谢谢！
+开源项目，如果喜欢请star。
 
 当时毕业公司安排我学习Android的开发以快速开发项目，所以在公司一直MVC的模式开发，在看了现在的主流及趋势后，发现MVP是进步路上的必修课，所以就参考了很多大神的项目学习MVP的写法和思路。
 这个项目只是我学习MVP后的一点总结，并没有使用RxJava（因为还没学会）等等高手进阶的技术内容。
