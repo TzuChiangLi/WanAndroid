@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_daily_layout"
     android:orientation="vertical"
-    tools:context=".View.SettingsActivity">
+    tools:context=".view.SettingsActivity">
 
 
     <com.hjq.bar.TitleBar

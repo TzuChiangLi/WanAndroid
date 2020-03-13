@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Base;
+package com.lzq.wanandroid.base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,6 @@ import android.widget.EditText;
 
 import com.hjq.toast.ToastUtils;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.FitUtil;
 
 import java.lang.reflect.Method;
 

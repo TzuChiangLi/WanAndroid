@@ -1,12 +1,12 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BasePresenter;
-import com.lzq.wanandroid.Model.Children;
-import com.lzq.wanandroid.Utils.StringUtils;
-import com.lzq.wanandroid.Api.OffAccountContract;
-import com.lzq.wanandroid.Api.LoadTasksCallBack;
-import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.base.BasePresenter;
+import com.lzq.wanandroid.model.Children;
+import com.lzq.wanandroid.utils.StringUtils;
+import com.lzq.wanandroid.api.OffAccountContract;
+import com.lzq.wanandroid.api.LoadTasksCallBack;
+import com.lzq.wanandroid.model.Data;
 
 import java.util.ArrayList;
 import java.util.List;

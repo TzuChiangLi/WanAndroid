@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_daily_mode"
-    tools:context=".View.LoginActivity">
+    tools:context=".view.LoginActivity">
 
     <com.hjq.bar.TitleBar
         android:id="@+id/login_titlebar"
@@ -91,7 +91,7 @@
                     android:scaleType="centerCrop"
                     android:src="@mipmap/id" />
 
-                <com.lzq.wanandroid.View.Custom.ClearEditText
+                <com.lzq.wanandroid.view.custom.ClearEditText
                     android:id="@+id/user_edt_id"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
@@ -128,7 +128,7 @@
                     android:scaleType="centerCrop"
                     android:src="@mipmap/pwd" />
 
-                <com.lzq.wanandroid.View.Custom.ClearEditText
+                <com.lzq.wanandroid.view.custom.ClearEditText
                     android:id="@+id/user_edt_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
@@ -172,7 +172,7 @@
                     android:scaleType="centerCrop"
                     android:src="@mipmap/confirm" />
 
-                <com.lzq.wanandroid.View.Custom.ClearEditText
+                <com.lzq.wanandroid.view.custom.ClearEditText
                     android:id="@+id/user_edt_confirm"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"

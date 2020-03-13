@@ -1,31 +1,18 @@
 package com.lzq.wanandroid;
 
-import android.Manifest;
 import android.app.Application;
-import android.os.Environment;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.Service.InitService;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.service.InitService;
+import com.lzq.wanandroid.utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.qw.soul.permission.SoulPermission;
-import com.qw.soul.permission.bean.Permission;
-import com.qw.soul.permission.bean.Permissions;
-import com.qw.soul.permission.callbcak.CheckRequestPermissionListener;
-import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener;
-import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.smtt.sdk.QbSdk;
 
 import org.litepal.LitePal;
-
-import java.io.File;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import okhttp3.OkHttpClient;

@@ -1,8 +1,8 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Base.BasePresenter;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.base.BasePresenter;
 
 public class MainPresenter extends BasePresenter implements Contract.MainPresenter {
     private static final String TAG = "MainPresenter";

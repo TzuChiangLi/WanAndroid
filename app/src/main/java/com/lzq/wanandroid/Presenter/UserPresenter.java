@@ -1,8 +1,8 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Base.BasePresenter;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.base.BasePresenter;
 import com.lzq.wanandroid.R;
 
 public class UserPresenter extends BasePresenter implements Contract.UserPresenter {

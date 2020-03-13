@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".View.WebActivity">
+    tools:context=".view.WebActivity">
 
     <com.hjq.bar.TitleBar
         android:id="@+id/web_titlebar"
@@ -17,7 +17,7 @@
         app:titleColor="@color/text_daily_mode"
         app:titleSize="17dp" />
 
-    <com.lzq.wanandroid.View.Custom.ProgressWebview
+    <com.lzq.wanandroid.view.custom.ProgressWebview
         android:id="@+id/web_x5_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

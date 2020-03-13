@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_daily_mode"
     android:orientation="vertical"
-    tools:context=".View.SearchActivity">
+    tools:context=".view.SearchActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,7 +26,7 @@
             android:background="@drawable/shape_corner_search_edt"
             android:paddingStart="@dimen/dp_20">
 
-            <com.lzq.wanandroid.View.Custom.ClearEditText
+            <com.lzq.wanandroid.view.custom.ClearEditText
                 android:id="@+id/search_edt"
                 android:textSize="14sp"
                 android:layout_width="match_parent"

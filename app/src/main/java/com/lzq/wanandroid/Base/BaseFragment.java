@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Base;
+package com.lzq.wanandroid.base;
 
 import android.content.Context;
 import android.content.Intent;

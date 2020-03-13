@@ -1,13 +1,9 @@
 package com.lzq.wanandroid;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Service.InitService;
+import com.lzq.wanandroid.base.BaseActivity;
 
 public class SplashActivity extends BaseActivity {
     private static final String TAG="SplashActivity";

@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Model;
+package com.lzq.wanandroid.model;
 
 
 import java.util.List;

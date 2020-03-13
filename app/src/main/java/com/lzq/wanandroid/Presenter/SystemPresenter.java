@@ -1,7 +1,7 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Base.BasePresenter;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.base.BasePresenter;
 import com.lzq.wanandroid.R;
 
 public class SystemPresenter extends BasePresenter implements Contract.SystemPresenter {

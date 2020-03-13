@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Api;
+package com.lzq.wanandroid.api;
 
 public interface NetTask<T> {
     void execute(LoadTasksCallBack callBack, int... params);

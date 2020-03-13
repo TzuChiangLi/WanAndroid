@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_daily_mode"
     android:orientation="vertical"
-    tools:context=".View.ArticlesActivity">
+    tools:context=".view.ArticlesActivity">
 
     <com.hjq.bar.TitleBar
         android:id="@+id/official_account_topbar"

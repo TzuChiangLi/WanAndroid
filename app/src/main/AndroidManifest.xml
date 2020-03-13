@@ -45,13 +45,13 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait|landscape" />
-        <activity android:name=".View.VersionActivity" />
-        <activity android:name=".View.SearchResultActivity" />
-        <activity android:name=".View.SearchActivity" />
-        <activity android:name=".View.LoginActivity" />
-        <activity android:name=".View.WebActivity" />
-        <activity android:name=".View.SettingsActivity" />
-        <activity android:name=".View.ArticlesActivity" />
+        <activity android:name=".view.VersionActivity" />
+        <activity android:name=".view.SearchResultActivity" />
+        <activity android:name=".view.SearchActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.WebActivity" />
+        <activity android:name=".view.SettingsActivity" />
+        <activity android:name=".view.ArticlesActivity" />
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
@@ -73,7 +73,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <service android:name=".Service.InitService" />
+        <service android:name=".service.InitService" />
 
 
 

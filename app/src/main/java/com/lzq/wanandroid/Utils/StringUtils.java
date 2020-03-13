@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Utils;
+package com.lzq.wanandroid.utils;
 
 public class StringUtils {
 
