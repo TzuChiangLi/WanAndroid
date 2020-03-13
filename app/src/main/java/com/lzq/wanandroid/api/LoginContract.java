@@ -1,10 +1,10 @@
-package com.lzq.wanandroid.Api;
+package com.lzq.wanandroid.api;
 
 import android.app.Activity;
 
-import com.lzq.wanandroid.Base.BaseView;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.base.BaseView;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.model.Datas;
 
 import java.util.List;
 

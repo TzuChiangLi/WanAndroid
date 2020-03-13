@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Utils;
+package com.lzq.wanandroid.utils;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

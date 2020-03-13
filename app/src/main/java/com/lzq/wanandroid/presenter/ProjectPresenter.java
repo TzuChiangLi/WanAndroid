@@ -1,13 +1,11 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
-import android.util.Log;
-
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Api.LoadTasksCallBack;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BasePresenter;
-import com.lzq.wanandroid.Model.ProjectTree;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.api.LoadTasksCallBack;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.base.BasePresenter;
+import com.lzq.wanandroid.model.ProjectTree;
+import com.lzq.wanandroid.utils.StringUtils;
 
 import java.util.List;
 

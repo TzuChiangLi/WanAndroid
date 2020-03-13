@@ -1,13 +1,13 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Api.LoadTasksCallBack;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BasePresenter;
-import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Model.ProjectItem;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.api.LoadTasksCallBack;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.base.BasePresenter;
+import com.lzq.wanandroid.model.Event;
+import com.lzq.wanandroid.model.ProjectItem;
+import com.lzq.wanandroid.utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

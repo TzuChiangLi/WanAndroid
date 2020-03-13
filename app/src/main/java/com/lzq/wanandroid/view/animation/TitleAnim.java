@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Animation;
+package com.lzq.wanandroid.view.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.just.agentwebX5.IFileUploadChooser;
 import com.lzq.wanandroid.R;
 
 /**

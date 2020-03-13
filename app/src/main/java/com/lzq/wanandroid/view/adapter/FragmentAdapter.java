@@ -1,15 +1,10 @@
-package com.lzq.wanandroid.View.Adapter;
+package com.lzq.wanandroid.view.adapter;
 
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.view.ViewGroup;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 

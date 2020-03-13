@@ -1,7 +1,7 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
-import com.lzq.wanandroid.Api.WebContract;
-import com.lzq.wanandroid.Base.BasePresenter;
+import com.lzq.wanandroid.api.WebContract;
+import com.lzq.wanandroid.base.BasePresenter;
 
 public class WebPresenter extends BasePresenter implements WebContract.Presenter {
     private static final String TAG = "WebPresenter";

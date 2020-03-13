@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View;
+package com.lzq.wanandroid.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,18 +10,18 @@ import android.view.View;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.lzq.wanandroid.Api.OffAccountContract;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Model.Children;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Presenter.ArticlesPresenter;
-import com.lzq.wanandroid.Presenter.TitlePresenter;
+import com.lzq.wanandroid.api.OffAccountContract;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.base.BaseActivity;
+import com.lzq.wanandroid.model.Children;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.presenter.ArticlesPresenter;
+import com.lzq.wanandroid.presenter.TitlePresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.ActivityUtils;
-import com.lzq.wanandroid.Utils.StringUtils;
-import com.lzq.wanandroid.View.Adapter.FragmentAdapter;
-import com.lzq.wanandroid.View.Fragment.ContentFragment;
+import com.lzq.wanandroid.utils.ActivityUtils;
+import com.lzq.wanandroid.utils.StringUtils;
+import com.lzq.wanandroid.view.adapter.FragmentAdapter;
+import com.lzq.wanandroid.view.fragment.ContentFragment;
 
 import java.util.ArrayList;
 import java.util.List;

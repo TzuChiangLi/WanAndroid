@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Model;
+package com.lzq.wanandroid.model;
 
 public class Tags {
     private String name;

@@ -1,16 +1,15 @@
-package com.lzq.wanandroid.View.Adapter;
+package com.lzq.wanandroid.view.adapter;
 
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lzq.wanandroid.Api.FlowTagCallBack;
-import com.lzq.wanandroid.Model.Children;
-import com.lzq.wanandroid.Model.Data;
+import com.lzq.wanandroid.api.FlowTagCallBack;
+import com.lzq.wanandroid.model.Children;
+import com.lzq.wanandroid.model.Data;
 import com.lzq.wanandroid.R;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;

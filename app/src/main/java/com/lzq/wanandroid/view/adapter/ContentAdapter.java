@@ -1,14 +1,12 @@
-package com.lzq.wanandroid.View.Adapter;
+package com.lzq.wanandroid.view.adapter;
 
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseItemDraggableAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lzq.wanandroid.Model.Datas;
+import com.lzq.wanandroid.model.Datas;
 import com.lzq.wanandroid.R;
 
 import java.util.ArrayList;

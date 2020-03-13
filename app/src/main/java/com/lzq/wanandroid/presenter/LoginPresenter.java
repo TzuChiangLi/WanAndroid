@@ -1,14 +1,14 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
 import android.app.Activity;
 
-import com.lzq.wanandroid.Api.LoginContract;
-import com.lzq.wanandroid.Api.LoadTasksCallBack;
-import com.lzq.wanandroid.Base.BasePresenter;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Utils.AnimationUtil;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.api.LoginContract;
+import com.lzq.wanandroid.api.LoadTasksCallBack;
+import com.lzq.wanandroid.base.BasePresenter;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.utils.AnimationUtil;
+import com.lzq.wanandroid.utils.StringUtils;
 
 public class LoginPresenter extends BasePresenter
         implements LoginContract.LoginPresenter, LoadTasksCallBack<Data> {

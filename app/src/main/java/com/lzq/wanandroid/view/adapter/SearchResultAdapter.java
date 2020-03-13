@@ -1,15 +1,13 @@
-package com.lzq.wanandroid.View.Adapter;
+package com.lzq.wanandroid.view.adapter;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Model.SearchResult;
+import com.lzq.wanandroid.model.SearchResult;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.utils.StringUtils;
 
 import java.util.List;
 

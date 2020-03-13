@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Animation;
+package com.lzq.wanandroid.view.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

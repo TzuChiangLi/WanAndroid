@@ -1,7 +1,5 @@
-package com.lzq.wanandroid.View;
+package com.lzq.wanandroid.view;
 
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
@@ -13,12 +11,12 @@ import com.blankj.utilcode.util.SPUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Presenter.SettingPresenter;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.base.BaseActivity;
+import com.lzq.wanandroid.model.Event;
+import com.lzq.wanandroid.presenter.SettingPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.utils.StringUtils;
 import com.suke.widget.SwitchButton;
 
 import org.greenrobot.eventbus.EventBus;

@@ -1,23 +1,21 @@
-package com.lzq.wanandroid.View;
+package com.lzq.wanandroid.view;
 
-import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.gyf.immersionbar.ImmersionBar;
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Model.SearchResult;
-import com.lzq.wanandroid.Presenter.SearchPresenter;
+import com.lzq.wanandroid.base.BaseActivity;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.model.SearchResult;
+import com.lzq.wanandroid.presenter.SearchPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.View.Custom.ClearEditText;
+import com.lzq.wanandroid.view.custom.ClearEditText;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;

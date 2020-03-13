@@ -1,7 +1,6 @@
-package com.lzq.wanandroid.View;
+package com.lzq.wanandroid.view;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -23,16 +22,15 @@ import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.toast.ToastUtils;
-import com.kongzue.dialog.v2.DialogSettings;
 import com.kongzue.dialog.v2.Notification;
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Api.LoginContract;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Presenter.LoginPresenter;
+import com.lzq.wanandroid.base.BaseActivity;
+import com.lzq.wanandroid.api.LoginContract;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.model.Event;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.presenter.LoginPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.View.Custom.ClearEditText;
+import com.lzq.wanandroid.view.custom.ClearEditText;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Fragment;
+package com.lzq.wanandroid.view.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lzq.wanandroid.Base.BaseFragment;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Model.Event;
+import com.lzq.wanandroid.base.BaseFragment;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.model.Datas;
+import com.lzq.wanandroid.model.Event;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.View.Adapter.ContentAdapter;
+import com.lzq.wanandroid.view.adapter.ContentAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

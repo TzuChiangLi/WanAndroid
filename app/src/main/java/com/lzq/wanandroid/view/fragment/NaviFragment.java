@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Fragment;
+package com.lzq.wanandroid.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,18 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ActivityUtils;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Api.FlowTagCallBack;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Base.BaseFragment;
-import com.lzq.wanandroid.Model.Children;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Presenter.TreePresenter;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.api.FlowTagCallBack;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.base.BaseFragment;
+import com.lzq.wanandroid.model.Children;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.model.Event;
+import com.lzq.wanandroid.presenter.TreePresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.Utils.StringUtils;
-import com.lzq.wanandroid.View.Adapter.NaviAdapter;
-import com.lzq.wanandroid.View.WebActivity;
+import com.lzq.wanandroid.utils.StringUtils;
+import com.lzq.wanandroid.view.adapter.NaviAdapter;
+import com.lzq.wanandroid.view.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;

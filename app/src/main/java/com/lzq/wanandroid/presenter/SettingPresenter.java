@@ -1,20 +1,16 @@
-package com.lzq.wanandroid.Presenter;
+package com.lzq.wanandroid.presenter;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import com.blankj.utilcode.util.SPUtils;
-import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Base.BasePresenter;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.base.BasePresenter;
+import com.lzq.wanandroid.utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cookie.store.CookieStore;
 
-import java.util.List;
-
-import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
 public class SettingPresenter extends BasePresenter implements Contract.SettingPresenter {

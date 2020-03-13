@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View;
+package com.lzq.wanandroid.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +9,11 @@ import android.view.WindowManager;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-import com.lzq.wanandroid.Base.BaseActivity;
-import com.lzq.wanandroid.Api.WebContract;
-import com.lzq.wanandroid.Presenter.WebPresenter;
+import com.lzq.wanandroid.base.BaseActivity;
+import com.lzq.wanandroid.api.WebContract;
+import com.lzq.wanandroid.presenter.WebPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.View.Custom.ProgressWebview;
+import com.lzq.wanandroid.view.custom.ProgressWebview;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 

@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Adapter;
+package com.lzq.wanandroid.view.adapter;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.lzq.wanandroid.Model.ProjectItem;
+import com.lzq.wanandroid.model.ProjectItem;
 import com.lzq.wanandroid.R;
 
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindColor;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProjectItemAdapter extends BaseQuickAdapter<ProjectItem.DataBean.Datas, BaseViewHolder> {

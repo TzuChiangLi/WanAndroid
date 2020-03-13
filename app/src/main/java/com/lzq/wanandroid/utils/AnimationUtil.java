@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.Utils;
+package com.lzq.wanandroid.utils;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

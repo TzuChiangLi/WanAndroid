@@ -1,4 +1,4 @@
-package com.lzq.wanandroid.View.Custom;
+package com.lzq.wanandroid.view.custom;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;

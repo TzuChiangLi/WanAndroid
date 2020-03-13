@@ -1,13 +1,11 @@
-package com.lzq.wanandroid.View.Fragment;
+package com.lzq.wanandroid.view.fragment;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +13,17 @@ import android.view.ViewGroup;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.hjq.toast.ToastUtils;
-import com.lzq.wanandroid.Base.BaseFragment;
-import com.lzq.wanandroid.Api.Contract;
-import com.lzq.wanandroid.Model.Datas;
-import com.lzq.wanandroid.Model.Event;
-import com.lzq.wanandroid.Api.WebTask;
-import com.lzq.wanandroid.Presenter.CollectPresenter;
+import com.lzq.wanandroid.base.BaseFragment;
+import com.lzq.wanandroid.api.Contract;
+import com.lzq.wanandroid.model.Datas;
+import com.lzq.wanandroid.model.Event;
+import com.lzq.wanandroid.api.WebTask;
+import com.lzq.wanandroid.presenter.CollectPresenter;
 import com.lzq.wanandroid.R;
-import com.lzq.wanandroid.View.Adapter.ContentAdapter;
-import com.lzq.wanandroid.View.Animation.CollectAnim;
-import com.lzq.wanandroid.View.LoginActivity;
-import com.lzq.wanandroid.View.WebActivity;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cookie.store.CookieStore;
+import com.lzq.wanandroid.view.adapter.ContentAdapter;
+import com.lzq.wanandroid.view.animation.CollectAnim;
+import com.lzq.wanandroid.view.LoginActivity;
+import com.lzq.wanandroid.view.WebActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -42,8 +37,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Cookie;
-import okhttp3.HttpUrl;
 
 public class CollectFragment extends BaseFragment implements Contract.CollectView {
     private static final String TAG = "CollectFragment";

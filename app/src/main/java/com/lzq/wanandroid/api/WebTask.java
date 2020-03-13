@@ -1,15 +1,15 @@
-package com.lzq.wanandroid.Api;
+package com.lzq.wanandroid.api;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.lzq.wanandroid.Model.Data;
-import com.lzq.wanandroid.Model.ProjectItem;
-import com.lzq.wanandroid.Model.ProjectTree;
-import com.lzq.wanandroid.Model.SearchResult;
-import com.lzq.wanandroid.Model.WanAndroid;
-import com.lzq.wanandroid.Model.WanAndroid_Content;
-import com.lzq.wanandroid.Utils.StringUtils;
+import com.lzq.wanandroid.model.Data;
+import com.lzq.wanandroid.model.ProjectItem;
+import com.lzq.wanandroid.model.ProjectTree;
+import com.lzq.wanandroid.model.SearchResult;
+import com.lzq.wanandroid.model.WanAndroid;
+import com.lzq.wanandroid.model.WanAndroid_Content;
+import com.lzq.wanandroid.utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
