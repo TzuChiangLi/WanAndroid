@@ -25,8 +25,8 @@
 #指定压缩级别
 -optimizationpasses 5
 
-#不跳过非公共的库的类成员
--dontskipnonpubliclibraryclassmembers
+##不跳过非公共的库的类成员
+#-dontskipnonpubliclibraryclassmembers
 
 #混淆时采用的算法
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
@@ -37,7 +37,7 @@
 #优化时允许访问并修改有修饰符的类和类的成员
 -allowaccessmodification
 
-#将文件来源重命名为“SourceFile”字符串
+##将文件来源重命名为“SourceFile”字符串
 -renamesourcefileattribute SourceFile
 #保留行号
 -keepattributes SourceFile,LineNumberTable
@@ -105,7 +105,7 @@
 -keep class com.google.gson.stream.** { *; }
 
 # Application classes that will be serialized/deserialized over Gson
--keep public class com.lzq.wanandroid.Model.** { *; }
+-keep public class com.lzq.wanandroid.model.** { *; }
 
 # Prevent proguard from stripping interface information from TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
