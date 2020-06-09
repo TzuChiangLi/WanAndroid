@@ -17,6 +17,12 @@ Please star before forking,3ku.
 ----
 [点击下载](https://raw.githubusercontent.com/TzuChiangLi/WanAndroid/dev-1.1/app/release/WanAndroid_1.0.18422_10134_release.apk)  
 
+更新记录：
+----
+2020-06-09：
+* 1.移除版本更新以及相关权限
+* 2.修复文章列表展示异常的问题
+* 3.新增关于界面
 
 界面截图：
 ----
