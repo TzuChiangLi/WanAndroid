@@ -15,7 +15,7 @@ Please star before forking,3ku.
 
 下载地址：
 ----
-[点击下载](https://github.com/TzuChiangLi/WanAndroid/blob/dev-1.1/app/release/WanAndroid_1.0.18422_10134_release.apk)  
+[点击下载](https://raw.githubusercontent.com/TzuChiangLi/WanAndroid/dev-1.1/app/release/WanAndroid_1.0.18422_10134_release.apk)  
 
 
 界面截图：
