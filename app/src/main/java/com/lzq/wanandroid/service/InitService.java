@@ -49,9 +49,6 @@ public class InitService extends IntentService {
         }
 
     private void initPermission() {
-
-
-
     }
 
 

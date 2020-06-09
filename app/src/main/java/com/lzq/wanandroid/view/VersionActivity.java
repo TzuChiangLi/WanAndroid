@@ -17,7 +17,7 @@ public class VersionActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_version);
+        setContentView(R.layout.activity_intro);
         ButterKnife.bind(this);
         mTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override

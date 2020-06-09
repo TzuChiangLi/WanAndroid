@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intro_app_name">玩安卓</string>
+    <string name="intro_app_version">Version  1.0</string>
+    <string name="intro_app_home_title">个人主页</string>
+    <string name="intro_app_enter">https://github.com/TzuChiangLi</string>
+    <string name="intro_app_tel_title">玩安卓社区</string>
+    <string name="intro_app_tel">https://www.wanandroid.com/</string>
+    <string name="intro_app_fax_title">图标设计师</string>
+    <string name="intro_app_fax">越来越美丽的Designer Yang</string>
+    <string name="intro_app_email_title">界面设计</string>
+    <string name="intro_app_email">TzuChiangLi</string>
+    <string name="intro_copyright"> 感谢鸿洋大神的玩安卓开源社区为Android开发者做出的贡献\n如果你喜欢此项目，请给我一个star，谢谢</string>
+
+
+</resources>

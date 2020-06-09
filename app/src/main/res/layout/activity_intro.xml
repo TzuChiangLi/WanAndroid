@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_daily_white">
+
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/ver_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/bg_daily_mode"
+        app:lineVisible="false"
+        app:title="@string/set_about"
+        app:titleColor="@color/text_daily_mode"
+        app:titleSize="16sp" />
+
+    <ScrollView
+        android:id="@+id/intro_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ver_titlebar"
+        android:layout_marginBottom="50dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <ImageView
+                android:id="@+id/intro_logo"
+                android:layout_width="82dp"
+                android:layout_height="82dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:src="@mipmap/icon_launcher_round" />
+
+            <TextView
+                android:id="@+id/intro_app_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/intro_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:letterSpacing="0.2"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/intro_app_name"
+                android:textColor="@color/text_daily_mode"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/intro_app_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/intro_app_name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/text_daily_mode"
+                android:textSize="@dimen/sp_14"
+                android:textStyle="bold"
+                android:text="@string/intro_app_version"
+                tools:text="@string/intro_app_version" />
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@+id/intro_app_version"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/divide_line" />
+
+            <LinearLayout
+                android:id="@+id/intro_ll_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line1"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_home_title"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    tools:text="@string/intro_app_home_title" />
+
+                <TextView
+                    android:id="@+id/intro_tv_home"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="end"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_enter"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/intro_app_enter" />
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/intro_ll_1"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/divide_line" />
+
+            <LinearLayout
+                android:id="@+id/intro_ll_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line2"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_tel_title"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    tools:text="@string/intro_app_tel_title" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:gravity="end"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_tel"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/intro_app_tel" />
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/intro_ll_2"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/divide_line" />
+
+            <LinearLayout
+                android:id="@+id/intro_ll_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line3"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_fax_title"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    tools:text="@string/intro_app_fax_title" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="end"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_fax"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/intro_app_fax" />
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/intro_ll_3"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/divide_line" />
+
+            <LinearLayout
+                android:id="@+id/intro_ll_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line4"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_email_title"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold"
+                    tools:text="@string/intro_app_email_title" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:padding="8dp"
+                    android:text="@string/intro_app_email"
+                    android:textColor="@color/text_daily_mode"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="@string/intro_app_email" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/intro_ll_4"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/divide_line" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:text="@string/intro_copyright"
+        android:textColor="@color/text_daily_mode"
+        android:textSize="12sp" />
+</RelativeLayout>
