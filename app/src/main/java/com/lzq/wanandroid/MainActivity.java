@@ -27,6 +27,9 @@ import com.lzq.wanandroid.presenter.ProjectPresenter;
 import com.lzq.wanandroid.presenter.SystemPresenter;
 import com.lzq.wanandroid.presenter.UserPresenter;
 import com.lzq.wanandroid.utils.AnimationUtil;
+import com.lzq.wanandroid.view.LoginActivity;
+import com.lzq.wanandroid.view.SearchActivity;
+import com.lzq.wanandroid.view.SettingsActivity;
 import com.lzq.wanandroid.view.adapter.FragmentAdapter;
 import com.lzq.wanandroid.view.animation.LaunchAnim;
 import com.lzq.wanandroid.view.animation.TitleAnim;
@@ -35,9 +38,6 @@ import com.lzq.wanandroid.view.fragment.HomeFragment;
 import com.lzq.wanandroid.view.fragment.ProjectFragment;
 import com.lzq.wanandroid.view.fragment.SystemFragment;
 import com.lzq.wanandroid.view.fragment.UserFragment;
-import com.lzq.wanandroid.view.LoginActivity;
-import com.lzq.wanandroid.view.SearchActivity;
-import com.lzq.wanandroid.view.SettingsActivity;
 import com.qw.soul.permission.SoulPermission;
 import com.qw.soul.permission.bean.Permission;
 import com.qw.soul.permission.bean.Permissions;
@@ -129,7 +129,7 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
         ImmersionBar.with(this).statusBarColor(R.color.bg_splash).fullScreen(true).autoDarkModeEnable(true).keyboardEnable(true).init();
         LaunchAnim.showLogo(this, mLogoImg, mTopView, mVPager, mBottomBar, mBackgroundView);
         SoulPermission.getInstance().checkAndRequestPermissions(
-                Permissions.build(Manifest.permission.REQUEST_INSTALL_PACKAGES, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
+                Permissions.build(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE),
                 //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
                 new CheckRequestPermissionsListener() {
                     @Override
@@ -140,15 +140,16 @@ public class MainActivity extends NetChangeActivity implements Contract.MainView
                     public void onPermissionDenied(Permission[] refusedPermissions) {
                     }
                 });
-        //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
-        SoulPermission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
-            @Override
-            public void onGranted(Special permission) {
-            }
-            @Override
-            public void onDenied(Special permission) {
-            }
-        });
+//        //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
+//        SoulPermission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
+//            @Override
+//            public void onGranted(Special permission) {
+//            }
+//
+//            @Override
+//            public void onDenied(Special permission) {
+//            }
+//        });
         WebTask mTask = WebTask.getInstance();
         if (mPresenter == null) {
             mPresenter = MainPresenter.createMainPresenter(MainActivity.this);
