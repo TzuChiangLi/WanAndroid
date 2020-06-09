@@ -35,7 +35,7 @@ public class ArticleAdapter extends BaseQuickAdapter<Data, BaseViewHolder> {
     protected void convert(BaseViewHolder helper, Data item) {
         switch (type) {
             case StringUtils.RV_ITEM_NORMAL:
-                if (TextUtils.isEmpty(item.getAuthor())) {
+                if (TextUtils.isEmpty(item.getTitle())) {
                     return;
                 } else {
                     helper.setText(R.id.rv_article_title, item.getTitle().replace("&mdash;","——").replace("&quot;","\""));

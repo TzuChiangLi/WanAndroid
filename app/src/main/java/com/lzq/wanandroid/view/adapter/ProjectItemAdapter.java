@@ -40,7 +40,7 @@ public class ProjectItemAdapter extends BaseQuickAdapter<ProjectItem.DataBean.Da
 
     @Override
     protected void convert(BaseViewHolder helper, ProjectItem.DataBean.Datas item) {
-        if (TextUtils.isEmpty(item.getAuthor())) {
+        if (TextUtils.isEmpty(item.getTitle())) {
             return;
         } else {
             helper.setText(R.id.rv_article_img_title, item.getTitle().replace("&mdash;","——").replace("&quot;", "\"").replace("&ldquo;", "\"").replace("&rdquo;", "\""));

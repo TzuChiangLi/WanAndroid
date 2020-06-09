@@ -33,7 +33,7 @@ public class ContentAdapter extends BaseQuickAdapter<Datas, BaseViewHolder>  {
 
     @Override
     protected void convert(BaseViewHolder helper, Datas item) {
-        if (TextUtils.isEmpty(item.getAuthor())) {
+        if (TextUtils.isEmpty(item.getTitle())) {
             return;
         } else {
             helper.setText(R.id.rv_article_title, item.getTitle().replace("&mdash;","——").replace("&quot;","\"").replace("&ldquo;","\"").replace("&rdquo;","\""));
